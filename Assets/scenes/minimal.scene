@@ -223,7 +223,7 @@
           "OnTriggerEnter": null,
           "OnTriggerExit": null,
           "SmoothingAngle": 40,
-          "Static": false,
+          "Static": true,
           "Surface": null,
           "SurfaceVelocity": "0,0,0"
         }
@@ -510,7 +510,7 @@
         },
         {
           "__type": "LLMGame.EnvironmentMaker",
-          "__guid": "1e1c127d-2802-4b58-9e6c-8e0fb13a6f13",
+          "__guid": "533ba66f-f447-4de3-a936-06ed92f57a5d",
           "Floor": {
             "_type": "component",
             "component_id": "0b6a18bf-fdb8-4661-970e-ef635bfa9baa",

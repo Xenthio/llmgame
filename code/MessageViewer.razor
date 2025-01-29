@@ -4,19 +4,49 @@
 @namespace LLMGame
 
 <root>
-    @foreach (var message in LanguageModel.Instance.Messages)
+    @if (AskingForPrompt)
     {
-        <div class="message">
-            <div class="title">@message.role</div>
-            <div class="content">@message.content</div>
+        <div class="promptentry">
+            <div class="title">Enter a prompt</div>
+            <TextEntry @ref=textEntry Placeholder="a lovely park"/>
+            <button onclick=@Submit>Submit</button>
         </div>
-    } 
+    }
+    <div class="messagelist">
+        @foreach (var message in LanguageModel.Instance.Messages)
+        {
+            <div class="message">
+                <div class="title">@message.role</div>
+                <div class="content">@message.content</div>
+            </div>
+        }
+    </div>
 </root>
 
 @code
-{ 
+{
+    bool AskingForPrompt = true;
+    public TextEntry textEntry { get; set; }
 
-	/// <summary>
+    public void Submit()
+    {
+        EnvironmentMaker.Instance.AddEnvironment(textEntry.Value);
+        AskingForPrompt = false;
+    }
+
+    protected override void OnFixedUpdate()
+    {
+        if (Input.Down("Score") || AskingForPrompt)
+        {
+            this.Panel.Style.PointerEvents = Sandbox.UI.PointerEvents.All;
+        }
+        else
+        {
+            this.Panel.Style.PointerEvents = Sandbox.UI.PointerEvents.None;
+        }
+        base.OnFixedUpdate();
+    }
+    /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
     protected override int BuildHash() => System.HashCode.Combine(LanguageModel.Instance.Messages.Count);

@@ -4,21 +4,59 @@ using System.Xml.Serialization;
 
 namespace LLMGame;
 
-public class EnvironmentMaker : Component
+public class EnvironmentMaker : SingletonComponent<EnvironmentMaker>
 {
 	[Property] public ModelRenderer Floor { get; set; }
 	[Property] public MeshComponent Mesh { get; set; }
 	protected override void OnStart()
 	{
 		base.OnStart();
-		AddEnvironment();
 	}
-	async void AddEnvironment()
+	public async void AddEnvironment( string prompt )
 	{
-		var environment = """
-[Environment creation mode activated.
-
+		var initial = """
+		
+----- Environment Designer -----
 Your instructions as the assistant are to create a new environment of your choice, indoors, outdoors, whatever!
+ 
+""";
+		if ( prompt != null )
+		{
+			initial = $"""
+		
+----- Environment Designer -----
+Your instructions as the assistant are to create a new environment that matches the prompt of the user, the prompt is {prompt}.
+ 
+""";
+		}
+		LanguageModel.AddMessage( "system", initial );
+
+		var search = """
+----- Stage 1: Model search -----
+
+Seperate instructions with a | character
+			
+You will provide me instructions on what terms to search the model list for in XML format: 
+
+### Respond with the commands formatted like one of following:
+
+# Search for Object Command
+<search><query>computer monitor</query></search>
+- Query is a term to try when searching.
+
+ONLY RESPOND WITH THE XML QUERIES SEPERATED BY | , DO NOT ADD ANY ADDITIONAL TEXT. NO NOT USE NEW LINES. DO NOT USE BACKTICKS.
+
+Start searching now.
+""";
+		LanguageModel.AddMessage( "system", search );
+		await ProcessCommand();
+		LanguageModel.Instance.Messages.ElementAt( 1 ).content = """
+----- Stage 1: Model search -----
+Complete!
+""";
+
+		var environment = """
+----- Stage 2: Object placement -----
 
 Seperate instructions with a | character
 			
@@ -27,10 +65,11 @@ You will provide me instructions on what to place in XML format:
 ### Respond with the commands formatted like one of following:
 
 # Create Object Command
-<object><name>computer monitor,monitor,screen</name><position>-1,2</position><lookat>-2,2</lookat><static>false</static></object>
+<object><ident>facepunch.tree_oak_medium_a</ident><position>-1,2</position><lookat>-2,2</lookat><static>false</static></object>
 
 - Use static for large objects like trees, or small immovable detail like grass clumps
-- Name can be a comma seperated list of names to try when searching, order by most descriptiveness to least, e.g "potted plant,pot plant,plant"
+- Use ident to specify the model to use, this is the full ident of the model you want to use from the search results.
+- Instead of ident, you can use name if you want to use the top result of anything not in the search results. This can be a comma seperated list of names to try when searching, order by most descriptiveness to least, e.g "potted plant,pot plant,plant"
 - Positions are specified as a vector2 (x,y) of top down coordinates in meters, where the origin is the center of the environment.
 - Placing an object that overlaps another will place it ontop of the other object. So do them in order, things like tables go first, then anything that goes on top of it (like televisions). 
 - LookAt is a vector2 (x,y), and the object will be rotated to face the specified position. This is useful for things like chairs that should face a table.
@@ -39,12 +78,12 @@ You will provide me instructions on what to place in XML format:
 # Set Floor Command
 <floor><name>white carpet,carpet</name></floor>
 
-- Names can be a comma seperated list of names to try when searching, order by most descriptiveness to least, e.g "wooden floor,wood"
+- Names is a comma seperated list of names to try when searching, order by most descriptiveness to least, e.g "wooden floor,wood"
  
 
 ONLY RESPOND WITH THE XML OBJECTS SEPERATED BY | , DO NOT ADD ANY ADDITIONAL TEXT. NO NOT USE NEW LINES. DO NOT USE BACKTICKS.
 
-Start placing objects now.]
+Start placing objects now.
 """;
 		LanguageModel.AddMessage( "system", environment );
 		await ProcessCommand();
@@ -83,7 +122,34 @@ Start placing objects now.]
 				if ( success ) LanguageModel.AddMessage( message.role, xml );
 				//LanguageModel.Instance.Messages.Add( message );
 			}
+			if ( xml.StartsWith( "<search>" ) )
+			{
+				var serializer = new XmlSerializer( typeof( newsearch ) );
+				newsearch obj = (newsearch)serializer.Deserialize( new StringReader( xml ) );
+				//LanguageModel.AddMessage( message.role, xml );
+				var result = await SearchFor( obj );
+				LanguageModel.AddMessage( "system", result );
+				//LanguageModel.Instance.Messages.Add( message );
+			}
 		}
+	}
+
+	async Task<string> SearchFor( newsearch obj, string type = "model" )
+	{
+		string resultstring = "";
+		var results = await Package.FindAsync( $"{obj.query} type:{type} sort:popular", take: 8 );
+		if ( results.Packages.Length <= 0 ) return $"No results found for {obj.query}";
+		resultstring += $"----- Results for {obj.query} -----\n";
+		foreach ( var result in results.Packages )
+		{
+			var fullpackage = await Package.Fetch( result.FullIdent, false );
+			var boundsmins = fullpackage.GetMeta<Vector3>( "RenderMins" );
+			var boundsmaxs = fullpackage.GetMeta<Vector3>( "RenderMaxs" );
+			boundsmins *= 0.0254f;
+			boundsmaxs *= 0.0254f;
+			resultstring += $"<result><ident>{result.FullIdent}</ident><name>{result.Title}</name><bounds-mins>{boundsmins.x},{boundsmins.y}</bounds-mins><bounds-maxs>{boundsmins.x},{boundsmins.y}</bounds-maxs></result>\n";
+		}
+		return resultstring;
 	}
 
 	async Task<bool> SetFloor( newfloor obj )
@@ -118,19 +184,27 @@ Start placing objects now.]
 	async Task<bool> PlaceObject( newobject obj )
 	{
 		Model mdl = null;
-		if ( obj.name.Contains( "," ) )
+		if ( obj.name != null )
 		{
-			var names = obj.name.Split( ',' );
-			foreach ( var name in names )
+			if ( obj.name.Contains( "," ) )
 			{
-				mdl = await CloudLookup.GetModelFromName( name );
-				if ( mdl != null && mdl.Physics.Parts.Any() ) break;
+				var names = obj.name.Split( ',' );
+				foreach ( var name in names )
+				{
+					mdl = await CloudLookup.GetModelFromName( name );
+					if ( mdl != null && mdl.Physics.Parts.Any() ) break;
+				}
+			}
+			else
+			{
+				mdl = await CloudLookup.GetModelFromName( obj.name );
 			}
 		}
-		else
+		if ( obj.ident != null )
 		{
-			mdl = await CloudLookup.GetModelFromName( obj.name );
+			mdl = await CloudLookup.GetModelFromIdent( obj.ident );
 		}
+
 		if ( mdl == null ) return false;
 
 		var positionstring = obj.position.Split( ',' );
@@ -148,13 +222,14 @@ Start placing objects now.]
 		if ( obj.isStatic ) offset = 0;
 		go.WorldPosition = tr.EndPosition + Vector3.Up * offset;
 		go.WorldRotation = Rotation.FromYaw( obj.yaw - 90 );
-		if ( obj.name.Contains( "rug" ) )
+		if ( obj.name != null && obj.name.Contains( "rug" ) )
 		{
 			go.WorldPosition = position;
 		}
 
 		lerper.TargetPosition = go.WorldPosition;
-		go.WorldPosition = go.WorldPosition.WithZ( 3000 );
+		lerper.ShouldEnablePhysics = !obj.isStatic;
+		go.WorldPosition = go.WorldPosition.WithZ( 1000 );
 
 		if ( !string.IsNullOrEmpty( obj.lookat ) )
 		{
@@ -167,6 +242,9 @@ Start placing objects now.]
 		prop.IsStatic = obj.isStatic;
 		prop.Model = mdl;
 
+		if ( !obj.isStatic && go.Components.TryGet<Rigidbody>( out var phys ) )
+			phys.MotionEnabled = false;
+
 		return true;
 
 	}
@@ -176,6 +254,8 @@ public class newobject
 {
 	[XmlElement]
 	public string name { get; set; }
+	[XmlElement]
+	public string ident { get; set; }
 	[XmlElement]
 	public string position { get; set; }
 	[XmlElement]
@@ -201,3 +281,11 @@ public class newfloor
 	[XmlElement]
 	public string name { get; set; }
 }
+
+[XmlRoot( ElementName = "search" )]
+public class newsearch
+{
+	[XmlElement]
+	public string query { get; set; }
+}
+

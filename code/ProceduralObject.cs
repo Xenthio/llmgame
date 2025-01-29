@@ -21,6 +21,16 @@ public sealed class ProceduralObject : Component
 
 public static class CloudLookup
 {
+	public static async Task<Model> GetModelFromIdent( string ident )
+	{
+		var package = await Package.Fetch( ident, false );
+		await package.MountAsync();
+		var mdlname = package.GetMeta<string>( "PrimaryAsset" );
+		Log.Info( $"Loading: {package.FullIdent} - {mdlname}" );
+
+		var model = Model.Load( mdlname );
+		return model;
+	}
 	public static async Task<Model> GetModelFromName( string name )
 	{
 		string ident = "";

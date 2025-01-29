@@ -3,6 +3,7 @@
 public class Lerper : Component
 {
 	public Vector3 TargetPosition;
+	public bool ShouldEnablePhysics;
 	TimeSince TimeSinceStart;
 	protected override void OnStart()
 	{
@@ -13,9 +14,11 @@ public class Lerper : Component
 	{
 		base.OnFixedUpdate();
 		WorldPosition = WorldPosition.LerpTo( TargetPosition, 5f * Time.Delta );
-		if ( WorldPosition.Distance( TargetPosition ) < 0.1f || TimeSinceStart > 3 )
+		if ( WorldPosition.Distance( TargetPosition ) < 0.1f || TimeSinceStart > 2f )
 		{
 			WorldPosition = TargetPosition;
+			if ( ShouldEnablePhysics && Components.TryGet<Rigidbody>( out var phys ) )
+				phys.MotionEnabled = true;
 			Destroy();
 		}
 	}

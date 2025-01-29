@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace LLMGame;
@@ -67,11 +66,11 @@ public class LanguageModel : SingletonComponent<LanguageModel>
 			Log.Info( json );
 			var deserialized = Json.Deserialize<ChatResponse>( json );
 
-			if ( deserialized.choices.First().message.content.Contains( "<think>" ) )
+			/*if ( deserialized.choices.First().message.content.Contains( "<think>" ) )
 			{
 				deserialized.choices.First().message.content = Regex.Replace( deserialized.choices.First().message.content, @"<think>[\s\S]*?</think>", string.Empty, RegexOptions.Multiline );
 				deserialized.choices.First().message.content = deserialized.choices.First().message.content.TrimStart( '\n' );
-			}
+			}*/
 			return deserialized;
 		}
 		else
