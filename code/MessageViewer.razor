@@ -1,0 +1,23 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace LLMGame
+
+<root>
+    @foreach (var message in LanguageModel.Instance.Messages)
+    {
+        <div class="message">
+            <div class="title">@message.role</div>
+            <div class="content">@message.content</div>
+        </div>
+    } 
+</root>
+
+@code
+{ 
+
+	/// <summary>
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(LanguageModel.Instance.Messages.Count);
+}
