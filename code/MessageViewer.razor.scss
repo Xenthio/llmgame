@@ -6,6 +6,14 @@ MessageViewer {
     left: 0;
     justify-content: center;
 
+    .dropdown {
+        margin-bottom: 4px;
+
+        option {
+            display: none;
+        }
+    }
+
     .promptentry {
         flex-direction: column;
         align-self: center;
@@ -36,6 +44,7 @@ MessageViewer {
             background-color: #222222AA;
             padding: 8px;
             justify-content: center;
+
             &:hover {
                 background-color: #222222FF;
             }

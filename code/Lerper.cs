@@ -13,8 +13,8 @@ public class Lerper : Component
 	protected override void OnFixedUpdate()
 	{
 		base.OnFixedUpdate();
-		WorldPosition = WorldPosition.LerpTo( TargetPosition, 5f * Time.Delta );
-		if ( WorldPosition.Distance( TargetPosition ) < 0.1f || TimeSinceStart > 2f )
+		WorldPosition = WorldPosition.LerpTo( TargetPosition, 24f * Time.Delta );
+		if ( WorldPosition.Distance( TargetPosition ) < 0.3f || TimeSinceStart > 3f )
 		{
 			WorldPosition = TargetPosition;
 			if ( ShouldEnablePhysics && Components.TryGet<Rigidbody>( out var phys ) )

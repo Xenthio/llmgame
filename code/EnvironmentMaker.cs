@@ -7,7 +7,8 @@ namespace LLMGame;
 public class EnvironmentMaker : SingletonComponent<EnvironmentMaker>
 {
 	[Property] public ModelRenderer Floor { get; set; }
-	[Property] public MeshComponent Mesh { get; set; }
+	[Property] public MeshComponent FloorMesh { get; set; }
+	[Property] public MeshComponent CeilingMesh { get; set; }
 	protected override void OnStart()
 	{
 		base.OnStart();
@@ -79,7 +80,12 @@ You will provide me instructions on what to place in XML format:
 <floor><name>white carpet,carpet</name></floor>
 
 - Names is a comma seperated list of names to try when searching, order by most descriptiveness to least, e.g "wooden floor,wood"
- 
+
+# Set Ceiling Command
+<floor><name>white carpet,carpet</name></floor>
+
+- Names is a comma seperated list of names to try when searching, order by most descriptiveness to least, e.g "wooden floor,wood"
+- Note ceilings are always 3.25 meters high, but you can change the material.
 
 ONLY RESPOND WITH THE XML OBJECTS SEPERATED BY | , DO NOT ADD ANY ADDITIONAL TEXT. NO NOT USE NEW LINES. DO NOT USE BACKTICKS.
 
@@ -99,37 +105,52 @@ Start placing objects now.
 
 		foreach ( var xml in split )
 		{
-			Log.Info( xml );
-			if ( xml.StartsWith( "<object>" ) )
+			try
 			{
-				var serializer = new XmlSerializer( typeof( newobject ) );
-				newobject obj = (newobject)serializer.Deserialize( new StringReader( xml ) );
-				var success = await PlaceObject( obj );
-				if ( success ) LanguageModel.AddMessage( message.role, xml );
+				Log.Info( xml );
+				if ( xml.StartsWith( "<object>" ) )
+				{
+					var serializer = new XmlSerializer( typeof( newobject ) );
+					newobject obj = (newobject)serializer.Deserialize( new StringReader( xml ) );
+					var success = await PlaceObject( obj );
+					if ( success ) LanguageModel.AddMessage( message.role, xml );
+				}
+				if ( xml.StartsWith( "<wall>" ) )
+				{
+					var serializer = new XmlSerializer( typeof( newwall ) );
+					newwall obj = (newwall)serializer.Deserialize( new StringReader( xml ) );
+					//PlaceObject( obj );
+					//LanguageModel.Instance.Messages.Add( message );
+				}
+				if ( xml.StartsWith( "<floor>" ) )
+				{
+					var serializer = new XmlSerializer( typeof( newfloor ) );
+					newfloor obj = (newfloor)serializer.Deserialize( new StringReader( xml ) );
+					var success = await SetFloor( obj );
+					if ( success ) LanguageModel.AddMessage( message.role, xml );
+					//LanguageModel.Instance.Messages.Add( message );
+				}
+				if ( xml.StartsWith( "<ceiling>" ) )
+				{
+					var serializer = new XmlSerializer( typeof( newceiling ) );
+					newceiling obj = (newceiling)serializer.Deserialize( new StringReader( xml ) );
+					var success = await SetCeiling( obj );
+					if ( success ) LanguageModel.AddMessage( message.role, xml );
+					//LanguageModel.Instance.Messages.Add( message );
+				}
+				if ( xml.StartsWith( "<search>" ) )
+				{
+					var serializer = new XmlSerializer( typeof( newsearch ) );
+					newsearch obj = (newsearch)serializer.Deserialize( new StringReader( xml ) );
+					//LanguageModel.AddMessage( message.role, xml );
+					var result = await SearchFor( obj );
+					LanguageModel.AddMessage( "system", result );
+					//LanguageModel.Instance.Messages.Add( message );
+				}
 			}
-			if ( xml.StartsWith( "<wall>" ) )
+			catch ( System.Exception e )
 			{
-				var serializer = new XmlSerializer( typeof( newwall ) );
-				newwall obj = (newwall)serializer.Deserialize( new StringReader( xml ) );
-				//PlaceObject( obj );
-				//LanguageModel.Instance.Messages.Add( message );
-			}
-			if ( xml.StartsWith( "<floor>" ) )
-			{
-				var serializer = new XmlSerializer( typeof( newfloor ) );
-				newfloor obj = (newfloor)serializer.Deserialize( new StringReader( xml ) );
-				var success = await SetFloor( obj );
-				if ( success ) LanguageModel.AddMessage( message.role, xml );
-				//LanguageModel.Instance.Messages.Add( message );
-			}
-			if ( xml.StartsWith( "<search>" ) )
-			{
-				var serializer = new XmlSerializer( typeof( newsearch ) );
-				newsearch obj = (newsearch)serializer.Deserialize( new StringReader( xml ) );
-				//LanguageModel.AddMessage( message.role, xml );
-				var result = await SearchFor( obj );
-				LanguageModel.AddMessage( "system", result );
-				//LanguageModel.Instance.Messages.Add( message );
+				Log.Info( e.Message );
 			}
 		}
 	}
@@ -137,7 +158,7 @@ Start placing objects now.
 	async Task<string> SearchFor( newsearch obj, string type = "model" )
 	{
 		string resultstring = "";
-		var results = await Package.FindAsync( $"{obj.query} type:{type} sort:popular", take: 8 );
+		var results = await Package.FindAsync( $"{obj.query} type:{type} sort:popular", take: 4 );
 		if ( results.Packages.Length <= 0 ) return $"No results found for {obj.query}";
 		resultstring += $"----- Results for {obj.query} -----\n";
 		foreach ( var result in results.Packages )
@@ -171,18 +192,48 @@ Start placing objects now.
 		if ( material == null ) return false;
 
 		Floor.MaterialOverride = material;
-		if ( Mesh.IsValid() )
+		if ( FloorMesh.IsValid() )
 		{
-			Mesh.SetMaterial( material, 0 );
-			Mesh.SetMaterial( material, 1 );
+			FloorMesh.SetMaterial( material, 0 );
+			FloorMesh.SetMaterial( material, 1 );
 		}
 
 		return true;
 
 	}
+	async Task<bool> SetCeiling( newceiling obj )
+	{
+		Material material = null;
+		if ( obj.name.Contains( "," ) )
+		{
+			var names = obj.name.Split( ',' );
+			foreach ( var name in names )
+			{
+				material = await CloudLookup.GetMaterialFromName( name );
+				if ( material != null ) break;
+			}
+		}
+		else
+		{
+			material = await CloudLookup.GetMaterialFromName( obj.name );
+		}
+		if ( material == null ) return false;
+
+		if ( CeilingMesh.IsValid() )
+		{
+			CeilingMesh.Enabled = true;
+			CeilingMesh.SetMaterial( material, 0 );
+			CeilingMesh.SetMaterial( material, 1 );
+			return true;
+		}
+
+		return false;
+
+	}
 
 	async Task<bool> PlaceObject( newobject obj )
 	{
+		await Task.Delay( 600 );
 		Model mdl = null;
 		if ( obj.name != null )
 		{
@@ -217,7 +268,7 @@ Start placing objects now.
 		var lerper = go.AddComponent<Lerper>();
 
 		//var sweep = Scene.Trace.M()
-		var tr = Scene.Trace.Ray( position.WithZ( WorldPosition.z + 200 ), position + Vector3.Down * 100 ).Run();
+		var tr = Scene.Trace.Ray( position.WithZ( WorldPosition.z + 80 ), position + Vector3.Down * 80 ).Run();
 		var offset = 4;
 		if ( obj.isStatic ) offset = 0;
 		go.WorldPosition = tr.EndPosition + Vector3.Up * offset;
@@ -277,6 +328,13 @@ public class newwall
 
 [XmlRoot( ElementName = "floor" )]
 public class newfloor
+{
+	[XmlElement]
+	public string name { get; set; }
+}
+
+[XmlRoot( ElementName = "ceiling" )]
+public class newceiling
 {
 	[XmlElement]
 	public string name { get; set; }

@@ -30,7 +30,8 @@
       "__guid": "bfc59c12-1ed2-4f91-8956-a95a315eac3c",
       "Flags": 0,
       "Name": "Sun",
-      "Rotation": "-0.0729315,0.4822396,0.1305433,0.8631827",
+      "Position": "-64.10327,-19.84314,109.0001",
+      "Rotation": "-0.07628561,-0.2383178,0.295164,-0.9220972",
       "Tags": "light_directional,light",
       "Enabled": true,
       "Components": [
@@ -47,7 +48,7 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "Shadows": true,
-          "SkyColor": "0.2532,0.32006,0.35349,1"
+          "SkyColor": "0.44167,0.50691,0.53953,1"
         }
       ]
     },
@@ -70,32 +71,6 @@
           "SkyIndirectLighting": true,
           "SkyMaterial": "materials/skybox/skybox_day_01.vmat",
           "Tint": "1,1,1,1"
-        },
-        {
-          "__type": "Sandbox.EnvmapProbe",
-          "__guid": "f3e304db-baab-4c1a-a4ec-8442585c2d62",
-          "Bounds": {
-            "Mins": "-512,-512,-512",
-            "Maxs": "512,512,512"
-          },
-          "DelayBetweenUpdates": 0.1,
-          "Feathering": 0.02,
-          "FrameInterval": 5,
-          "MaxDistance": 512,
-          "MultiBounce": false,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Projection": "Sphere",
-          "RenderDynamically": false,
-          "Texture": "textures/cubemaps/default2.vtex",
-          "TintColor": "1,1,1,1",
-          "UpdateStrategy": "OnEnabled",
-          "ZFar": 4096,
-          "ZNear": 16
         }
       ]
     },
@@ -199,6 +174,147 @@
               0
             ],
             "EdgeFlags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "Materials": [
+              "materials/dev/reflectivity_30.vmat"
+            ]
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "SmoothingAngle": 40,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "39b566d0-3e84-4338-a904-745428094564",
+      "Flags": 0,
+      "Name": "Box (1)",
+      "Position": "0,0,128",
+      "Rotation": "0,1,0,0.0000001947072",
+      "Tags": "ceiling",
+      "Components": [
+        {
+          "__type": "Sandbox.MeshComponent",
+          "__guid": "ef379e90-bb6f-4061-89a5-f3e926cbc1a0",
+          "Collision": "Mesh",
+          "Color": "1,1,1,1",
+          "Friction": null,
+          "HideInGame": false,
+          "IsTrigger": false,
+          "Mesh": {
+            "Topology": "H4sIAAAAAAAACm2Q2Q7CMAwEB8IRztJy/v\u002BXohEbyQ9Eipp6J\u002Bt1OvABdvzWGtjk/wicgRvwAFbZMnUtQEu95T6FvRZt\u002B6dXD\u002BvaF98W9hLOfUiu4d1Lb71PyawuLztHk9PLs7pf2VeZecq8\u002BsmY3e\u002BYSy8zqMvLPuNl9nveSn68jfXhL2sPdeuy73Lfsx7y1szmTOPdzGt/PeTUvu34t2bEAQAA",
+            "Positions": [
+              "-384,-384,-0.000003052774",
+              "384,-384,0.000003052774",
+              "384,384,0.000003052774",
+              "-384,384,-0.000003052774",
+              "384,384,-5.999982",
+              "-384,384,-5.999972",
+              "384,-384,-5.999982",
+              "-384,-384,-5.999972"
+            ],
+            "TextureCoord": [
+              "3,3",
+              "-3,3",
+              "3,-3",
+              "3,3",
+              "-3,-3",
+              "3,-3",
+              "-3,3",
+              "-3,-3",
+              "3,-3",
+              "3,-3",
+              "-3,-3",
+              "-3,-3",
+              "-3,-3",
+              "-3,-3",
+              "3,3",
+              "3,3",
+              "3,-3",
+              "-3,3",
+              "-3,3",
+              "-3,3",
+              "3,3",
+              "3,3",
+              "-3,3",
+              "3,-3"
+            ],
+            "TextureUAxis": [
+              "-1,0,-0.0000003973643",
+              "-1,0,-0.0000003973643",
+              "-1,0,-0.0000003973643",
+              "-1,0,-0.0000003973643",
+              "-1,0,-0.0000003973643",
+              "1,0,0"
+            ],
+            "TextureVAxis": [
+              "-0,-1,0",
+              "-0,-1,0",
+              "-0,-1,0",
+              "-0,-1,0",
+              "-0,-1,0",
+              "0,-1,0"
+            ],
+            "TextureScale": [
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25"
+            ],
+            "TextureOffset": [
+              "0.0002441406,0",
+              "0.0002441406,0",
+              "0.0002441406,0",
+              "0.0002441406,0",
+              "0.0002441406,0",
+              "0,0"
+            ],
+            "MaterialIndex": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "EdgeFlags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
               0,
               0,
               0,
@@ -484,6 +600,23 @@
                   "Viewport": "0,0,1,1",
                   "ZFar": 10000,
                   "ZNear": 10
+                },
+                {
+                  "__type": "Sandbox.AmbientOcclusion",
+                  "__guid": "07218449-57bd-45d5-b195-a5ffeb4ba13b",
+                  "__version": 1,
+                  "DenoiseMode": "Temporal",
+                  "FalloffRange": 0.75,
+                  "Intensity": 0.15,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "Quality": "High",
+                  "Radius": 128,
+                  "ThinCompensation": 0
                 }
               ]
             }
@@ -511,13 +644,19 @@
         {
           "__type": "LLMGame.EnvironmentMaker",
           "__guid": "533ba66f-f447-4de3-a936-06ed92f57a5d",
+          "CeilingMesh": {
+            "_type": "component",
+            "component_id": "ef379e90-bb6f-4061-89a5-f3e926cbc1a0",
+            "go": "39b566d0-3e84-4338-a904-745428094564",
+            "component_type": "MeshComponent"
+          },
           "Floor": {
             "_type": "component",
             "component_id": "0b6a18bf-fdb8-4661-970e-ef635bfa9baa",
             "go": "6ad70641-3c6c-4402-9c85-9a4969af4764",
             "component_type": "ModelRenderer"
           },
-          "Mesh": {
+          "FloorMesh": {
             "_type": "component",
             "component_id": "200314b8-4139-4398-9183-1309f833555e",
             "go": "a4cd8029-63db-45cb-8cf7-6b0cd7dcc155",
@@ -529,6 +668,41 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "bf931ec2-1b15-4c9f-8bd6-263f09e864dc",
+      "Flags": 0,
+      "Name": "Envmap Probe",
+      "Position": "-42.87305,12.8223,384",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.EnvmapProbe",
+          "__guid": "274be040-c6b6-475d-bb6b-ffcba8568d30",
+          "Bounds": {
+            "Mins": "-616.7441,-576.1206,-446.8397",
+            "Maxs": "627.9495,661.198,1000"
+          },
+          "DelayBetweenUpdates": 0.1,
+          "Feathering": 0.02,
+          "FrameInterval": 16,
+          "MaxDistance": 512,
+          "MultiBounce": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Projection": "Box",
+          "RenderDynamically": true,
+          "Texture": "textures/cubemaps/default2.vtex",
+          "TintColor": "1,1,1,1",
+          "UpdateStrategy": "FrameInterval",
+          "ZFar": 4096,
+          "ZNear": 16
         }
       ]
     }

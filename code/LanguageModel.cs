@@ -8,6 +8,7 @@ public class LanguageModel : SingletonComponent<LanguageModel>
 {
 	private Dictionary<string, string> Headers = new();
 	private string Token = "null";
+	public string Model = "anthropic/claude-3.5-sonnet";
 	public List<Message> Messages = new();
 	protected override void OnStart()
 	{
@@ -46,7 +47,7 @@ public class LanguageModel : SingletonComponent<LanguageModel>
 		// Prepare the request
 		var requestBody = new
 		{
-			model = "anthropic/claude-3.5-sonnet",
+			model = Instance.Model,
 			messages = Instance.Messages
 			//mode = "instruct",
 			//max_tokens = 2048,
