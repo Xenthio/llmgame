@@ -45,7 +45,7 @@ You will provide me instructions on what terms to search the model list for in X
 <search><query>computer monitor</query></search>
 - Query is a term to try when searching.
 
-ONLY RESPOND WITH THE XML QUERIES SEPERATED BY | , DO NOT ADD ANY ADDITIONAL TEXT. NO NOT USE NEW LINES. DO NOT USE BACKTICKS.
+ONLY RESPOND WITH THE XML QUERIES SEPERATED BY |. DO NOT ADD ANY ADDITIONAL TEXT. DO NOT USE NEW LINES. DO NOT USE BACKTICKS.
 
 Start searching now.
 """;
@@ -87,7 +87,7 @@ You will provide me instructions on what to place in XML format:
 - Names is a comma seperated list of names to try when searching, order by most descriptiveness to least, e.g "wooden floor,wood"
 - Note ceilings are always 3.25 meters high, but you can change the material.
 
-ONLY RESPOND WITH THE XML OBJECTS SEPERATED BY | , DO NOT ADD ANY ADDITIONAL TEXT. NO NOT USE NEW LINES. DO NOT USE BACKTICKS.
+ONLY RESPOND WITH THE XML OBJECTS SEPERATED BY |. DO NOT ADD ANY ADDITIONAL TEXT. DO NOT USE NEW LINES. DO NOT USE BACKTICKS.
 
 Start placing objects now.
 """;
