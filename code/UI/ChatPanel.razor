@@ -7,11 +7,11 @@
     <div class="dialog-title">Chat</div>
     <div class="dialog-content">
         <div class="list">
-            @foreach (var message in LanguageModel.Instance.Messages)
+            @foreach (var message in LocalPlayer.Memory)
             {
                 <div class="message">
-                    <div class="title">@message.role</div>
-                    <div class="content">@message.content</div>
+                    <div class="title">@message.Name</div>
+                    <div class="content">@message.Content</div>
                 </div>
             }
         </div>
@@ -25,8 +25,8 @@
 
 @code
 {
-
-    public TextEntry ChatTextEntry { get; set; }
+    public PlayerComponent LocalPlayer { get; set; }
+    public TextEntry ChatTextEntry { get; set; } 
     public void Submit()
     {
         //LanguageModel.Instance.Model = (string)dropDown.Selected.Value;

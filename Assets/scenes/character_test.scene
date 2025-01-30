@@ -322,6 +322,23 @@
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Player": {
+            "_type": "component",
+            "component_id": "7d55ea18-8934-4aac-8e18-a056f62aee37",
+            "go": "bcf8889e-fa16-43e5-9a05-84643d0c14ee",
+            "component_type": "PlayerComponent"
+          },
+          "ShowEnviromentPanel": false
+        },
+        {
+          "__type": "LLMGame.PlayerComponent",
+          "__guid": "7d55ea18-8934-4aac-8e18-a056f62aee37",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
           "OnComponentUpdate": null
         }
       ],
@@ -493,22 +510,6 @@
       "Enabled": true,
       "Components": [
         {
-          "__type": "LLMGame.CharacterAI",
-          "__guid": "ccaf6f30-cdc5-4da5-b59d-6d191bc8686f",
-          "Card": {
-            "spec": null,
-            "spec_version": null,
-            "data": null
-          },
-          "CardPath": "default_character.png",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
           "__type": "Sandbox.SkinnedModelRenderer",
           "__guid": "d6a7ad27-4296-422e-9da1-ff62020a6c82",
           "AnimationGraph": null,
@@ -545,6 +546,23 @@
           },
           "Tint": "1,1,1,1",
           "UseAnimGraph": true
+        },
+        {
+          "__type": "LLMGame.LLMCharacter",
+          "__guid": "1df57178-2c93-47b5-b46a-c9891eeaa086",
+          "Card": {
+            "spec": null,
+            "spec_version": null,
+            "data": null
+          },
+          "CardPath": "default_character.png",
+          "Memory": [],
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ]
     }

@@ -1,6 +1,6 @@
 namespace LLMGame;
 
-public sealed class TrackedObject : Component
+public sealed class LLMObject : Component
 {
 	[Property] public string Name { get; set; } = "Cup";
 	[RequireComponent] public ModelRenderer Model { get; set; }

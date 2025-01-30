@@ -11,8 +11,14 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 			""";
 	}
 
-	public void BroadcastAudibleMessage()
+	public async void BroadcastAudibleMessage( IThinker speaker, string content )
 	{
+		var message = Message.As( speaker, content );
+		foreach ( var thinker in Scene.GetAllComponents<IThinker>() )
+		{
+			if ( thinker == speaker ) continue;
+			thinker.Memory.Add( message );
+		}
 		//todo range.
 	}
 }
@@ -33,6 +39,17 @@ public class Message
 		};
 	}
 
+	public static Message As( IThinker thinker, string content )
+	{
+		var role = "assistant";
+		if ( thinker.IsUser() ) role = "user";
+		return new Message
+		{
+			Role = role,
+			Name = thinker.GetName(),
+			Content = content
+		};
+	}
 	public static Message User( string name, string content )
 	{
 		return new Message
@@ -55,7 +72,8 @@ public class Message
 		return new APIMessage()
 		{
 			role = Role,
-			content = $"{Name}: {Content}"
+			content = Content,
+			name = Name,
 		};
 	}
 }

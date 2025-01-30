@@ -2,7 +2,7 @@
 
 namespace LLMGame;
 
-public class CharacterAI : Component, IThinker
+public class LLMCharacter : Component, IThinker
 {
 	[Property, ReadOnly] public List<Message> Memory { get; set; } = new();
 	[Property] public string CardPath { get; set; } = "default_character.png";
@@ -39,8 +39,11 @@ public class CharacterAI : Component, IThinker
 	{
 		return Card.data.name;
 	}
-
-	public void Think()
+	public bool IsUser()
+	{
+		return false;
+	}
+	public async void Think()
 	{
 	}
 }

@@ -101,6 +101,7 @@ public class APIMessage
 {
 	public string role { get; set; }
 	public string content { get; set; }
+	public string name { get; set; }
 
 	public static APIMessage Custom( string role, string content )
 	{

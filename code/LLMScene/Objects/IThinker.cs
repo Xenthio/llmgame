@@ -6,5 +6,6 @@ public interface IThinker
 {
 	public List<Message> Memory { get; set; }
 	public string GetName();
-	public void Think();
+	public bool IsUser();
+	public async void Think() { }
 }

@@ -5,7 +5,7 @@
 
 <root>
     <DebugView/>
-    <ChatPanel/>
+    <ChatPanel @LocalPlayer=@Player/>
     @if (ShowEnviromentPanel)
     {
         <EnvironmentPopup/>
@@ -15,7 +15,13 @@
 @code
 {
     [Property] public bool ShowEnviromentPanel { get; set; }
+    [Property] public PlayerComponent Player { get; set; }
     public static bool WantsCursor;
+
+    public HUD()
+    {
+        WantsCursor = false;
+    }
     protected override void OnFixedUpdate()
 	{
         if (Input.Down("Score") || WantsCursor)
