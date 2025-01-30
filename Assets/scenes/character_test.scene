@@ -11,7 +11,7 @@
           "__type": "Sandbox.SceneInformation",
           "__guid": "5ad6cbb5-abb0-44ea-86f6-5fe94ad81988",
           "Author": null,
-          "Changes": null,
+          "Changes": "",
           "Description": "",
           "Group": null,
           "OnComponentDestroy": null,
@@ -465,6 +465,23 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null
+        },
+        {
+          "__type": "LLMGame.LLMScene",
+          "__guid": "e182c7ae-1d23-4996-a7fe-300457973024",
+          "CeilingMesh": null,
+          "FloorMesh": {
+            "_type": "component",
+            "component_id": "200314b8-4139-4398-9183-1309f833555e",
+            "go": "a4cd8029-63db-45cb-8cf7-6b0cd7dcc155",
+            "component_type": "MeshComponent"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ]
     },
@@ -549,7 +566,7 @@
         },
         {
           "__type": "LLMGame.LLMCharacter",
-          "__guid": "1df57178-2c93-47b5-b46a-c9891eeaa086",
+          "__guid": "c2954e9b-603c-4b72-a3df-7b044e062bdb",
           "Card": {
             "spec": null,
             "spec_version": null,

@@ -1,0 +1,52 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits DropDown
+@namespace LLMGame
+
+@*                <option title="Anthropic Claude 3.5 Sonnet">anthropic/claude-3.5-sonnet</option>
+                <option title="DeepSeek R1">deepseek/deepseek-r1</option>
+                <option title="OpenAI GPT-4o mini">openai/gpt-4o-mini</option>
+                <option title="Meta Llama 3.3 70B Instruct">meta-llama/llama-3.3-70b-instruct</option>
+                <option title="DeepSeek R1 Distill Llama 70b">deepseek/deepseek-r1-distill-llama-70b</option>
+                <option title="Perplexity Sonar Reasoning">perplexity/sonar-reasoning</option>
+                <option title="OpenAI o1 (preview) (expensive)">openai/o1-preview</option>
+                <option title="Meta Llama 3.1 8B Instruct">meta-llama/llama-3.1-8b-instruct</option
+                <option title="Google Gemini Flash 1.5 8B">google/gemini-flash-1.5-8b</option>
+                <option title="Google Gemini Flash 1.5">google/gemini-flash-1.5</option> *@
+<root> 
+</root>
+
+@{
+    if (Selected == null)
+    {
+        var opt = Options.FirstOrDefault();
+        Selected = opt;
+    }
+    PopulateDropDown();
+}
+@code
+{ 
+    void PopulateDropDown() {
+        Options.Clear();
+        Options.Add(new Option("Anthropic Claude 3.5 Sonnet", "anthropic/claude-3.5-sonnet"));
+        Options.Add(new Option("DeepSeek R1", "deepseek/deepseek-r1"));
+        Options.Add(new Option("OpenAI GPT-4o mini", "openai/gpt-4o-mini"));
+        Options.Add(new Option("Meta Llama 3.3 70B Instruct", "meta-llama/llama-3.3-70b-instruct"));
+        Options.Add(new Option("DeepSeek R1 Distill Llama 70b", "deepseek/deepseek-r1-distill-llama-70b"));
+        Options.Add(new Option("Perplexity Sonar Reasoning", "perplexity/sonar-reasoning"));
+        Options.Add(new Option("OpenAI o1 (preview) (expensive)", "openai/o1-preview"));
+        Options.Add(new Option("Meta Llama 3.1 8B Instruct", "meta-llama/llama-3.1-8b-instruct"));
+        Options.Add(new Option("Google Gemini Flash 1.5 8B", "google/gemini-flash-1.5-8b"));
+        Options.Add(new Option("Google Gemini Flash 1.5", "google/gemini-flash-1.5"));
+    }
+    protected override void Select(Option option, bool triggerChange = true)
+    {
+        base.Select(option, triggerChange);
+        LanguageModel.Instance.Model = (string)option.Value;
+        Log.Info(LanguageModel.Instance.Model);
+    } 
+    /// <summary>
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(Selected);
+}

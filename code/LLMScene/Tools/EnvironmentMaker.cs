@@ -49,7 +49,7 @@ ONLY RESPOND WITH THE XML QUERIES SEPERATED BY |. DO NOT ADD ANY ADDITIONAL TEXT
 Start searching now.
 """;
 		LanguageModel.AddMessage( "system", search );
-		await LLMScene.Instance.ProcessCommand();
+		await LLMScene.Instance.GenerateAndRunCommands();
 		LanguageModel.Instance.Messages.ElementAt( 1 ).content = """
 ----- Stage 1: Asset search -----
 Complete!
@@ -103,7 +103,7 @@ ONLY RESPOND WITH THE XML OBJECTS SEPERATED BY |. DO NOT ADD ANY ADDITIONAL TEXT
 Start placing objects now.
 """;
 		LanguageModel.AddMessage( "system", environment );
-		await LLMScene.Instance.ProcessCommand();
+		await LLMScene.Instance.GenerateAndRunCommands();
 		//await ProcessCommand();
 		//await ProcessCommand();
 		//await ProcessCommand();

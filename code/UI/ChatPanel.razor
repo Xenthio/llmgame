@@ -6,19 +6,20 @@
 <root class="dialog">
     <div class="dialog-title">Chat</div>
     <div class="dialog-content">
+        <ModelSelector></ModelSelector>
         <div class="list">
             @foreach (var message in LocalPlayer.Memory)
             {
                 <div class="message">
-                    <div class="title">@message.Name</div>
+                    <div class="title">@message.Owner.GetName()</div>
                     <div class="content">@message.Content</div>
                 </div>
             }
         </div>
         <div style="width:100%; margin-top:4px; flex-shrink: 0;">
-            <TextEntry class="chatentry" @ref=ChatTextEntry Placeholder="Enter a message"></TextEntry>
+            <TextEntry class="chatentry" @ref=ChatTextEntry Placeholder="Enter a message" onsubmit=@Submit></TextEntry>
             <button onclick=@Submit>Submit</button>
-            <button onclick=@Generate>Generate</button>
+            @* <button onclick=@Generate>Generate</button> *@
         </div>
     </div>
 </root>
@@ -33,14 +34,24 @@
         //Log.Info(LanguageModel.Instance.Model);
         //EnvironmentMaker.Instance.AddEnvironment(textEntry.Value);
         //AskingForPrompt = false;
-        LanguageModel.AddMessage("user", "Hello World!");
+        LLMScene.Instance.BroadcastAudibleMessage(LocalPlayer, ChatTextEntry.Value);
+        ChatTextEntry.Value = "";
+        //LanguageModel.AddMessage("user", "Hello World!");
     }
     public void Generate()
     {
         LanguageModel.Generate();
     }
+    public override void Tick()
+    {
+        base.Tick();
+        if (Input.Down("Chat"))
+        {
+            ChatTextEntry.Focus();
+        }
+    }
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(LanguageModel.Instance.Messages.Count);
+    protected override int BuildHash() => System.HashCode.Combine(LocalPlayer.Memory.Count, ChatTextEntry.Value);
 }

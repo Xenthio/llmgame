@@ -19,7 +19,7 @@
                     @foreach (var message in SelectedThinker?.Memory)
                     {
                         <div class="message">
-                            <div class="title">@message.Name</div>
+                            <div class="title">@(message.Owner?.GetName() ?? "system")</div>
                             <div class="content">@message.Content</div>
                         </div>
                     }
@@ -36,13 +36,13 @@
 @code
 {
 
-    public IThinker SelectedThinker => (IThinker)ThinkerDropDown?.Selected?.Value;
+    public ILLMBeing SelectedThinker => (ILLMBeing)ThinkerDropDown?.Selected?.Value;
     public TextEntry ChatTextEntry { get; set; }
     public DropDown ThinkerDropDown { get; set; }
 
     void PopulateDropDown() {
         ThinkerDropDown.Options.Clear();
-        var thinkers = Scene.GetAllComponents<IThinker>();
+        var thinkers = Scene.GetAllComponents<ILLMBeing>();
         foreach (var thinker in thinkers)
         {
             ThinkerDropDown.Options.Add(new Option(thinker.GetName(), thinker));

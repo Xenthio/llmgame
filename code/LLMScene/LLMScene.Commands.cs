@@ -6,9 +6,14 @@ namespace LLMGame;
 
 public partial class LLMScene : SingletonComponent<LLMScene>
 {
-	public async Task ProcessCommand()
+	public async Task GenerateAndRunCommands( bool outputCommand = false )
 	{
 		var response = await LanguageModel.GenerateOnly();
+		await RunCommandsInResponse( response, outputCommand );
+	}
+
+	public async Task RunCommandsInResponse( APIChatResponse response, bool outputCommand = false, ILLMBeing sender = null )
+	{
 		//var message = new Message();
 		//message.role = "assistant";
 		//message.content = "<wall><name>plaster</name><start>-5,5</start><end>5,5</end></wall>|<wall><name>plaster</name><start>5,5</start><end>5,-5</end></wall>|<wall><name>plaster</name><start>5,-5</start><end>-5,-5</end></wall>|<wall><name>plaster</name><start>-5,-5</start><end>-5,5</end></wall>|<wall><name>plaster</name><start>20,20</start><end>25,25</end></wall>";
@@ -25,14 +30,14 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 					var serializer = new XmlSerializer( typeof( newobject ) );
 					newobject obj = (newobject)serializer.Deserialize( new StringReader( xml ) );
 					var success = await PlaceObject( obj );
-					if ( success ) LanguageModel.AddMessage( message.role, xml );
+					if ( success && outputCommand ) LanguageModel.AddMessage( message.role, xml );
 				}
 				if ( xml.StartsWith( "<wall>" ) )
 				{
 					var serializer = new XmlSerializer( typeof( newwall ) );
 					newwall obj = (newwall)serializer.Deserialize( new StringReader( xml ) );
 					var success = await AddWall( obj );
-					if ( success ) LanguageModel.AddMessage( message.role, xml );
+					if ( success && outputCommand ) LanguageModel.AddMessage( message.role, xml );
 					//LanguageModel.Instance.Messages.Add( message );
 				}
 				if ( xml.StartsWith( "<floor>" ) )
@@ -40,7 +45,7 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 					var serializer = new XmlSerializer( typeof( newfloor ) );
 					newfloor obj = (newfloor)serializer.Deserialize( new StringReader( xml ) );
 					var success = await SetFloor( obj );
-					if ( success ) LanguageModel.AddMessage( message.role, xml );
+					if ( success && outputCommand ) LanguageModel.AddMessage( message.role, xml );
 					//LanguageModel.Instance.Messages.Add( message );
 				}
 				if ( xml.StartsWith( "<ceiling>" ) )
@@ -48,7 +53,7 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 					var serializer = new XmlSerializer( typeof( newceiling ) );
 					newceiling obj = (newceiling)serializer.Deserialize( new StringReader( xml ) );
 					var success = await SetCeiling( obj );
-					if ( success ) LanguageModel.AddMessage( message.role, xml );
+					if ( success && outputCommand ) LanguageModel.AddMessage( message.role, xml );
 					//LanguageModel.Instance.Messages.Add( message );
 				}
 				if ( xml.StartsWith( "<spotlight>" ) )
@@ -56,7 +61,7 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 					var serializer = new XmlSerializer( typeof( newspotlight ) );
 					newspotlight obj = (newspotlight)serializer.Deserialize( new StringReader( xml ) );
 					var success = await AddSpotlight( obj );
-					if ( success ) LanguageModel.AddMessage( message.role, xml );
+					if ( success && outputCommand ) LanguageModel.AddMessage( message.role, xml );
 					//LanguageModel.Instance.Messages.Add( message );
 				}
 				if ( xml.StartsWith( "<search>" ) )

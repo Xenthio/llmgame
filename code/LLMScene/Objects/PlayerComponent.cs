@@ -2,7 +2,7 @@
 
 namespace LLMGame;
 
-public class PlayerComponent : Component, IThinker
+public class PlayerComponent : Component, ILLMBeing
 {
 	public List<Message> Memory { get; set; } = new();
 	public string GetName()

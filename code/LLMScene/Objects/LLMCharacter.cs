@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LLMGame;
 
-public class LLMCharacter : Component, IThinker
+public class LLMCharacter : Component, ILLMBeing
 {
 	[Property, ReadOnly] public List<Message> Memory { get; set; } = new();
 	[Property] public string CardPath { get; set; } = "default_character.png";
@@ -10,6 +11,7 @@ public class LLMCharacter : Component, IThinker
 	protected override void OnStart()
 	{
 		base.OnStart();
+		Log.Info( $"{this} is now Loading" );
 		Card = CharacterCard.LoadFromPNG( CardPath );
 
 		Memory.Add( Message.System( BuildInfo( Card ) ) );
@@ -43,7 +45,16 @@ public class LLMCharacter : Component, IThinker
 	{
 		return false;
 	}
-	public async void Think()
+	public async Task Think()
 	{
+		Log.Info( $"{GetName()} is Thinking... (Last: {Memory.Last().Owner.GetName()})" );
+		Memory.First().Content = BuildInfo( Card );
+
+		var msgsAsAPIMsgs = Memory.Select( msg => msg.ConvertToAPIMessage() ).ToList();
+		var response = await LanguageModel.GenerateFromMessages( msgsAsAPIMsgs );
+		await LLMScene.Instance.RunCommandsInResponse( response, sender: this );
+		var message = response.choices.First().message;
+
+		LLMScene.Instance.BroadcastAudibleMessage( this, message.content, think: false );
 	}
 }
