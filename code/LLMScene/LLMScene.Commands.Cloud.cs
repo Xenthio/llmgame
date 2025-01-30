@@ -4,8 +4,16 @@ namespace LLMGame;
 
 public partial class LLMScene : SingletonComponent<LLMScene>
 {
-	async Task<string> SearchFor( newsearch obj, string type = "model" )
+	async Task<string> SearchFor( string xml, ILLMBeing sender = null )
 	{
+		// Create anonymous type template
+		var template = new { query = "", type = "" };
+
+		// Deserialize
+		var obj = XmlAnonymousDeserializer.Deserialize( xml, template );
+
+		var type = obj.type ?? "model";
+
 		string resultstring = "";
 		var results = await Package.FindAsync( $"{obj.query} type:{type} sort:popular", take: 8 );
 		if ( results.Packages.Length <= 0 ) return $"No results found for {obj.query}";

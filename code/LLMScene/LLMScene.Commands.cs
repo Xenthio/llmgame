@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿using System.Threading.Tasks;
 
 namespace LLMGame;
 
@@ -11,13 +9,25 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 		var response = await LanguageModel.GenerateOnly();
 		await RunCommandsInResponse( response, outputCommand );
 	}
-
+	[ConCmd( "llm_runcommand" )]
+	public static void RunCommandConCmd( string command )
+	{
+		Instance.RunCommandsInString( command );
+	}
+	public async Task RunCommandsInString( string command, bool outputCommand = false, ILLMBeing sender = null )
+	{
+		var message = new APIMessage();
+		message.content = command;
+		await RunCommandMessage( message, outputCommand, sender );
+	}
 	public async Task RunCommandsInResponse( APIChatResponse response, bool outputCommand = false, ILLMBeing sender = null )
 	{
-		//var message = new Message();
-		//message.role = "assistant";
-		//message.content = "<wall><name>plaster</name><start>-5,5</start><end>5,5</end></wall>|<wall><name>plaster</name><start>5,5</start><end>5,-5</end></wall>|<wall><name>plaster</name><start>5,-5</start><end>-5,-5</end></wall>|<wall><name>plaster</name><start>-5,-5</start><end>-5,5</end></wall>|<wall><name>plaster</name><start>20,20</start><end>25,25</end></wall>";
 		var message = response.choices.First().message;
+		await RunCommandMessage( message, outputCommand, sender );
+	}
+
+	public async Task RunCommandMessage( APIMessage message, bool outputCommand = false, ILLMBeing sender = null )
+	{
 		var split = message.content.Split( '|' );
 
 		foreach ( var xml in split )
@@ -25,61 +35,58 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 			try
 			{
 				Log.Info( xml );
-				if ( xml.StartsWith( "<object>" ) )
+				var commandName = GetCommandName( xml );
+				if ( commandName != null )
 				{
-					var serializer = new XmlSerializer( typeof( newobject ) );
-					newobject obj = (newobject)serializer.Deserialize( new StringReader( xml ) );
-					var success = await PlaceObject( obj );
-					if ( success && outputCommand ) LanguageModel.AddMessage( message.role, xml );
-				}
-				if ( xml.StartsWith( "<wall>" ) )
-				{
-					var serializer = new XmlSerializer( typeof( newwall ) );
-					newwall obj = (newwall)serializer.Deserialize( new StringReader( xml ) );
-					var success = await AddWall( obj );
-					if ( success && outputCommand ) LanguageModel.AddMessage( message.role, xml );
-					//LanguageModel.Instance.Messages.Add( message );
-				}
-				if ( xml.StartsWith( "<floor>" ) )
-				{
-					var serializer = new XmlSerializer( typeof( newfloor ) );
-					newfloor obj = (newfloor)serializer.Deserialize( new StringReader( xml ) );
-					var success = await SetFloor( obj );
-					if ( success && outputCommand ) LanguageModel.AddMessage( message.role, xml );
-					//LanguageModel.Instance.Messages.Add( message );
-				}
-				if ( xml.StartsWith( "<ceiling>" ) )
-				{
-					var serializer = new XmlSerializer( typeof( newceiling ) );
-					newceiling obj = (newceiling)serializer.Deserialize( new StringReader( xml ) );
-					var success = await SetCeiling( obj );
-					if ( success && outputCommand ) LanguageModel.AddMessage( message.role, xml );
-					//LanguageModel.Instance.Messages.Add( message );
-				}
-				if ( xml.StartsWith( "<spotlight>" ) )
-				{
-					var serializer = new XmlSerializer( typeof( newspotlight ) );
-					newspotlight obj = (newspotlight)serializer.Deserialize( new StringReader( xml ) );
-					var success = await AddSpotlight( obj );
-					if ( success && outputCommand ) LanguageModel.AddMessage( message.role, xml );
-					//LanguageModel.Instance.Messages.Add( message );
-				}
-				if ( xml.StartsWith( "<search>" ) )
-				{
-					var serializer = new XmlSerializer( typeof( newsearch ) );
-					newsearch obj = (newsearch)serializer.Deserialize( new StringReader( xml ) );
-					//LanguageModel.AddMessage( message.role, xml );
-					var type = "model";
-					if ( obj.type != null ) type = obj.type;
-					var result = await SearchFor( obj, type );
-					LanguageModel.AddMessage( "system", result );
-					//LanguageModel.Instance.Messages.Add( message );
+					var method = TypeLibrary.GetMethodsWithAttribute<CommandHandlerAttribute>( false )
+						.FirstOrDefault( x => x.Attribute.CommandName == commandName ).Method;
+					//var method = GetType().GetMethods( BindingFlags.NonPublic | BindingFlags.Instance )
+					//	.FirstOrDefault( m => m.GetCustomAttribute<CommandHandlerAttribute>()?.CommandName == commandName );
+
+					if ( method != null )
+					{
+						var success = await method.InvokeWithReturn<Task<bool>>( this, new object[] { xml, sender } );
+						if ( success && outputCommand )
+						{
+							LanguageModel.AddMessage( message.role, xml );
+						}
+					}
 				}
 			}
 			catch ( System.Exception e )
 			{
-				Log.Info( e.Message );
+				Log.Error( e.Message );
 			}
 		}
+	}
+
+	private string GetCommandName( string xml )
+	{
+		if ( xml.StartsWith( "<" ) && xml.EndsWith( ">" ) )
+		{
+			int start = xml.IndexOf( '<' ) + 1;
+			int end = xml.IndexOf( '>' );
+
+			return xml.Substring( start, end - start );
+		}
+		return null;
+	}
+
+	[CommandHandler( "search" )]
+	private async Task<bool> HandleSearchCommand( string xml, ILLMBeing sender = null )
+	{
+		var result = await SearchFor( xml, sender );
+		LanguageModel.AddMessage( "system", result );
+		return true;
+	}
+	[CommandHandler( "lookat" )]
+	private async Task<bool> HandleLookAtCommand( string xml, ILLMBeing sender = null )
+	{
+		/*var serializer = new XmlSerializer( typeof( newsearch ) );
+		newsearch obj = (newsearch)serializer.Deserialize( new StringReader( xml ) );
+		var type = obj.type ?? "model";
+		var result = await SearchFor( obj, type );
+		LanguageModel.AddMessage( "system", result );*/
+		return true;
 	}
 }

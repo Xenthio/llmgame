@@ -1,13 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace LLMGame;
 
 public partial class LLMScene : SingletonComponent<LLMScene>
 {
-	async Task<bool> AddSpotlight( newspotlight obj )
+	[CommandHandler( "spotlight" )]
+	async Task<bool> AddSpotlight( string xml, ILLMBeing sender = null )
 	{
+		// Create anonymous type template
+		var template = new { position = "", lift = 0.0f, color = "" };
+
+		// Deserialize
+		var obj = XmlAnonymousDeserializer.Deserialize( xml, template );
+
 		var go = Scene.CreateObject();
 		var prop = go.AddComponent<Prop>();
 		var lerper = go.AddComponent<Lerper>();
@@ -33,8 +39,16 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 		go.WorldPosition = go.WorldPosition.WithZ( 1000 );
 		return true;
 	}
-	async Task<bool> AddWall( newwall obj )
+
+	[CommandHandler( "wall" )]
+	async Task<bool> AddWall( string xml, ILLMBeing sender = null )
 	{
+		// Create anonymous type template
+		var template = new { name = "", ident = "", start = "", end = "" };
+
+		// Deserialize
+		var obj = XmlAnonymousDeserializer.Deserialize( xml, template );
+
 		Material material = null;
 		if ( obj.ident == null )
 		{
@@ -161,8 +175,17 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 
 		return true;
 	}
-	async Task<bool> SetFloor( newfloor obj )
+
+
+	[CommandHandler( "floor" )]
+	async Task<bool> SetFloor( string xml, ILLMBeing sender = null )
 	{
+		// Create anonymous type template
+		var template = new { name = "", ident = "" };
+
+		// Deserialize
+		var obj = XmlAnonymousDeserializer.Deserialize( xml, template );
+
 		Material material = null;
 		if ( obj.ident == null )
 		{
@@ -195,8 +218,15 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 		return true;
 
 	}
-	async Task<bool> SetCeiling( newceiling obj )
+	[CommandHandler( "ceiling" )]
+	async Task<bool> SetCeiling( string xml, ILLMBeing sender = null )
 	{
+		// Create anonymous type template
+		var template = new { name = "", ident = "" };
+
+		// Deserialize
+		var obj = XmlAnonymousDeserializer.Deserialize( xml, template );
+
 		Log.Info( "setting ceiling..." );
 		Material material = null;
 		if ( obj.ident == null )
@@ -238,8 +268,15 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 
 	}
 
-	async Task<bool> PlaceObject( newobject obj )
+	[CommandHandler( "object" )]
+	async Task<bool> PlaceObject( string xml, ILLMBeing sender = null )
 	{
+		// Create anonymous type template
+		var template = new { name = "", ident = "", position = "", yaw = 0.0f, lift = 0.0f, lookat = "", isstatic = false };
+
+		// Deserialize
+		var obj = XmlAnonymousDeserializer.Deserialize( xml, template );
+
 		await Task.Delay( 600 );
 		Model mdl = null;
 		if ( obj.name != null )
@@ -277,14 +314,15 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 		//var sweep = Scene.Trace.M()
 		var tr = Scene.Trace.Ray( position.WithZ( WorldPosition.z + 80 ), position + Vector3.Down * 80 ).WithoutTags( "ceiling" ).Run();
 		var offset = 4;
-		if ( obj.isStatic || obj.lift > 0 ) offset = 0;
+		if ( obj.isstatic || obj.lift > 0 ) offset = 0;
 		go.WorldPosition = tr.EndPosition + Vector3.Up * offset;
 		go.WorldRotation = Rotation.FromYaw( obj.yaw - 90 );
 
+		bool IsStatic = obj.isstatic;
 		if ( obj.lift > 0 )
 		{
 			go.WorldPosition += Vector3.Up * obj.lift * 39.3701f;
-			obj.isStatic = true;
+			IsStatic = true;
 		}
 
 		if ( obj.name != null && obj.name.Contains( "rug" ) )
@@ -293,7 +331,7 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 		}
 
 		lerper.TargetPosition = go.WorldPosition;
-		lerper.ShouldEnablePhysics = !obj.isStatic;
+		lerper.ShouldEnablePhysics = !IsStatic;
 		go.WorldPosition = go.WorldPosition.WithZ( 1000 );
 
 		if ( !string.IsNullOrEmpty( obj.lookat ) )
@@ -304,82 +342,13 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 			go.WorldRotation = Rotation.LookAt( lookat.WithZ( 0 ) - go.WorldPosition.WithZ( 0 ), Vector3.Up ).Angles().WithPitch( 0 ).WithRoll( 0 ).ToRotation();
 		}
 
-		prop.IsStatic = obj.isStatic;
+		prop.IsStatic = IsStatic;
 		prop.Model = mdl;
 
-		if ( !obj.isStatic && go.Components.TryGet<Rigidbody>( out var phys ) )
+		if ( !IsStatic && go.Components.TryGet<Rigidbody>( out var phys ) )
 			phys.MotionEnabled = false;
 
 		return true;
 
 	}
-}
-[XmlRoot( ElementName = "object" )]
-public class newobject
-{
-	[XmlElement]
-	public string name { get; set; }
-	[XmlElement]
-	public string ident { get; set; }
-	[XmlElement]
-	public string position { get; set; }
-	[XmlElement]
-	public float yaw { get; set; }
-	[XmlElement]
-	public float lift { get; set; }
-	[XmlElement]
-	public string lookat { get; set; }
-	[XmlElement( ElementName = "static" )]
-	public bool isStatic { get; set; }
-}
-
-[XmlRoot( ElementName = "wall" )]
-public class newwall
-{
-	[XmlElement]
-	public string name { get; set; }
-	[XmlElement]
-	public string ident { get; set; }
-	[XmlElement]
-	public string start { get; set; }
-	[XmlElement]
-	public string end { get; set; }
-}
-
-[XmlRoot( ElementName = "floor" )]
-public class newfloor
-{
-	[XmlElement]
-	public string name { get; set; }
-	[XmlElement]
-	public string ident { get; set; }
-}
-
-[XmlRoot( ElementName = "ceiling" )]
-public class newceiling
-{
-	[XmlElement]
-	public string name { get; set; }
-	[XmlElement]
-	public string ident { get; set; }
-}
-
-[XmlRoot( ElementName = "search" )]
-public class newsearch
-{
-	[XmlElement]
-	public string query { get; set; }
-	[XmlElement]
-	public string type { get; set; }
-}
-
-[XmlRoot( ElementName = "spotlight" )]
-public class newspotlight
-{
-	[XmlElement]
-	public string position { get; set; }
-	[XmlElement]
-	public float lift { get; set; }
-	[XmlElement]
-	public string color { get; set; } = "#FFEDBC";
 }

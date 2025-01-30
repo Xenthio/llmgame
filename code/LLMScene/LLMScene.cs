@@ -2,23 +2,11 @@
 
 public partial class LLMScene : SingletonComponent<LLMScene>
 {
+	public static readonly float METERS_2_INCH = 39.3701f;
+	public static readonly float INCH_2_METERS = 00.0254f;
 	[Property] public MeshComponent FloorMesh { get; set; }
 	[Property] public MeshComponent CeilingMesh { get; set; }
-	public static string GetPrompt()
-	{
-		return """ 
-			### Commands 
-			you can split your response with | to run a command (like "blah blah blah|<lookat>door</lookat>|blah blah blah blah")
 
-			# Look at Command
-			<lookat>object</lookat> - Look at an object or character in the room.
-
-			Commands are in XML format.
-
-			### Immersive Chat
-			Your job as assistant is to control {{char}} in this simulated world scenario, use commands to do actions. Be creative and realistic.
-			""";
-	}
 	public async void BroadcastAudibleMessage( ILLMBeing speaker, string content, bool think = true )
 	{
 		var message = Message.As( speaker, content );

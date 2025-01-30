@@ -3,7 +3,7 @@ namespace LLMGame;
 public sealed class LLMObject : Component
 {
 	[Property] public string Name { get; set; } = "Cup";
-	[RequireComponent] public ModelRenderer Model { get; set; }
+	[Property] public ModelRenderer Model { get; set; }
 	protected override void OnStart()
 	{
 		base.OnStart();

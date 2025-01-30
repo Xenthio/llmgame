@@ -435,7 +435,7 @@
           "DoClassicPlatforms": true,
           "Gravity": "0,0,800",
           "GroundAngle": 45.5734,
-          "Height": 71.83581,
+          "Height": 72,
           "IgnoreLayers": "",
           "IsOnGround": true,
           "Mass": 85,
@@ -516,6 +516,7 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
+          "Player": null,
           "ShowEnviromentPanel": true
         }
       ],
@@ -570,7 +571,7 @@
           "__guid": "f83a8704-8497-4e1b-b032-0a9c22c4e170",
           "Flags": 0,
           "Name": "Head",
-          "Position": "0,0,63.8358",
+          "Position": "0,0,64",
           "Enabled": true,
           "Children": [
             {

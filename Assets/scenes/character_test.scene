@@ -628,6 +628,53 @@
           "UseAnimGraph": true
         },
         {
+          "__type": "Sandbox.Citizen.CitizenAnimationHelper",
+          "__guid": "d5b4a1bc-2f9b-4850-bd21-6d03ff9bc9bb",
+          "BodyWeight": 1,
+          "EyeSource": {
+            "_type": "gameobject",
+            "go": "ef61dca0-2194-4331-ad80-53892c43f7bb"
+          },
+          "EyesWeight": 1,
+          "HeadWeight": 1,
+          "Height": null,
+          "IkLeftFoot": null,
+          "IkLeftHand": null,
+          "IkRightFoot": null,
+          "IkRightHand": null,
+          "LookAt": null,
+          "LookAtEnabled": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Target": {
+            "_type": "component",
+            "component_id": "95780d81-5f72-4650-b846-7b2f76dc3b25",
+            "go": "c00e8745-1dd6-4e1d-9f48-4eb682900115",
+            "component_type": "SkinnedModelRenderer"
+          }
+        },
+        {
+          "__type": "Sandbox.NavMeshAgent",
+          "__guid": "5044226b-b2de-49f7-82b0-63f4e39ccbcd",
+          "Acceleration": 120,
+          "Height": 64,
+          "MaxSpeed": 120,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Radius": 16,
+          "Separation": 0.25,
+          "UpdatePosition": true,
+          "UpdateRotation": false
+        },
+        {
           "__type": "LLMGame.LLMCharacter",
           "__guid": "5bea48b9-7955-4a60-be3c-163411bac299",
           "Card": {
@@ -637,6 +684,60 @@
           },
           "CardPath": "demoman.png",
           "Memory": [],
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "ef61dca0-2194-4331-ad80-53892c43f7bb",
+          "Flags": 0,
+          "Name": "Eye",
+          "Position": "0,0,64",
+          "Enabled": true
+        }
+      ]
+    },
+    {
+      "__guid": "70c830bd-3bcb-4e4c-8073-02b5ad07821f",
+      "Flags": 0,
+      "Name": "Cube",
+      "Position": "128,-128,0",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "27f76d87-e2cf-423d-bce8-7dd4cecd9fae",
+          "BodyGroups": 18446744073709551615,
+          "Health": 50,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/sbox_props/wooden_crate/wooden_crate.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "43ecd87b-195c-49d9-8f12-94a63ff74079",
+          "Model": {
+            "_type": "component",
+            "component_id": "1e17b1f1-0105-4018-ba36-27b3306b613d",
+            "go": "70c830bd-3bcb-4e4c-8073-02b5ad07821f",
+            "component_type": "ModelRenderer"
+          },
+          "Name": "Wooden Crate",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -675,6 +776,8 @@
   "ResourceVersion": 2,
   "Title": "minimal",
   "Description": null,
-  "__references": [],
+  "__references": [
+    "facepunch.wooden_crate#29138"
+  ],
   "__version": 2
 }

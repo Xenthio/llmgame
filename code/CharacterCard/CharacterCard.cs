@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
@@ -190,7 +191,7 @@ public class CharacterCard
 		while ( offset < bytes.Length )
 		{
 			int chunkLength = BitConverter.ToInt32( bytes, offset );
-			chunkLength = System.Net.IPAddress.NetworkToHostOrder( chunkLength ); // Convert from big-endian to little-endian
+			chunkLength = BinaryPrimitives.ReverseEndianness( chunkLength ); // Convert from big-endian to little-endian
 			offset += 4;
 
 			string chunkType = Encoding.ASCII.GetString( bytes, offset, 4 );

@@ -53,11 +53,11 @@ public class LanguageModel : SingletonComponent<LanguageModel>
 		var requestBody = new
 		{
 			model = Instance.Model,
-			messages = Messages,
+			messages = Messages/*
 			provider = new
 			{
 				sort = "throughput",
-			}
+			}*/
 			//mode = "instruct",
 			//max_tokens = 2048,
 			//temperature = 0.6,

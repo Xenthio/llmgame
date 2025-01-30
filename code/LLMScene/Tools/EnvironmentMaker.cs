@@ -65,16 +65,16 @@ You will provide me instructions on what to place in XML format:
 ### Respond with the commands formatted like one of following:
 
 # Create Object Command
-<object><ident>facepunch.tree_oak_medium_a</ident><position>-1,2</position><lookat>-2,2</lookat><static>false</static></object>
+<object><ident>facepunch.tree_oak_medium_a</ident><position>-1,2</position><lookat>-2,2</lookat><isstatic>false</isstatic></object>
 
-- Use static for large objects like trees, or small immovable detail like grass clumps
+- Use isstatic for large objects like trees, or small immovable detail like grass clumps
 - Use ident to specify the model to use, this is the full ident of the model you want to use from the search results.
 - Instead of ident, you can use name if you want to use the top result of anything not in the search results. This can be a comma seperated list of names to try when searching, order by most descriptiveness to least, e.g "potted plant,pot plant,plant"
 - Positions are specified as a vector2 (x,y) of top down coordinates in meters, where the origin is the center of the environment.
 - Placing an object that overlaps another will place it ontop of the other object. So do them in order, things like tables go first, then anything that goes on top of it (like televisions). 
 - LookAt is a vector2 (x,y), and the object will be rotated to face the specified position. This is useful for things like chairs that should face a table.
 - Instead of lookat, you can manually specify yaw, Yaw is specified as a float in degrees, where 0 is facing forward (positive X), 90 is facing right (positive Y), 180 is facing backwards (negative X), 270 is facing left (negative Y)
-- Lift allows you to raise objects off the ground in meters, this will automatically set the object to static. Do NOT use this to place objects on tables or other objects, only for things like wall art or hanging lights.
+- Lift allows you to raise objects off the ground in meters, this will automatically set the object to isstatic. Do NOT use this to place objects on tables or other objects, only for things like wall art or hanging lights.
 
 # Set Floor Command
 <floor><name>white carpet,carpet</name></floor>
