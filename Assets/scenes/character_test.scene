@@ -524,7 +524,6 @@
       "__guid": "d61edd26-ec7e-45ea-9317-c13b8815ea87",
       "Flags": 0,
       "Name": "Character",
-      "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.SkinnedModelRenderer",
@@ -573,6 +572,70 @@
             "data": null
           },
           "CardPath": "default_character.png",
+          "Memory": [],
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "c00e8745-1dd6-4e1d-9f48-4eb682900115",
+      "Flags": 0,
+      "Name": "Character (1)",
+      "Position": "128,0,0",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SkinnedModelRenderer",
+          "__guid": "95780d81-5f72-4650-b846-7b2f76dc3b25",
+          "AnimationGraph": null,
+          "BodyGroups": 341,
+          "BoneMergeTarget": null,
+          "CreateAttachments": false,
+          "CreateBoneObjects": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Model": "models/citizen/citizen.vmdl",
+          "Morphs": {},
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Parameters": {
+            "bools": {},
+            "ints": {},
+            "floats": {},
+            "vectors": {},
+            "rotations": {}
+          },
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Sequence": {
+            "Name": null
+          },
+          "Tint": "1,1,1,1",
+          "UseAnimGraph": true
+        },
+        {
+          "__type": "LLMGame.LLMCharacter",
+          "__guid": "5bea48b9-7955-4a60-be3c-163411bac299",
+          "Card": {
+            "spec": null,
+            "spec_version": null,
+            "data": null
+          },
+          "CardPath": "demoman.png",
           "Memory": [],
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,

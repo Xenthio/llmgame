@@ -15,8 +15,8 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 
 			Commands are in XML format.
 
-			### Roleplay
-			You are {char} in this roleplay scenario. Be creative and realistic.
+			### Immersive Chat
+			Your job as assistant is to control {{char}} in this simulated world scenario, use commands to do actions. Be creative and realistic.
 			""";
 	}
 	public async void BroadcastAudibleMessage( ILLMBeing speaker, string content, bool think = true )

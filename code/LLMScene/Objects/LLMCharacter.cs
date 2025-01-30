@@ -15,6 +15,10 @@ public class LLMCharacter : Component, ILLMBeing
 		Card = CharacterCard.LoadFromPNG( CardPath );
 
 		Memory.Add( Message.System( BuildInfo( Card ) ) );
+		if ( Card.data.group_only_greetings != null && Card.data.group_only_greetings.Any() )
+		{
+			LLMScene.Instance.BroadcastAudibleMessage( this, Card.data.group_only_greetings.OrderBy( x => Game.Random.Int( 0, 100 ) ).First() );
+		}
 	}
 
 	public static string BuildInfo( CharacterCard card )
