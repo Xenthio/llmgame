@@ -20,6 +20,9 @@ public static class XmlAnonymousDeserializer
 		// Parse XML and extract values
 		foreach ( var property in properties )
 		{
+			// wtf lua brain bs was this
+			//var ty = anonymousTypeTemplate[property.Name];
+
 			//var type = typedesc.Ge( anonymousTypeTemplate, property.Name );
 			Log.Info( $"Deserialising {property.Name} into {property.PropertyType}..." );
 			string propertyName = property.Name;
