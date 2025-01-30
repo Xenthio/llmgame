@@ -9,27 +9,7 @@
         <div class="dialog-title">Environment</div>
         <div class="dialog-content">
             <div class="title">Enter a prompt</div>
-            <TextEntry @ref=textEntry Placeholder="a lovely park"/>
-            <div class="title">Model</div>
-            <select @ref=dropDown default="anthropic/claude-3.5-sonnet">
-                <option title="Anthropic Claude 3.5 Sonnet">anthropic/claude-3.5-sonnet</option>
-                <option title="DeepSeek R1">deepseek/deepseek-r1</option>
-                <option title="OpenAI GPT-4o mini">openai/gpt-4o-mini</option>
-                <option title="Meta Llama 3.3 70B Instruct">meta-llama/llama-3.3-70b-instruct</option>
-                <option title="DeepSeek R1 Distill Llama 70b">deepseek/deepseek-r1-distill-llama-70b</option>
-                <option title="Perplexity Sonar Reasoning">perplexity/sonar-reasoning</option>
-                <option title="OpenAI o1 (preview) (expensive)">openai/o1-preview</option>
-                <option title="Meta Llama 3.1 8B Instruct">meta-llama/llama-3.1-8b-instruct</option
-                <option title="Google Gemini Flash 1.5 8B">google/gemini-flash-1.5-8b</option>
-                <option title="Google Gemini Flash 1.5">google/gemini-flash-1.5</option>
-            </select>
-            @{
-                if (dropDown.Selected == null)
-                {
-                    var opt = dropDown.Options.FirstOrDefault();
-                    dropDown.Selected = opt;
-                }
-            }
+            <TextEntry class="layout marg-s" @ref=textEntry Placeholder="a lovely park"/>
             <button onclick=@Submit>Submit</button>
         </div> 
     </root>
@@ -38,7 +18,6 @@
 @code {
     bool AskingForPrompt = true; 
     public TextEntry textEntry { get; set; }
-    public DropDown dropDown { get; set; }
 
     public EnvironmentPopup()
     {
@@ -48,8 +27,6 @@
 
     public void Submit()
     {
-        LanguageModel.Instance.Model = (string)dropDown.Selected.Value;
-        Log.Info(LanguageModel.Instance.Model);
         EnvironmentMaker.Instance.AddEnvironment(textEntry.Value);
         AskingForPrompt = false;
         HUD.WantsCursor = false; 

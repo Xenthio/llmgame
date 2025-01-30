@@ -1,9 +1,9 @@
 DebugView {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 400px;
-    width: 600px;
+    bottom: 16px;
+    right: 16px;
+    height: 300px;
+    width: 400px;
 
     .dropdown {
         flex-shrink: 0;

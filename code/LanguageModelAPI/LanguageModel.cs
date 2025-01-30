@@ -17,6 +17,10 @@ public class LanguageModel : SingletonComponent<LanguageModel>
 	}
 	public void Initialise()
 	{
+		if ( !FileSystem.Data.FileExists( "llm_token.txt" ) )
+		{
+			FileSystem.Data.WriteAllText( "llm_token.txt", "Bearer <YOUR_TOKEN_HERE>" );
+		}
 		if ( Token == "null" )
 		{
 			Token = FileSystem.Data.ReadAllText( "llm_token.txt" );

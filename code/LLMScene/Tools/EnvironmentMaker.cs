@@ -5,6 +5,10 @@ public class EnvironmentMaker : SingletonComponent<EnvironmentMaker>
 	protected override void OnStart()
 	{
 		base.OnStart();
+		foreach ( var hud in Scene.Components.GetAll<HUD>() )
+		{
+			hud.ShowEnviromentPanel = true;
+		}
 	}
 	public async void AddEnvironment( string prompt )
 	{

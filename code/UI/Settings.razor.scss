@@ -1,29 +1,26 @@
-ChatPanel {
+Settings {
     position: absolute;
-    bottom: 16px;
-    left: 16px;
-    height: 600px;
+    top: 16px;
+    right: 16px;
+    height: 300px;
     width: 400px;
 
-    .chatentry {
-        flex-grow: 1;
+    .dropdown {
+        flex-shrink: 0;
     }
 
     .list {
         overflow: scroll;
-        justify-content: flex-end;
         flex-direction: column;
         flex-grow: 1;
 
         .message {
-            margin-bottom: 4px;
-            border-radius: 20px;
-            border: 1px solid #AAAAAA44;
-            background-color: #222222AA;
-            padding: 8px;
+            border-bottom: 1px solid grey;
+            padding: 4px;
             flex-direction: column;
             overflow: hidden;
             flex-shrink: 0;
+
 
             .title {
                 width: 100px;

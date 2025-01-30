@@ -5,14 +5,16 @@ namespace LLMGame;
 
 public partial class LLMScene : SingletonComponent<LLMScene>
 {
+	public class SpotlightCommand
+	{
+		public string position { get; set; }
+		public float lift { get; set; }
+		public string color { get; set; } = "#FFEDBC";
+	}
 	[CommandHandler( "spotlight" )]
 	async Task<bool> AddSpotlight( string xml, ILLMBeing sender = null )
 	{
-		// Create anonymous type template
-		var template = new { position = "", lift = 0.0f, color = "" };
-
-		// Deserialize
-		var obj = XmlAnonymousDeserializer.Deserialize( xml, template );
+		var obj = XmlDeserializer.Deserialize<SpotlightCommand>( xml );
 
 		var go = Scene.CreateObject();
 		var prop = go.AddComponent<Prop>();
@@ -39,15 +41,17 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 		go.WorldPosition = go.WorldPosition.WithZ( 1000 );
 		return true;
 	}
-
+	public class WallCommand
+	{
+		public string name { get; set; }
+		public string ident { get; set; }
+		public string start { get; set; }
+		public string end { get; set; }
+	}
 	[CommandHandler( "wall" )]
 	async Task<bool> AddWall( string xml, ILLMBeing sender = null )
 	{
-		// Create anonymous type template
-		var template = new { name = "", ident = "", start = "", end = "" };
-
-		// Deserialize
-		var obj = XmlAnonymousDeserializer.Deserialize( xml, template );
+		var obj = XmlDeserializer.Deserialize<WallCommand>( xml );
 
 		Material material = null;
 		if ( obj.ident == null )
@@ -176,15 +180,15 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 		return true;
 	}
 
-
+	public class FloorCommand
+	{
+		public string name { get; set; }
+		public string ident { get; set; }
+	}
 	[CommandHandler( "floor" )]
 	async Task<bool> SetFloor( string xml, ILLMBeing sender = null )
 	{
-		// Create anonymous type template
-		var template = new { name = "", ident = "" };
-
-		// Deserialize
-		var obj = XmlAnonymousDeserializer.Deserialize( xml, template );
+		var obj = XmlDeserializer.Deserialize<FloorCommand>( xml );
 
 		Material material = null;
 		if ( obj.ident == null )
@@ -218,14 +222,16 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 		return true;
 
 	}
+
+	public class CeilingCommand
+	{
+		public string name { get; set; }
+		public string ident { get; set; }
+	}
 	[CommandHandler( "ceiling" )]
 	async Task<bool> SetCeiling( string xml, ILLMBeing sender = null )
 	{
-		// Create anonymous type template
-		var template = new { name = "", ident = "" };
-
-		// Deserialize
-		var obj = XmlAnonymousDeserializer.Deserialize( xml, template );
+		var obj = XmlDeserializer.Deserialize<CeilingCommand>( xml );
 
 		Log.Info( "setting ceiling..." );
 		Material material = null;
@@ -268,14 +274,21 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 
 	}
 
+	class ObjectCommand
+	{
+		public string name { get; set; }
+		public string ident { get; set; }
+		public string position { get; set; }
+		public float yaw { get; set; }
+		public float lift { get; set; }
+		public string lookat { get; set; }
+		public bool isstatic { get; set; }
+	}
 	[CommandHandler( "object" )]
 	async Task<bool> PlaceObject( string xml, ILLMBeing sender = null )
 	{
-		// Create anonymous type template
-		var template = new { name = "", ident = "", position = "", yaw = 0.0f, lift = 0.0f, lookat = "", isstatic = false };
-
 		// Deserialize
-		var obj = XmlAnonymousDeserializer.Deserialize( xml, template );
+		var obj = XmlDeserializer.Deserialize<ObjectCommand>( xml );
 
 		await Task.Delay( 600 );
 		Model mdl = null;

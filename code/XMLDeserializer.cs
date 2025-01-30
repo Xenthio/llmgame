@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public static class XmlAnonymousDeserializer
+public static class XmlDeserializer
 {
-	public static T Deserialize<T>( string xml, T anonymousTypeTemplate )
+	[ConVar( "xml_debug" )] public static bool DebugSerialisation { get; set; } = false;
+	public static T Deserialize<T>( string xml )//, T anonymousTypeTemplate )
 	{
-		Log.Info( $"Deserialising {xml}..." );
-		// Remove whitespace and newlines
+		if ( DebugSerialisation ) Log.Info( $"Deserialising {xml}..." );
 		xml = xml.Trim().Replace( "\n", "" ).Replace( "\r", "" );
 
 		var typedesc = TypeLibrary.GetType<T>();
 
-		// Get the properties of the anonymous type
 		var properties = typedesc.Properties;
 
-		// Create a dictionary to store property values
 		var propertyValues = new Dictionary<string, object>();
 
 		// Parse XML and extract values
@@ -23,8 +21,12 @@ public static class XmlAnonymousDeserializer
 			// wtf lua brain bs was this
 			//var ty = anonymousTypeTemplate[property.Name];
 
+			// previously wanted to use anonymous types but that doesn't work properly with s&box's reflection
+			// worked with system.reflection
 			//var type = typedesc.Ge( anonymousTypeTemplate, property.Name );
-			Log.Info( $"Deserialising {property.Name} into {property.PropertyType}..." );
+
+			if ( DebugSerialisation ) Log.Info( $"Deserialising {property.Name} into {property.PropertyType}..." );
+
 			string propertyName = property.Name;
 			string startTag = $"<{propertyName}>";
 			string endTag = $"</{propertyName}>";
@@ -39,14 +41,6 @@ public static class XmlAnonymousDeserializer
 				propertyValues[propertyName] = convertedValue;
 			}
 		}
-
-		// Create new instance of anonymous type with extracted values
-		//var constructorInfo = anonymousTypeTemplate.GetType().GetConstructors()[0];
-		//var constructorInfo = TypeLibrary.GetType(anonymousTypeTemplate.GetType()).Create
-		//var parameters = constructorInfo.GetParameters();
-		//var constructorArgs = parameters.Select( p => propertyValues[p.Name] ).ToArray();
-
-		//return (T)constructorInfo.Invoke( constructorArgs );
 
 		var c = typedesc.Create<T>( null );
 

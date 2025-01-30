@@ -4,13 +4,14 @@ namespace LLMGame;
 
 public partial class LLMScene : SingletonComponent<LLMScene>
 {
+	public class SearchCommand
+	{
+		public string query { get; set; }
+		public string type { get; set; }
+	}
 	async Task<string> SearchFor( string xml, ILLMBeing sender = null )
 	{
-		// Create anonymous type template
-		var template = new { query = "", type = "" };
-
-		// Deserialize
-		var obj = XmlAnonymousDeserializer.Deserialize( xml, template );
+		var obj = XmlDeserializer.Deserialize<SearchCommand>( xml );
 
 		var type = obj.type ?? "model";
 
