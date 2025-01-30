@@ -43,12 +43,21 @@ public class LanguageModel : SingletonComponent<LanguageModel>
 
 	public static async Task<ChatResponse> GenerateOnly()
 	{
+		return await GenerateFromMessages( Instance.Messages );
+	}
+
+	public static async Task<ChatResponse> GenerateFromMessages( List<Message> Messages )
+	{
 		Instance.Initialise();
 		// Prepare the request
 		var requestBody = new
 		{
 			model = Instance.Model,
-			messages = Instance.Messages
+			messages = Messages,
+			provider = new
+			{
+				sort = "throughput",
+			}
 			//mode = "instruct",
 			//max_tokens = 2048,
 			//temperature = 0.6,

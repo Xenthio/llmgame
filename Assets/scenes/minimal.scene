@@ -141,7 +141,7 @@
           "HideInGame": false,
           "IsTrigger": false,
           "Mesh": {
-            "Topology": "H4sIAAAAAAAACk2MCQoAIQzE4qqr//9wJdiCA6WQOQawgcbVBwzgT\u002BbJXi0gIkLeM68q69fXm7n1bsv1a6skN2tH394B6DpJeKAAAAA=",
+            "Topology": "H4sIAAAAAAAACk2MCQoAIQzE4qqr//9wJdiCA6WQOQawgcbVBwzgT+bJXi0gIkLeM68q69fXm7n1bsv1a6skN2tH394B6DpJeKAAAAA=",
             "Positions": [
               "-384,-384,0",
               "384,-384,0",
@@ -221,7 +221,7 @@
           "HideInGame": false,
           "IsTrigger": false,
           "Mesh": {
-            "Topology": "H4sIAAAAAAAACm2Q2Q7CMAwEB8IRztJy/v\u002BXohEbyQ9Eipp6J\u002Bt1OvABdvzWGtjk/wicgRvwAFbZMnUtQEu95T6FvRZt\u002B6dXD\u002BvaF98W9hLOfUiu4d1Lb71PyawuLztHk9PLs7pf2VeZecq8\u002BsmY3e\u002BYSy8zqMvLPuNl9nveSn68jfXhL2sPdeuy73Lfsx7y1szmTOPdzGt/PeTUvu34t2bEAQAA",
+            "Topology": "H4sIAAAAAAAACm2Q2Q7CMAwEB8IRztJy/v+XohEbyQ9Eipp6J+t1OvABdvzWGtjk/wicgRvwAFbZMnUtQEu95T6FvRZt+6dXD+vaF98W9hLOfUiu4d1Lb71PyawuLztHk9PLs7pf2VeZecq8+smY3e+YSy8zqMvLPuNl9nveSn68jfXhL2sPdeuy73Lfsx7y1szmTOPdzGt/PeTUvu34t2bEAQAA",
             "Positions": [
               "-384,-384,-0.000003052774",
               "384,-384,0.000003052774",
@@ -349,7 +349,7 @@
       "__guid": "bcf8889e-fa16-43e5-9a05-84643d0c14ee",
       "Flags": 0,
       "Name": "Player",
-      "Position": "-326.0467,0,0",
+      "Position": "-326.0467,0,0.03124908",
       "Enabled": true,
       "Components": [
         {
@@ -381,7 +381,7 @@
           "EnableCrouching": true,
           "EnableJumping": true,
           "EnableLadders": true,
-          "EnableNoclipping": false,
+          "EnableNoclipping": true,
           "EnableRunning": true,
           "EnableSwimming": true,
           "EnableVR": false,
@@ -435,9 +435,9 @@
           "DoClassicPlatforms": true,
           "Gravity": "0,0,800",
           "GroundAngle": 45.5734,
-          "Height": 72,
+          "Height": 71.83581,
           "IgnoreLayers": "",
-          "IsOnGround": false,
+          "IsOnGround": true,
           "Mass": 85,
           "MovementFrequency": "PerFixedUpdate",
           "OnComponentDestroy": null,
@@ -568,7 +568,7 @@
           "__guid": "f83a8704-8497-4e1b-b032-0a9c22c4e170",
           "Flags": 0,
           "Name": "Head",
-          "Position": "0,0,64",
+          "Position": "0,0,63.8358",
           "Enabled": true,
           "Children": [
             {

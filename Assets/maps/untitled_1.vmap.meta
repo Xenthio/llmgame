@@ -1,0 +1,30 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "Untitled 1",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "untitled1",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "facepunch.ceiling_plaster_01#33577",
+        "facepunch.dirtpile_crn_02#37652",
+        "facepunch.dirtpile_crn_03#37653",
+        "facepunch.dirtpile_strt_02#37655",
+        "facepunch.dirtpile_strt_03#37656",
+        "facepunch.floor_tile_01#28817",
+        "facepunch.floor_tile_blend_01#28812",
+        "facepunch.plaster_hs_01#33578"
+      ],
+      "IsWhitelistDisabled": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/untitled_1.vmap",
+        "ParentPackage": "xenthio.llmgame"
+      }
+    }
+  }
+}
