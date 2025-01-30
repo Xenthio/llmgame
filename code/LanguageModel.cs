@@ -9,7 +9,7 @@ public class LanguageModel : SingletonComponent<LanguageModel>
 	private Dictionary<string, string> Headers = new();
 	private string Token = "null";
 	public string Model = "anthropic/claude-3.5-sonnet";
-	public List<Message> Messages = new();
+	public List<APIMessage> Messages = new();
 	protected override void OnStart()
 	{
 		base.OnStart();
@@ -28,25 +28,25 @@ public class LanguageModel : SingletonComponent<LanguageModel>
 	}
 	public static void AddMessage( string role, string content )
 	{
-		var b = new Message();
+		var b = new APIMessage();
 		b.role = role;
 		b.content = content;
 		Instance.Messages.Add( b );
 	}
 
-	public static async Task<ChatResponse> Generate()
+	public static async Task<APIChatResponse> Generate()
 	{
 		var newmessage = await GenerateOnly();
 		Instance.Messages.Add( newmessage.choices.First().message );
 		return newmessage;
 	}
 
-	public static async Task<ChatResponse> GenerateOnly()
+	public static async Task<APIChatResponse> GenerateOnly()
 	{
 		return await GenerateFromMessages( Instance.Messages );
 	}
 
-	public static async Task<ChatResponse> GenerateFromMessages( List<Message> Messages )
+	public static async Task<APIChatResponse> GenerateFromMessages( List<APIMessage> Messages )
 	{
 		Instance.Initialise();
 		// Prepare the request
@@ -74,7 +74,7 @@ public class LanguageModel : SingletonComponent<LanguageModel>
 		{
 			var json = await response.Content.ReadAsStringAsync();
 			Log.Info( json );
-			var deserialized = Json.Deserialize<ChatResponse>( json );
+			var deserialized = Json.Deserialize<APIChatResponse>( json );
 
 			/*if ( deserialized.choices.First().message.content.Contains( "<think>" ) )
 			{
@@ -97,24 +97,49 @@ public class LanguageModel : SingletonComponent<LanguageModel>
 	}
 }
 
-public class Message
+public class APIMessage
 {
 	public string role { get; set; }
 	public string content { get; set; }
+
+	public static APIMessage Custom( string role, string content )
+	{
+		return new APIMessage
+		{
+			role = role,
+			content = content
+		};
+	}
+	public static APIMessage Assistant( string name, string content )
+	{
+		return new APIMessage
+		{
+			role = "assistant",
+			content = content
+		};
+	}
+
+	public static APIMessage User( string name, string content )
+	{
+		return new APIMessage
+		{
+			role = "user",
+			content = content
+		};
+	}
 }
 
-public class ChatResponse
+public class APIChatResponse
 {
 	public string id { get; set; }
 	public int created { get; set; }
 	public string model { get; set; }
 	public List<ChatResponseChoice> choices { get; set; }
-}
-
-public class ChatResponseChoice
-{
-	public int index { get; set; }
-	public string finish_reason { get; set; }
-	public Message message { get; set; }
+	public class ChatResponseChoice
+	{
+		public int index { get; set; }
+		public string finish_reason { get; set; }
+		public APIMessage message { get; set; }
+	}
 }
 

@@ -1,0 +1,37 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace LLMGame
+
+<root>
+    <DebugView/>
+    <ChatPanel/>
+    @if (ShowEnviromentPanel)
+    {
+        <EnvironmentPopup/>
+    }
+</root>
+
+@code
+{
+    [Property] public bool ShowEnviromentPanel { get; set; }
+    public static bool WantsCursor;
+    protected override void OnFixedUpdate()
+	{
+        if (Input.Down("Score") || WantsCursor)
+		{
+			this.Panel.Style.PointerEvents = Sandbox.UI.PointerEvents.All;
+		}
+		else
+		{
+			this.Panel.Style.PointerEvents = Sandbox.UI.PointerEvents.None;
+		}
+		base.OnFixedUpdate();
+	}
+	[Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
+
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash() => System.HashCode.Combine( MyStringValue );
+}

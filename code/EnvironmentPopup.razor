@@ -1,12 +1,13 @@
 @using Sandbox;
 @using Sandbox.UI;
-@inherits PanelComponent
+@inherits Panel
 @namespace LLMGame
 
-<root>
-    @if (AskingForPrompt)
-    {
-        <div class="promptentry">
+@if (AskingForPrompt)
+{
+    <root class="dialog">
+        <div class="dialog-title">Environment</div>
+        <div class="dialog-content">
             <div class="title">Enter a prompt</div>
             <TextEntry @ref=textEntry Placeholder="a lovely park"/>
             <div class="title">Model</div>
@@ -30,24 +31,20 @@
                 }
             }
             <button onclick=@Submit>Submit</button>
-        </div>
-    }
-    <div class="messagelist">
-        @foreach (var message in LanguageModel.Instance.Messages)
-        {
-            <div class="message">
-                <div class="title">@message.role</div>
-                <div class="content">@message.content</div>
-            </div>
-        }
-    </div>
-</root>
+        </div> 
+    </root>
+}
 
-@code
-{
-    bool AskingForPrompt = true;
+@code {
+    bool AskingForPrompt = true; 
     public TextEntry textEntry { get; set; }
     public DropDown dropDown { get; set; }
+
+    public EnvironmentPopup()
+    {
+        HUD.WantsCursor = true;
+        Focus();
+    }
 
     public void Submit()
     {
@@ -55,22 +52,6 @@
         Log.Info(LanguageModel.Instance.Model);
         EnvironmentMaker.Instance.AddEnvironment(textEntry.Value);
         AskingForPrompt = false;
+        HUD.WantsCursor = false; 
     }
-
-    protected override void OnFixedUpdate()
-    {
-        if (Input.Down("Score") || AskingForPrompt)
-        {
-            this.Panel.Style.PointerEvents = Sandbox.UI.PointerEvents.All;
-        }
-        else
-        {
-            this.Panel.Style.PointerEvents = Sandbox.UI.PointerEvents.None;
-        }
-        base.OnFixedUpdate();
-    }
-    /// <summary>
-    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
-    /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(LanguageModel.Instance.Messages.Count);
 }

@@ -1,0 +1,56 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace LLMGame
+
+<root class="dialog">
+    <div class="dialog-title">Memory Viewer</div>
+    <div class="dialog-content">
+        <div class="list">
+                @if (SelectedThinker == null)
+                {
+                    <div class="message">
+                        <div class="title">No Thinker Selected</div>
+                        <div class="content">Select a thinker from the dropdown</div>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var message in SelectedThinker?.Memory)
+                    {
+                        <div class="message">
+                            <div class="title">@message.Name</div>
+                            <div class="content">@message.Content</div>
+                        </div>
+                    }
+                }
+            </div>
+            <DropDown @ref=ThinkerDropDown></DropDown>
+            @{
+                PopulateDropDown();
+            }
+    </div>
+    
+</root>
+
+@code
+{
+
+    public IThinker SelectedThinker => (IThinker)ThinkerDropDown?.Selected?.Value;
+    public TextEntry ChatTextEntry { get; set; }
+    public DropDown ThinkerDropDown { get; set; }
+
+    void PopulateDropDown() {
+        ThinkerDropDown.Options.Clear();
+        var thinkers = Scene.GetAllComponents<IThinker>();
+        foreach (var thinker in thinkers)
+        {
+            ThinkerDropDown.Options.Add(new Option(thinker.GetName(), thinker));
+        }
+    } 
+
+    /// <summary>
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(SelectedThinker?.Memory?.Count);
+}

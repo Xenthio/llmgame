@@ -11,7 +11,7 @@
           "__type": "Sandbox.SceneInformation",
           "__guid": "5ad6cbb5-abb0-44ea-86f6-5fe94ad81988",
           "Author": null,
-          "Changes": "",
+          "Changes": null,
           "Description": "",
           "Group": null,
           "OnComponentDestroy": null,
@@ -75,58 +75,6 @@
       ]
     },
     {
-      "__guid": "6ad70641-3c6c-4402-9c85-9a4969af4764",
-      "Flags": 0,
-      "Name": "Plane",
-      "Scale": "10,10,10",
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "0b6a18bf-fdb8-4661-970e-ef635bfa9baa",
-          "BodyGroups": 18446744073709551615,
-          "CreateAttachments": false,
-          "MaterialGroup": null,
-          "MaterialOverride": "materials/default.vmat",
-          "Model": "models/dev/plane.vmdl",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "RenderOptions": {
-            "GameLayer": true,
-            "OverlayLayer": false,
-            "BloomLayer": false,
-            "AfterUILayer": false
-          },
-          "RenderType": "On",
-          "Tint": "1,1,1,1"
-        },
-        {
-          "__type": "Sandbox.BoxCollider",
-          "__guid": "0715cb55-1733-4f5e-8560-c288b8695631",
-          "Center": "0,0,-5",
-          "Friction": null,
-          "IsTrigger": false,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "OnObjectTriggerEnter": null,
-          "OnObjectTriggerExit": null,
-          "OnTriggerEnter": null,
-          "OnTriggerExit": null,
-          "Scale": "100,100,10",
-          "Static": false,
-          "Surface": null,
-          "SurfaceVelocity": "0,0,0"
-        }
-      ]
-    },
-    {
       "__guid": "a4cd8029-63db-45cb-8cf7-6b0cd7dcc155",
       "Flags": 0,
       "Name": "Box",
@@ -174,147 +122,6 @@
               0
             ],
             "EdgeFlags": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            "Materials": [
-              "materials/dev/reflectivity_30.vmat"
-            ]
-          },
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "OnObjectTriggerEnter": null,
-          "OnObjectTriggerExit": null,
-          "OnTriggerEnter": null,
-          "OnTriggerExit": null,
-          "SmoothingAngle": 40,
-          "Static": true,
-          "Surface": null,
-          "SurfaceVelocity": "0,0,0"
-        }
-      ]
-    },
-    {
-      "__guid": "39b566d0-3e84-4338-a904-745428094564",
-      "Flags": 0,
-      "Name": "Box (1)",
-      "Position": "0,0,128",
-      "Rotation": "0,1,0,0.0000001947072",
-      "Tags": "ceiling",
-      "Components": [
-        {
-          "__type": "Sandbox.MeshComponent",
-          "__guid": "ef379e90-bb6f-4061-89a5-f3e926cbc1a0",
-          "Collision": "Mesh",
-          "Color": "1,1,1,1",
-          "Friction": null,
-          "HideInGame": false,
-          "IsTrigger": false,
-          "Mesh": {
-            "Topology": "H4sIAAAAAAAACm2Q2Q7CMAwEB8IRztJy/v+XohEbyQ9Eipp6J+t1OvABdvzWGtjk/wicgRvwAFbZMnUtQEu95T6FvRZt+6dXD+vaF98W9hLOfUiu4d1Lb71PyawuLztHk9PLs7pf2VeZecq8+smY3e+YSy8zqMvLPuNl9nveSn68jfXhL2sPdeuy73Lfsx7y1szmTOPdzGt/PeTUvu34t2bEAQAA",
-            "Positions": [
-              "-384,-384,-0.000003052774",
-              "384,-384,0.000003052774",
-              "384,384,0.000003052774",
-              "-384,384,-0.000003052774",
-              "384,384,-5.999982",
-              "-384,384,-5.999972",
-              "384,-384,-5.999982",
-              "-384,-384,-5.999972"
-            ],
-            "TextureCoord": [
-              "3,3",
-              "-3,3",
-              "3,-3",
-              "3,3",
-              "-3,-3",
-              "3,-3",
-              "-3,3",
-              "-3,-3",
-              "3,-3",
-              "3,-3",
-              "-3,-3",
-              "-3,-3",
-              "-3,-3",
-              "-3,-3",
-              "3,3",
-              "3,3",
-              "3,-3",
-              "-3,3",
-              "-3,3",
-              "-3,3",
-              "3,3",
-              "3,3",
-              "-3,3",
-              "3,-3"
-            ],
-            "TextureUAxis": [
-              "-1,0,-0.0000003973643",
-              "-1,0,-0.0000003973643",
-              "-1,0,-0.0000003973643",
-              "-1,0,-0.0000003973643",
-              "-1,0,-0.0000003973643",
-              "1,0,0"
-            ],
-            "TextureVAxis": [
-              "-0,-1,0",
-              "-0,-1,0",
-              "-0,-1,0",
-              "-0,-1,0",
-              "-0,-1,0",
-              "0,-1,0"
-            ],
-            "TextureScale": [
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25"
-            ],
-            "TextureOffset": [
-              "0.0002441406,0",
-              "0.0002441406,0",
-              "0.0002441406,0",
-              "0.0002441406,0",
-              "0.0002441406,0",
-              "0,0"
-            ],
-            "MaterialIndex": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            "EdgeFlags": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
               0,
               0,
               0,
@@ -435,7 +242,7 @@
           "DoClassicPlatforms": true,
           "Gravity": "0,0,800",
           "GroundAngle": 45.5734,
-          "Height": 71.83581,
+          "Height": 72,
           "IgnoreLayers": "",
           "IsOnGround": true,
           "Mass": 85,
@@ -508,15 +315,14 @@
         },
         {
           "__type": "LLMGame.HUD",
-          "__guid": "fe60f9c6-0715-49ec-bb2d-19c9f7f06635",
-          "MyStringValue": "Hello World!",
+          "__guid": "ed3c2c24-cc06-4a37-8d4f-a0271120bfbe",
+          "MyStringValue": "\n",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "ShowEnviromentPanel": true
+          "OnComponentUpdate": null
         }
       ],
       "Children": [
@@ -570,7 +376,7 @@
           "__guid": "f83a8704-8497-4e1b-b032-0a9c22c4e170",
           "Flags": 0,
           "Name": "Head",
-          "Position": "0,0,63.8358",
+          "Position": "0,0,64",
           "Enabled": true,
           "Children": [
             {
@@ -642,38 +448,6 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null
-        },
-        {
-          "__type": "LLMGame.LLMScene",
-          "__guid": "e4ff9396-ff1a-4ce5-aa39-6ee80d4e6d64",
-          "CeilingMesh": {
-            "_type": "component",
-            "component_id": "ef379e90-bb6f-4061-89a5-f3e926cbc1a0",
-            "go": "39b566d0-3e84-4338-a904-745428094564",
-            "component_type": "MeshComponent"
-          },
-          "FloorMesh": {
-            "_type": "component",
-            "component_id": "200314b8-4139-4398-9183-1309f833555e",
-            "go": "a4cd8029-63db-45cb-8cf7-6b0cd7dcc155",
-            "component_type": "MeshComponent"
-          },
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
-          "__type": "LLMGame.EnvironmentMaker",
-          "__guid": "533ba66f-f447-4de3-a936-06ed92f57a5d",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
         }
       ]
     },
@@ -709,6 +483,68 @@
           "UpdateStrategy": "FrameInterval",
           "ZFar": 4096,
           "ZNear": 16
+        }
+      ]
+    },
+    {
+      "__guid": "d61edd26-ec7e-45ea-9317-c13b8815ea87",
+      "Flags": 0,
+      "Name": "Character",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "LLMGame.CharacterAI",
+          "__guid": "ccaf6f30-cdc5-4da5-b59d-6d191bc8686f",
+          "Card": {
+            "spec": null,
+            "spec_version": null,
+            "data": null
+          },
+          "CardPath": "default_character.png",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "Sandbox.SkinnedModelRenderer",
+          "__guid": "d6a7ad27-4296-422e-9da1-ff62020a6c82",
+          "AnimationGraph": null,
+          "BodyGroups": 341,
+          "BoneMergeTarget": null,
+          "CreateAttachments": false,
+          "CreateBoneObjects": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Model": "models/citizen/citizen.vmdl",
+          "Morphs": {},
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Parameters": {
+            "bools": {},
+            "ints": {},
+            "floats": {},
+            "vectors": {},
+            "rotations": {}
+          },
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Sequence": {
+            "Name": null
+          },
+          "Tint": "1,1,1,1",
+          "UseAnimGraph": true
         }
       ]
     }

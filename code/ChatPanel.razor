@@ -1,0 +1,46 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace LLMGame
+
+<root class="dialog">
+    <div class="dialog-title">Chat</div>
+    <div class="dialog-content">
+        <div class="list">
+            @foreach (var message in LanguageModel.Instance.Messages)
+            {
+                <div class="message">
+                    <div class="title">@message.role</div>
+                    <div class="content">@message.content</div>
+                </div>
+            }
+        </div>
+        <div style="width:100%; margin-top:4px; flex-shrink: 0;">
+            <TextEntry class="chatentry" @ref=ChatTextEntry Placeholder="Enter a message"></TextEntry>
+            <button onclick=@Submit>Submit</button>
+            <button onclick=@Generate>Generate</button>
+        </div>
+    </div>
+</root>
+
+@code
+{
+
+    public TextEntry ChatTextEntry { get; set; }
+    public void Submit()
+    {
+        //LanguageModel.Instance.Model = (string)dropDown.Selected.Value;
+        //Log.Info(LanguageModel.Instance.Model);
+        //EnvironmentMaker.Instance.AddEnvironment(textEntry.Value);
+        //AskingForPrompt = false;
+        LanguageModel.AddMessage("user", "Hello World!");
+    }
+    public void Generate()
+    {
+        LanguageModel.Generate();
+    }
+    /// <summary>
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(LanguageModel.Instance.Messages.Count);
+}
