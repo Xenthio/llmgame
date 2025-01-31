@@ -435,7 +435,7 @@
       "__guid": "cd4b298e-bd21-49d9-9c3c-2b244a2f3ca9",
       "Flags": 0,
       "Name": "Player",
-      "Position": "-256,0,4",
+      "Position": "-256,0,0.03125",
       "Enabled": true,
       "Components": [
         {

@@ -1,7 +1,18 @@
-﻿namespace LLMGame;
+﻿using System.Collections.Generic;
 
-public class EnvironmentMaker : SingletonComponent<EnvironmentMaker>
+namespace LLMGame;
+
+public class EnvironmentMaker : SingletonComponent<EnvironmentMaker>, ILLMBeing
 {
+	[Property, ReadOnly] public List<Message> Memory { get; set; } = new();
+	public string GetName()
+	{
+		return "Environment Maker";
+	}
+	public bool IsUser()
+	{
+		return false;
+	}
 	protected override void OnStart()
 	{
 		base.OnStart();
@@ -27,7 +38,8 @@ Your instructions as the assistant are to create a new environment that matches 
  
 """;
 		}
-		LanguageModel.AddMessage( "system", initial );
+
+		Memory.Add( Message.System( initial ) );
 
 		var search = """
 ----- Stage 1: Asset search -----
@@ -52,9 +64,9 @@ ONLY RESPOND WITH THE XML QUERIES SEPERATED BY |. DO NOT ADD ANY ADDITIONAL TEXT
 
 Start searching now.
 """;
-		LanguageModel.AddMessage( "system", search );
-		await LLMScene.Instance.GenerateAndRunCommands();
-		LanguageModel.Instance.Messages.ElementAt( 1 ).content = """
+		Memory.Add( Message.System( search ) );
+		await LLMScene.Instance.GenerateAndRunCommands( Memory );
+		Memory.ElementAt( 1 ).Content = """
 ----- Stage 1: Asset search -----
 Complete!
 """;
@@ -106,8 +118,8 @@ ONLY RESPOND WITH THE XML OBJECTS SEPERATED BY |. DO NOT ADD ANY ADDITIONAL TEXT
 
 Start placing objects now.
 """;
-		LanguageModel.AddMessage( "system", environment );
-		await LLMScene.Instance.GenerateAndRunCommands();
+		Memory.Add( Message.System( environment ) );
+		await LLMScene.Instance.GenerateAndRunCommands( Memory );
 		//await ProcessCommand();
 		//await ProcessCommand();
 		//await ProcessCommand();

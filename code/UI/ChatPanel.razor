@@ -19,13 +19,13 @@
             }
             else 
             { 
-                @foreach (var message in LanguageModel.Instance.Messages)
+@*                 @foreach (var message in LanguageModel.Instance.Messages)
                 {
                     <div class="message">
                         <div class="title">@message.role</div>
                         <div class="content">@message.content</div>
                     </div>
-                }
+                } *@
             }
         </div>
         <div style="width:100%; margin-top:4px; flex-shrink: 0;">
@@ -49,20 +49,17 @@
         if (ChatTextEntry.Value != "") { 
             if (LocalPlayer != null)
             {
-                LLMScene.Instance.BroadcastAudibleMessage(LocalPlayer, ChatTextEntry.Value);
+                LLMScene.Instance.BroadcastAudibleMessage(LocalPlayer, $"\"{ChatTextEntry.Value}\"");
             }
             else
             {
-                LanguageModel.AddMessage("user", ChatTextEntry.Value);
+                //LanguageModel.AddMessage("user", $"\"{ChatTextEntry.Value}\"");
             }
             ChatTextEntry.Text = "";
         }
         //LanguageModel.AddMessage("user", "Hello World!");
     }
-    public void Generate()
-    {
-        LanguageModel.Generate();
-    }
+
     public override void Tick()
     {
         base.Tick();
@@ -74,5 +71,5 @@
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(LocalPlayer?.Memory?.Count, ChatTextEntry.Value, LanguageModel.Instance.Messages.Count);
+    protected override int BuildHash() => System.HashCode.Combine(LocalPlayer?.Memory?.Count, ChatTextEntry.Value );
 }

@@ -1,0 +1,36 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits DropDown
+@namespace LLMGame
+
+<root> 
+</root>
+
+@{
+    if (Selected == null)
+    {
+        var opt = Options.FirstOrDefault();
+        Selected = opt;
+    }
+    PopulateDropDown();
+}
+@code
+{
+    void PopulateDropDown() {
+        Options.Clear();
+        Options.Add(new Option("OpenRouter", TypeLibrary.GetType<OpenRouterAPI>()));
+        Options.Add(new Option("Oobabooga", TypeLibrary.GetType<OobaboogaAPI>()));
+    }
+    protected override void Select(Option option, bool triggerChange = true)
+    {
+        base.Select(option, triggerChange);
+        if (option.Value is TypeDescription type)
+        {
+            LLMScene.Instance.LanguageAPI = type.Create<ILanguageAPI>();
+        }
+    } 
+    /// <summary>
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(Selected);
+}

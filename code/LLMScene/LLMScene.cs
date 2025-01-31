@@ -1,9 +1,18 @@
-﻿namespace LLMGame;
+﻿using System.Collections.Generic;
+
+namespace LLMGame;
 
 public partial class LLMScene : SingletonComponent<LLMScene>
 {
 	public static readonly float METERS_2_INCH = 39.3701f;
 	public static readonly float INCH_2_METERS = 00.0254f;
+	[Property] public ILanguageAPI LanguageAPI { get; set; }
+
+	protected override void OnStart()
+	{
+		base.OnStart();
+		LanguageAPI = new OpenRouterAPI();
+	}
 	[Property] public MeshComponent FloorMesh { get; set; }
 	[Property] public MeshComponent CeilingMesh { get; set; }
 
@@ -42,21 +51,10 @@ public class Message
 			Content = content
 		};
 	}
-	public APIMessage ConvertToAPIMessage()
-	{
-		var role = "system";
-		string name = null;
-		if ( Owner != null )
-		{
-			role = "assistant";
-			if ( Owner.IsUser() ) role = "user";
-			name = Owner.GetName();
-		}
-		return new APIMessage()
-		{
-			role = role,
-			content = Content,
-			name = name,
-		};
-	}
 }
+public class ChatResponse
+{
+	public string Model { get; set; }
+	public List<Message> Messages { get; set; }
+}
+

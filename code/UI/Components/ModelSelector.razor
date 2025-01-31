@@ -17,17 +17,13 @@
 </root>
 
 @{
-    if (Selected == null)
-    {
-        var opt = Options.FirstOrDefault();
-        Selected = opt;
-    }
     PopulateDropDown();
 }
 @code
-{ 
+{
     void PopulateDropDown() {
         Options.Clear();
+        Options.Add(new Option("Mistal Small 3", "mistralai/mistral-small-24b-instruct-2501"));
         Options.Add(new Option("Anthropic Claude 3.5 Sonnet", "anthropic/claude-3.5-sonnet"));
         Options.Add(new Option("DeepSeek R1", "deepseek/deepseek-r1"));
         Options.Add(new Option("OpenAI GPT-4o mini", "openai/gpt-4o-mini"));
@@ -38,12 +34,19 @@
         Options.Add(new Option("Meta Llama 3.1 8B Instruct", "meta-llama/llama-3.1-8b-instruct"));
         Options.Add(new Option("Google Gemini Flash 1.5 8B", "google/gemini-flash-1.5-8b"));
         Options.Add(new Option("Google Gemini Flash 1.5", "google/gemini-flash-1.5"));
+        if (Selected == null)
+        {
+            var opt = Options.FirstOrDefault();
+            Selected = opt;
+        }
     }
     protected override void Select(Option option, bool triggerChange = true)
     {
         base.Select(option, triggerChange);
-        LanguageModel.Instance.Model = (string)option.Value;
-        Log.Info(LanguageModel.Instance.Model);
+        if (LLMScene.Instance.LanguageAPI is OpenRouterAPI openrouter) {
+            openrouter.Model = (string)option.Value;
+            Log.Info($"Swapped to {openrouter.Model}");
+        }
     } 
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt

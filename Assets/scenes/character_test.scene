@@ -27,37 +27,10 @@
       ]
     },
     {
-      "__guid": "bfc59c12-1ed2-4f91-8956-a95a315eac3c",
-      "Flags": 0,
-      "Name": "Sun",
-      "Position": "-64.10327,-19.84314,109.0001",
-      "Rotation": "-0.07628561,-0.2383178,0.295164,-0.9220972",
-      "Tags": "light_directional,light",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.DirectionalLight",
-          "__guid": "d3659344-a90d-48fa-927a-095f70fe041f",
-          "FogMode": "Enabled",
-          "FogStrength": 1,
-          "LightColor": "0.94419,0.97767,1,1",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Shadows": true,
-          "SkyColor": "0.44167,0.50691,0.53953,1"
-        }
-      ]
-    },
-    {
       "__guid": "00344a8c-fa5e-45ae-b12a-10bb781a1dc3",
       "Flags": 0,
       "Name": "2D Skybox",
       "Tags": "skybox",
-      "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.SkyBox2D",
@@ -78,7 +51,6 @@
       "__guid": "a4cd8029-63db-45cb-8cf7-6b0cd7dcc155",
       "Flags": 0,
       "Name": "Box",
-      "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.MeshComponent",
@@ -89,39 +61,100 @@
           "HideInGame": false,
           "IsTrigger": false,
           "Mesh": {
-            "Topology": "H4sIAAAAAAAACk2MCQoAIQzE4qqr//9wJdiCA6WQOQawgcbVBwzgT+bJXi0gIkLeM68q69fXm7n1bsv1a6skN2tH394B6DpJeKAAAAA=",
+            "Topology": "H4sIAAAAAAAACm2QWQ5CMQwDBx5LWR873P+kaIQj5YNKldp46jgdwAfY8FtLYJX7HjgCF+ABLLJl+jqn5p7ynsaOnNXWf3qd2ptt853C3prvLrkqy2h99D4kszV52Ws0GXvppW5N9tVmnjNvzehsZqr+eplBXV72GS+5e/5K3m12tfKXtYeavOy7vfesh7w1szlT/Zt57a+HnNoXbanktMQBAAA=",
             "Positions": [
               "-384,-384,0",
               "384,-384,0",
               "384,384,0",
-              "-384,384,0"
+              "-384,384,0",
+              "384.0001,-384.0001,128",
+              "384.0001,384.0001,128",
+              "-384.0001,-384.0001,128",
+              "-384.0001,384.0001,128"
             ],
             "TextureCoord": [
               "3,3",
-              "0,0",
-              "3,-3",
-              "0,0",
-              "-3,-3",
-              "0,0",
               "-3,3",
-              "0,0"
+              "3,-3",
+              "3,3",
+              "-3,-3",
+              "3,-3",
+              "-3,3",
+              "-3,-3",
+              "3,3",
+              "3,3",
+              "3,-3",
+              "3,3",
+              "3,-3",
+              "3,-3",
+              "-3,3",
+              "-3,3",
+              "3,3",
+              "-3,3",
+              "-3,-3",
+              "-3,-3",
+              "-3,3",
+              "-3,-3",
+              "-3,-3",
+              "3,-3"
             ],
             "TextureUAxis": [
+              "1,0,0",
+              "1,0,0",
+              "1,0,0",
+              "1,0,0",
+              "1,0,0",
               "1,0,0"
             ],
             "TextureVAxis": [
+              "0,-1,0",
+              "0,-1,0",
+              "0,-1,0",
+              "0,-1,0",
+              "0,-1,0",
               "0,-1,0"
             ],
             "TextureScale": [
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
               "0.25,0.25"
             ],
             "TextureOffset": [
+              "0,0",
+              "0,0",
+              "0,0",
+              "0,0",
+              "0,0",
               "0,0"
             ],
             "MaterialIndex": [
+              0,
+              0,
+              0,
+              0,
+              0,
               0
             ],
             "EdgeFlags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
               0,
               0,
               0,
@@ -156,7 +189,7 @@
       "__guid": "bcf8889e-fa16-43e5-9a05-84643d0c14ee",
       "Flags": 0,
       "Name": "Player",
-      "Position": "-326.0467,0,0.03124908",
+      "Position": "-192,0,0.03124908",
       "Enabled": true,
       "__Prefab": "prefabs/player.prefab",
       "__PrefabVariables": {}
@@ -182,12 +215,7 @@
           "__type": "LLMGame.LLMScene",
           "__guid": "e182c7ae-1d23-4996-a7fe-300457973024",
           "CeilingMesh": null,
-          "FloorMesh": {
-            "_type": "component",
-            "component_id": "200314b8-4139-4398-9183-1309f833555e",
-            "go": "a4cd8029-63db-45cb-8cf7-6b0cd7dcc155",
-            "component_type": "MeshComponent"
-          },
+          "FloorMesh": null,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -202,7 +230,6 @@
       "Flags": 0,
       "Name": "Envmap Probe",
       "Position": "-42.87305,12.8223,384",
-      "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.EnvmapProbe",
@@ -299,7 +326,7 @@
       "__guid": "c00e8745-1dd6-4e1d-9f48-4eb682900115",
       "Flags": 0,
       "Name": "Character (1)",
-      "Position": "128,0,0",
+      "Position": "-80,0,0",
       "Enabled": true,
       "Components": [
         {
@@ -396,7 +423,7 @@
             "spec_version": null,
             "data": null
           },
-          "CardPath": "demoman.png",
+          "CardPath": "Terr.png",
           "Memory": [],
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -420,7 +447,7 @@
       "__guid": "70c830bd-3bcb-4e4c-8073-02b5ad07821f",
       "Flags": 0,
       "Name": "Cube",
-      "Position": "128,-128,0",
+      "Position": "0,-96,0",
       "Enabled": true,
       "Components": [
         {
@@ -455,6 +482,276 @@
           "OnComponentUpdate": null
         }
       ]
+    },
+    {
+      "__guid": "a712f3aa-7177-447a-82df-d7a060175616",
+      "Flags": 0,
+      "Name": "Cube (6)",
+      "Position": "-127.2547,160,0",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "e3e2fbf4-8a45-4353-946a-5d1549f55c39",
+          "BodyGroups": 18446744073709551615,
+          "Health": 50,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/trim_sheets/cabinets/cabinet_a3.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "1a124017-1ddb-43f6-b763-0d05f0fa2918",
+          "Model": null,
+          "Name": "Wooden Cabinet",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "e99a043e-b2d2-4a58-8299-8083da8eab52",
+      "Flags": 0,
+      "Name": "Cube (1)",
+      "Position": "-16.00001,63.99999,0",
+      "Rotation": "0,0,-0.7071067,0.7071068",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "893f5b16-b377-4868-b2b5-0ee1931cf6d0",
+          "BodyGroups": 18446744073709551615,
+          "Health": 5,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/couch/couch.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "868f08ff-6728-4267-88ef-6b6565947e3b",
+          "Model": null,
+          "Name": "Red Sofa",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "4d31f7c4-bd9d-4d08-be5b-d818b3e7ac16",
+      "Flags": 0,
+      "Name": "Cube (2)",
+      "Position": "48,64,0",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "2804823b-0ec2-476f-b18e-9874a41d6232",
+          "BodyGroups": 18446744073709551615,
+          "Health": 5,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/trim_sheets/table/coffeetable_a.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "9ecbcaad-4081-4ade-9fbd-c3bb048fefdc",
+          "Model": null,
+          "Name": "Coffee Table",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "5d31c0af-b52a-4043-884c-f3345640868d",
+      "Flags": 0,
+      "Name": "Cube (5)",
+      "Position": "63.99998,-112,0.000001698732",
+      "Rotation": "0,0,0.7071067,0.7071068",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "ed03dd9b-4020-4967-b262-e61cedec81a4",
+          "BodyGroups": 18446744073709551615,
+          "Health": 5,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/items/plain_set/plain_cabinet.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "7dc3f624-5d43-4515-be9c-8389b08b163a",
+          "Model": null,
+          "Name": "Wooden Bookshelf (Empty)",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "34324d81-f35f-43fc-8b63-8b810ec25f01",
+      "Flags": 0,
+      "Name": "Cube (3)",
+      "Position": "112,64,16",
+      "Rotation": "0,0,-1,0.0000001947072",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "c73690f8-a73f-4eeb-a474-4f00fa088efe",
+          "BodyGroups": 18446744073709551615,
+          "Health": 5,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/items/electronics/tv_medium_onstand.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "91b01609-0758-4444-8d54-cb930bcda9f3",
+          "Model": null,
+          "Name": "Flatscreen TV",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "0ea5c177-76d7-44ca-b2fe-081fdd88dd79",
+      "Flags": 0,
+      "Name": "Cube (4)",
+      "Position": "128,128.0001,-0.000000002095476",
+      "Rotation": "0,0,-1,0.0000001947072",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "86c846bc-0884-4ebe-96e3-f4d3b2f920c8",
+          "BodyGroups": 18446744073709551615,
+          "Health": 5,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/trim_sheets/shelving/modern_shelving/modern_shelving_a5.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "608debe2-9f48-4e56-8611-42bb836ba480",
+          "Model": null,
+          "Name": "Wooden Console",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "7a88c3cc-3dab-4158-9155-6c0c7138eb17",
+      "Flags": 0,
+      "Name": "Map",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.MapInstance",
+          "__guid": "52446994-0c18-4d46-b1e0-2cc3c464d5ad",
+          "__version": 1,
+          "EnableCollision": true,
+          "MapName": "maps/house.vmap",
+          "NoOrigin": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnMapLoaded": null,
+          "OnMapUnloaded": null,
+          "UseMapFromLaunch": false
+        }
+      ],
+      "Children": []
     }
   ],
   "SceneProperties": {
@@ -486,7 +783,13 @@
   "Title": "minimal",
   "Description": null,
   "__references": [
-    "facepunch.wooden_crate#29138"
+    "facepunch.cabinet_a3#43526",
+    "facepunch.coffeetablea#83540",
+    "facepunch.couch#33708",
+    "facepunch.modern_shelving_a5#43533",
+    "facepunch.wooden_crate#29138",
+    "luke.plain_cabinet#22942",
+    "luke.tv_flatscreen_stand#24340"
   ],
   "__version": 2
 }

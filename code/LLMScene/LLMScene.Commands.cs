@@ -1,12 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LLMGame;
 
 public partial class LLMScene : SingletonComponent<LLMScene>
 {
-	public async Task GenerateAndRunCommands( bool outputCommand = false )
+	public async Task GenerateAndRunCommands( List<Message> messages, bool outputCommand = false )
 	{
-		var response = await LanguageModel.GenerateOnly();
+		var response = await LanguageAPI.GenerateChatResponseFromMessages( messages );
 		await RunCommandsInResponse( response, outputCommand );
 	}
 	[ConCmd( "llm_runcommand" )]
@@ -16,48 +17,56 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 	}
 	public async Task RunCommandsInString( string command, bool outputCommand = false, ILLMBeing sender = null )
 	{
-		var message = new APIMessage();
-		message.content = command;
-		await RunCommandMessage( message, outputCommand, sender );
+		var message = new Message();
+		message.Content = command;
+		await RunCommandsInMessage( message, outputCommand, sender );
 	}
-	public async Task RunCommandsInResponse( APIChatResponse response, bool outputCommand = false, ILLMBeing sender = null )
+	public async Task RunCommandsInResponse( ChatResponse response, bool outputCommand = false, ILLMBeing sender = null )
 	{
-		var message = response.choices.First().message;
-		await RunCommandMessage( message, outputCommand, sender );
+		var message = response.Messages.First();
+		await RunCommandsInMessage( message, outputCommand, sender );
 	}
 
-	public async Task RunCommandMessage( APIMessage message, bool outputCommand = false, ILLMBeing sender = null )
+	public async Task RunCommandsInMessage( Message message, bool outputCommand = false, ILLMBeing sender = null )
 	{
-		var split = message.content.Split( '|' );
+		var split = message.Content.Split( '|' );
 
 		foreach ( var xml in split )
 		{
 			try
 			{
 				Log.Info( xml );
-				var commandName = GetCommandName( xml );
-				if ( commandName != null )
-				{
-					var method = TypeLibrary.GetMethodsWithAttribute<CommandHandlerAttribute>( false )
-						.FirstOrDefault( x => x.Attribute.CommandName == commandName ).Method;
-					//var method = GetType().GetMethods( BindingFlags.NonPublic | BindingFlags.Instance )
-					//	.FirstOrDefault( m => m.GetCustomAttribute<CommandHandlerAttribute>()?.CommandName == commandName );
-
-					if ( method != null )
-					{
-						var success = await method.InvokeWithReturn<Task<bool>>( this, new object[] { xml, sender } );
-						if ( success && outputCommand )
-						{
-							LanguageModel.AddMessage( message.role, xml );
-						}
-					}
-				}
+				await RunCommand( xml, sender, outputCommand );
 			}
 			catch ( System.Exception e )
 			{
 				Log.Error( e.Message );
 			}
 		}
+	}
+
+	public async Task<bool> RunCommand( string xml, ILLMBeing sender = null, bool outputCommand = false, string role = "assistant" )
+	{
+
+		var commandName = GetCommandName( xml );
+		if ( commandName != null )
+		{
+			var method = TypeLibrary.GetMethodsWithAttribute<CommandHandlerAttribute>( false )
+						.FirstOrDefault( x => x.Attribute.CommandName == commandName ).Method;
+			//var method = GetType().GetMethods( BindingFlags.NonPublic | BindingFlags.Instance )
+			//	.FirstOrDefault( m => m.GetCustomAttribute<CommandHandlerAttribute>()?.CommandName == commandName );
+
+			if ( method != null )
+			{
+				var success = await method.InvokeWithReturn<Task<bool>>( this, new object[] { xml, sender } );
+				if ( success )
+				{
+					//if ( outputCommand ) LanguageModel.AddMessage( role, xml );
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	private string GetCommandName( string xml )
@@ -76,7 +85,7 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 	private async Task<bool> HandleSearchCommand( string xml, ILLMBeing sender = null )
 	{
 		var result = await SearchFor( xml, sender );
-		LanguageModel.AddMessage( "system", result );
+		sender.Memory.Add( Message.System( result ) );
 		return true;
 	}
 	[CommandHandler( "lookat" )]

@@ -1,0 +1,21 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "House",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "house",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [],
+      "IsWhitelistDisabled": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/house.vmap",
+        "ParentPackage": "xenthio.llmgame"
+      }
+    }
+  }
+}
