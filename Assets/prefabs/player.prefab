@@ -2,8 +2,7 @@
   "RootObject": {
     "__guid": "bcf8889e-fa16-43e5-9a05-84643d0c14ee",
     "Flags": 0,
-    "Name": "Player",
-    "Position": "-326.0467,0,0.03124908",
+    "Name": "player",
     "Enabled": true,
     "Components": [
       {
@@ -101,7 +100,7 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "PhysicsIntegration": true,
-        "PushScale": 0.7,
+        "PushScale": 0.2,
         "Radius": 16,
         "StepHeight": 18,
         "StopSpeed": 100,
@@ -181,6 +180,16 @@
       {
         "__type": "LLMGame.PlayerComponent",
         "__guid": "7d55ea18-8934-4aac-8e18-a056f62aee37",
+        "Controller": {
+          "_type": "component",
+          "component_id": "f8374ccd-6602-4b27-ba04-7afbedca90fe",
+          "go": "bcf8889e-fa16-43e5-9a05-84643d0c14ee",
+          "component_type": "PlayerWalkControllerComplex"
+        },
+        "Eye": {
+          "_type": "gameobject",
+          "go": "f83a8704-8497-4e1b-b032-0a9c22c4e170"
+        },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -294,7 +303,31 @@
           }
         ]
       }
-    ]
+    ],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
   },
   "ShowInMenu": false,
   "MenuPath": null,

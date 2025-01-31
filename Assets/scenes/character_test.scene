@@ -27,169 +27,36 @@
       ]
     },
     {
-      "__guid": "00344a8c-fa5e-45ae-b12a-10bb781a1dc3",
+      "__guid": "7a88c3cc-3dab-4158-9155-6c0c7138eb17",
       "Flags": 0,
-      "Name": "2D Skybox",
-      "Tags": "skybox",
+      "Name": "Map",
+      "Enabled": true,
       "Components": [
         {
-          "__type": "Sandbox.SkyBox2D",
-          "__guid": "de79e9e0-5c37-4c54-ac67-bfcdb1d5483b",
+          "__type": "Sandbox.MapInstance",
+          "__guid": "52446994-0c18-4d46-b1e0-2cc3c464d5ad",
+          "__version": 1,
+          "EnableCollision": true,
+          "MapName": "maps/house.vmap",
+          "NoOrigin": false,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "SkyIndirectLighting": true,
-          "SkyMaterial": "materials/skybox/skybox_day_01.vmat",
-          "Tint": "1,1,1,1"
+          "OnMapLoaded": null,
+          "OnMapUnloaded": null,
+          "UseMapFromLaunch": false
         }
-      ]
-    },
-    {
-      "__guid": "a4cd8029-63db-45cb-8cf7-6b0cd7dcc155",
-      "Flags": 0,
-      "Name": "Box",
-      "Components": [
-        {
-          "__type": "Sandbox.MeshComponent",
-          "__guid": "200314b8-4139-4398-9183-1309f833555e",
-          "Collision": "Mesh",
-          "Color": "1,1,1,1",
-          "Friction": null,
-          "HideInGame": false,
-          "IsTrigger": false,
-          "Mesh": {
-            "Topology": "H4sIAAAAAAAACm2QWQ5CMQwDBx5LWR873P+kaIQj5YNKldp46jgdwAfY8FtLYJX7HjgCF+ABLLJl+jqn5p7ynsaOnNXWf3qd2ptt853C3prvLrkqy2h99D4kszV52Ws0GXvppW5N9tVmnjNvzehsZqr+eplBXV72GS+5e/5K3m12tfKXtYeavOy7vfesh7w1szlT/Zt57a+HnNoXbanktMQBAAA=",
-            "Positions": [
-              "-384,-384,0",
-              "384,-384,0",
-              "384,384,0",
-              "-384,384,0",
-              "384.0001,-384.0001,128",
-              "384.0001,384.0001,128",
-              "-384.0001,-384.0001,128",
-              "-384.0001,384.0001,128"
-            ],
-            "TextureCoord": [
-              "3,3",
-              "-3,3",
-              "3,-3",
-              "3,3",
-              "-3,-3",
-              "3,-3",
-              "-3,3",
-              "-3,-3",
-              "3,3",
-              "3,3",
-              "3,-3",
-              "3,3",
-              "3,-3",
-              "3,-3",
-              "-3,3",
-              "-3,3",
-              "3,3",
-              "-3,3",
-              "-3,-3",
-              "-3,-3",
-              "-3,3",
-              "-3,-3",
-              "-3,-3",
-              "3,-3"
-            ],
-            "TextureUAxis": [
-              "1,0,0",
-              "1,0,0",
-              "1,0,0",
-              "1,0,0",
-              "1,0,0",
-              "1,0,0"
-            ],
-            "TextureVAxis": [
-              "0,-1,0",
-              "0,-1,0",
-              "0,-1,0",
-              "0,-1,0",
-              "0,-1,0",
-              "0,-1,0"
-            ],
-            "TextureScale": [
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25"
-            ],
-            "TextureOffset": [
-              "0,0",
-              "0,0",
-              "0,0",
-              "0,0",
-              "0,0",
-              "0,0"
-            ],
-            "MaterialIndex": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            "EdgeFlags": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            "Materials": [
-              "materials/dev/reflectivity_30.vmat"
-            ]
-          },
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "OnObjectTriggerEnter": null,
-          "OnObjectTriggerExit": null,
-          "OnTriggerEnter": null,
-          "OnTriggerExit": null,
-          "SmoothingAngle": 40,
-          "Static": true,
-          "Surface": null,
-          "SurfaceVelocity": "0,0,0"
-        }
-      ]
+      ],
+      "Children": []
     },
     {
       "__guid": "bcf8889e-fa16-43e5-9a05-84643d0c14ee",
       "Flags": 0,
       "Name": "Player",
-      "Position": "-192,0,0.03124908",
+      "Position": "-64,192,0.03124908",
       "Enabled": true,
       "__Prefab": "prefabs/player.prefab",
       "__PrefabVariables": {}
@@ -202,117 +69,11 @@
       "Enabled": true,
       "Components": [
         {
-          "__type": "LLMGame.LanguageModel",
-          "__guid": "507325dc-50a7-446e-941d-7f9d073cbe61",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
           "__type": "LLMGame.LLMScene",
           "__guid": "e182c7ae-1d23-4996-a7fe-300457973024",
           "CeilingMesh": null,
           "FloorMesh": null,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        }
-      ]
-    },
-    {
-      "__guid": "bf931ec2-1b15-4c9f-8bd6-263f09e864dc",
-      "Flags": 0,
-      "Name": "Envmap Probe",
-      "Position": "-42.87305,12.8223,384",
-      "Components": [
-        {
-          "__type": "Sandbox.EnvmapProbe",
-          "__guid": "274be040-c6b6-475d-bb6b-ffcba8568d30",
-          "Bounds": {
-            "Mins": "-616.7441,-576.1206,-446.8397",
-            "Maxs": "627.9495,661.198,1000"
-          },
-          "DelayBetweenUpdates": 0.1,
-          "Feathering": 0.02,
-          "FrameInterval": 16,
-          "MaxDistance": 512,
-          "MultiBounce": false,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Projection": "Box",
-          "RenderDynamically": true,
-          "Texture": "textures/cubemaps/default2.vtex",
-          "TintColor": "1,1,1,1",
-          "UpdateStrategy": "FrameInterval",
-          "ZFar": 4096,
-          "ZNear": 16
-        }
-      ]
-    },
-    {
-      "__guid": "d61edd26-ec7e-45ea-9317-c13b8815ea87",
-      "Flags": 0,
-      "Name": "Character",
-      "Components": [
-        {
-          "__type": "Sandbox.SkinnedModelRenderer",
-          "__guid": "d6a7ad27-4296-422e-9da1-ff62020a6c82",
-          "AnimationGraph": null,
-          "BodyGroups": 341,
-          "BoneMergeTarget": null,
-          "CreateAttachments": false,
-          "CreateBoneObjects": false,
-          "MaterialGroup": null,
-          "MaterialOverride": null,
-          "Model": "models/citizen/citizen.vmdl",
-          "Morphs": {},
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Parameters": {
-            "bools": {},
-            "ints": {},
-            "floats": {},
-            "vectors": {},
-            "rotations": {}
-          },
-          "RenderOptions": {
-            "GameLayer": true,
-            "OverlayLayer": false,
-            "BloomLayer": false,
-            "AfterUILayer": false
-          },
-          "RenderType": "On",
-          "Sequence": {
-            "Name": null
-          },
-          "Tint": "1,1,1,1",
-          "UseAnimGraph": true
-        },
-        {
-          "__type": "LLMGame.LLMCharacter",
-          "__guid": "c2954e9b-603c-4b72-a3df-7b044e062bdb",
-          "Animation": null,
-          "Card": {
-            "spec": null,
-            "spec_version": null,
-            "data": null
-          },
-          "CardPath": "default_character.png",
-          "Memory": [],
+          "LanguageAPI": null,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -325,48 +86,10 @@
     {
       "__guid": "c00e8745-1dd6-4e1d-9f48-4eb682900115",
       "Flags": 0,
-      "Name": "Character (1)",
-      "Position": "-80,0,0",
+      "Name": "Character",
+      "Position": "-192,64,0",
       "Enabled": true,
       "Components": [
-        {
-          "__type": "Sandbox.SkinnedModelRenderer",
-          "__guid": "95780d81-5f72-4650-b846-7b2f76dc3b25",
-          "AnimationGraph": null,
-          "BodyGroups": 341,
-          "BoneMergeTarget": null,
-          "CreateAttachments": false,
-          "CreateBoneObjects": false,
-          "MaterialGroup": null,
-          "MaterialOverride": null,
-          "Model": "models/citizen/citizen.vmdl",
-          "Morphs": {},
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Parameters": {
-            "bools": {},
-            "ints": {},
-            "floats": {},
-            "vectors": {},
-            "rotations": {}
-          },
-          "RenderOptions": {
-            "GameLayer": true,
-            "OverlayLayer": false,
-            "BloomLayer": false,
-            "AfterUILayer": false
-          },
-          "RenderType": "On",
-          "Sequence": {
-            "Name": null
-          },
-          "Tint": "1,1,1,1",
-          "UseAnimGraph": true
-        },
         {
           "__type": "Sandbox.Citizen.CitizenAnimationHelper",
           "__guid": "d5b4a1bc-2f9b-4850-bd21-6d03ff9bc9bb",
@@ -392,8 +115,8 @@
           "OnComponentUpdate": null,
           "Target": {
             "_type": "component",
-            "component_id": "95780d81-5f72-4650-b846-7b2f76dc3b25",
-            "go": "c00e8745-1dd6-4e1d-9f48-4eb682900115",
+            "component_id": "58cb0c5f-f512-477d-a97b-0796f98379e5",
+            "go": "abf4d632-55ca-4054-a646-20728ae4d4c6",
             "component_type": "SkinnedModelRenderer"
           }
         },
@@ -417,20 +140,42 @@
         {
           "__type": "LLMGame.LLMCharacter",
           "__guid": "5bea48b9-7955-4a60-be3c-163411bac299",
-          "Animation": null,
+          "Animation": {
+            "_type": "component",
+            "component_id": "d5b4a1bc-2f9b-4850-bd21-6d03ff9bc9bb",
+            "go": "c00e8745-1dd6-4e1d-9f48-4eb682900115",
+            "component_type": "CitizenAnimationHelper"
+          },
+          "Body": {
+            "_type": "gameobject",
+            "go": "abf4d632-55ca-4054-a646-20728ae4d4c6"
+          },
+          "BodyModelRenderer": {
+            "_type": "component",
+            "component_id": "58cb0c5f-f512-477d-a97b-0796f98379e5",
+            "go": "abf4d632-55ca-4054-a646-20728ae4d4c6",
+            "component_type": "SkinnedModelRenderer"
+          },
           "Card": {
             "spec": null,
             "spec_version": null,
             "data": null
           },
           "CardPath": "Terr.png",
+          "Eye": {
+            "_type": "gameobject",
+            "go": "ef61dca0-2194-4331-ad80-53892c43f7bb"
+          },
           "Memory": [],
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null
+          "OnComponentUpdate": null,
+          "RotationAngleLimit": 45,
+          "RotationFaceLadders": true,
+          "RotationSpeed": 1
         }
       ],
       "Children": [
@@ -440,6 +185,73 @@
           "Name": "Eye",
           "Position": "0,0,64",
           "Enabled": true
+        },
+        {
+          "__guid": "abf4d632-55ca-4054-a646-20728ae4d4c6",
+          "Flags": 0,
+          "Name": "Body",
+          "Position": "224,32,-0.00001478195",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SkinnedModelRenderer",
+              "__guid": "58cb0c5f-f512-477d-a97b-0796f98379e5",
+              "AnimationGraph": null,
+              "BodyGroups": 341,
+              "BoneMergeTarget": null,
+              "CreateAttachments": false,
+              "CreateBoneObjects": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/citizen/citizen.vmdl",
+              "Morphs": {},
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Parameters": {
+                "bools": {},
+                "ints": {},
+                "floats": {},
+                "vectors": {},
+                "rotations": {}
+              },
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Sequence": {
+                "Name": null
+              },
+              "Tint": "1,1,1,1",
+              "UseAnimGraph": true
+            },
+            {
+              "__type": "Sandbox.ModelHitboxes",
+              "__guid": "0e303187-0eb8-4079-9104-a836466e8f37",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Renderer": {
+                "_type": "component",
+                "component_id": "58cb0c5f-f512-477d-a97b-0796f98379e5",
+                "go": "abf4d632-55ca-4054-a646-20728ae4d4c6",
+                "component_type": "SkinnedModelRenderer"
+              },
+              "Target": {
+                "_type": "gameobject",
+                "go": "c00e8745-1dd6-4e1d-9f48-4eb682900115"
+              }
+            }
+          ]
         }
       ]
     },
@@ -447,7 +259,7 @@
       "__guid": "70c830bd-3bcb-4e4c-8073-02b5ad07821f",
       "Flags": 0,
       "Name": "Cube",
-      "Position": "0,-96,0",
+      "Position": "200,112,0",
       "Enabled": true,
       "Components": [
         {
@@ -484,10 +296,333 @@
       ]
     },
     {
+      "__guid": "ef0bdacc-54ab-4e01-9fb7-72914de14854",
+      "Flags": 0,
+      "Name": "Cube (8)",
+      "Position": "-48,96,0",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "3533b089-1eb7-4468-8e7c-f9cc44ed557a",
+          "BodyGroups": 18446744073709551615,
+          "Health": 50,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/items/victorian_set/victorian_table.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "20962f11-5638-43cd-8e51-fd88ecd48550",
+          "Model": null,
+          "Name": "Dining Table",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "3358d0b1-81e7-4b00-84a2-46600362e63a",
+      "Flags": 0,
+      "Name": "Cube (9)",
+      "Position": "-240,144,0",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "b2109e33-6577-4b28-ba27-d0fe3fe7f180",
+          "BodyGroups": 18446744073709551615,
+          "Health": 50,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/cooker/cooker.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "427c1586-74fd-4e9c-8ae0-e85078e4cbf8",
+          "Model": null,
+          "Name": "Stove and Oven",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "b1af5b5b-84ab-4661-abb7-91480035673a",
+      "Flags": 0,
+      "Name": "Cube (10)",
+      "Position": "-240,24,-0.00001770258",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "f4c89df0-e69d-4d0d-9053-bb9f97b50827",
+          "BodyGroups": 18446744073709551615,
+          "Health": 20,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/fridge/fridge.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "c143179d-0109-4839-80a1-3b30f6c861da",
+          "Model": null,
+          "Name": "Refrigerator",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "575cdce6-a6f0-4af3-9a83-3acb42867566",
+      "Flags": 0,
+      "Name": "Cube (11)",
+      "Position": "-72,76.4756,0.00003379583",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "6cdbdca9-a2bc-4239-9464-822ad23b79ec",
+          "BodyGroups": 18446744073709551615,
+          "Health": 20,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/trim_sheets/chairs/wooden_chair_a.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "2622b8e7-193e-458e-aaaa-f2423fd37247",
+          "Model": null,
+          "Name": "Wooden Chair",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "87d5424c-de3e-4470-8c83-3d5f2949b2ad",
+      "Flags": 0,
+      "Name": "Cube (12)",
+      "Position": "-72,118.1402,0.00003379583",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "66fc39c2-725f-4e36-bd5c-58daea5e5493",
+          "BodyGroups": 18446744073709551615,
+          "Health": 20,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/trim_sheets/chairs/wooden_chair_a.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "043f4815-62e6-453f-b77f-5c0c06b01a37",
+          "Model": null,
+          "Name": "Wooden Chair",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "dbbf6613-a642-4e5a-a528-2dd2ac161f23",
+      "Flags": 0,
+      "Name": "Cube (13)",
+      "Position": "-24,117.5071,0.00003379583",
+      "Rotation": "0,0,-1,0.0000001947072",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "a7745ed6-bd2a-4a1e-838b-5691a3eb0326",
+          "BodyGroups": 18446744073709551615,
+          "Health": 20,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/trim_sheets/chairs/wooden_chair_a.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "61a4ce1d-e656-4aeb-88c3-a89b7a0b272e",
+          "Model": null,
+          "Name": "Wooden Chair",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "7f672a50-f425-4872-a92f-0bdf6d6ebe83",
+      "Flags": 0,
+      "Name": "Cube (14)",
+      "Position": "-24.00003,78.80001,0.00003379583",
+      "Rotation": "0,0,-1,0.0000001947072",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "3530be96-e539-4d91-aada-f7c41e19fedf",
+          "BodyGroups": 18446744073709551615,
+          "Health": 20,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/trim_sheets/chairs/wooden_chair_a.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "ff3101c9-1718-4683-9c3b-c379a0546211",
+          "Model": null,
+          "Name": "Wooden Chair",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "b7d79e6e-acef-435b-aa8a-ef74b0731c69",
+      "Flags": 0,
+      "Name": "Cube (7)",
+      "Position": "237.0471,9.399197,21.4295",
+      "Rotation": "0,0,0.3826834,0.9238796",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "cea622ce-38c9-4587-98e1-44957c85f3cf",
+          "BodyGroups": 18446744073709551615,
+          "Health": 1,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/mugs/mug_2.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "6ad59874-187d-4864-9707-18b853bfd768",
+          "Model": null,
+          "Name": "Ceramic Mug (Empty)",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
       "__guid": "a712f3aa-7177-447a-82df-d7a060175616",
       "Flags": 0,
       "Name": "Cube (6)",
-      "Position": "-127.2547,160,0",
+      "Position": "-126.4691,195.7286,8",
       "Enabled": true,
       "Components": [
         {
@@ -527,8 +662,9 @@
       "__guid": "e99a043e-b2d2-4a58-8299-8083da8eab52",
       "Flags": 0,
       "Name": "Cube (1)",
-      "Position": "-16.00001,63.99999,0",
-      "Rotation": "0,0,-0.7071067,0.7071068",
+      "Position": "111.9999,136,0",
+      "Rotation": "0,0,-0.9999999,0.0000001490116",
+      "Tags": "prop",
       "Enabled": true,
       "Components": [
         {
@@ -536,7 +672,7 @@
           "__guid": "893f5b16-b377-4868-b2b5-0ee1931cf6d0",
           "BodyGroups": 18446744073709551615,
           "Health": 5,
-          "IsStatic": false,
+          "IsStatic": true,
           "MaterialGroup": null,
           "Model": "models/props/couch/couch.vmdl",
           "OnComponentDestroy": null,
@@ -568,7 +704,8 @@
       "__guid": "4d31f7c4-bd9d-4d08-be5b-d818b3e7ac16",
       "Flags": 0,
       "Name": "Cube (2)",
-      "Position": "48,64,0",
+      "Position": "128,64.00001,0",
+      "Rotation": "0,0,-0.7071067,0.7071068",
       "Enabled": true,
       "Components": [
         {
@@ -608,8 +745,8 @@
       "__guid": "5d31c0af-b52a-4043-884c-f3345640868d",
       "Flags": 0,
       "Name": "Cube (5)",
-      "Position": "63.99998,-112,0.000001698732",
-      "Rotation": "0,0,0.7071067,0.7071068",
+      "Position": "207.9999,63.99992,0.000001698732",
+      "Rotation": "0,0,0.9999999,0.0000001490116",
       "Enabled": true,
       "Components": [
         {
@@ -649,8 +786,8 @@
       "__guid": "34324d81-f35f-43fc-8b63-8b810ec25f01",
       "Flags": 0,
       "Name": "Cube (3)",
-      "Position": "112,64,16",
-      "Rotation": "0,0,-1,0.0000001947072",
+      "Position": "128,16.00006,16",
+      "Rotation": "0,0,-0.7071069,-0.7071066",
       "Enabled": true,
       "Components": [
         {
@@ -690,8 +827,8 @@
       "__guid": "0ea5c177-76d7-44ca-b2fe-081fdd88dd79",
       "Flags": 0,
       "Name": "Cube (4)",
-      "Position": "128,128.0001,-0.000000002095476",
-      "Rotation": "0,0,-1,0.0000001947072",
+      "Position": "192,0.00009155273,-0.0000008940697",
+      "Rotation": "0,0,-0.7071069,-0.7071066",
       "Enabled": true,
       "Components": [
         {
@@ -699,7 +836,7 @@
           "__guid": "86c846bc-0884-4ebe-96e3-f4d3b2f920c8",
           "BodyGroups": 18446744073709551615,
           "Health": 5,
-          "IsStatic": false,
+          "IsStatic": true,
           "MaterialGroup": null,
           "Model": "models/props/trim_sheets/shelving/modern_shelving/modern_shelving_a5.vmdl",
           "OnComponentDestroy": null,
@@ -728,30 +865,50 @@
       ]
     },
     {
-      "__guid": "7a88c3cc-3dab-4158-9155-6c0c7138eb17",
+      "__guid": "d6ddc601-4d49-41b1-9bfb-b60156cbf174",
       "Flags": 0,
-      "Name": "Map",
-      "Enabled": true,
+      "Name": "Object",
+      "Position": "-59.64336,64,64",
       "Components": [
         {
-          "__type": "Sandbox.MapInstance",
-          "__guid": "52446994-0c18-4d46-b1e0-2cc3c464d5ad",
-          "__version": 1,
-          "EnableCollision": true,
-          "MapName": "maps/house.vmap",
-          "NoOrigin": false,
+          "__type": "Sandbox.NavMeshArea",
+          "__guid": "5fa5f810-323f-495e-970c-9beaa52c8ff6",
+          "IsBlocker": false,
+          "LinkedCollider": {
+            "_type": "component",
+            "component_id": "4c513205-af5a-4817-8dc1-75a5dbb05b07",
+            "go": "d6ddc601-4d49-41b1-9bfb-b60156cbf174",
+            "component_type": "BoxCollider"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "4c513205-af5a-4817-8dc1-75a5dbb05b07",
+          "Center": "-5.873917,95.72418,-8.565514",
+          "Friction": null,
+          "IsTrigger": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "OnMapLoaded": null,
-          "OnMapUnloaded": null,
-          "UseMapFromLaunch": false
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "390.9949,576.9239,122.4466",
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
         }
-      ],
-      "Children": []
+      ]
     }
   ],
   "SceneProperties": {
@@ -767,12 +924,12 @@
       "Title": "minimal"
     },
     "NavMesh": {
-      "Enabled": false,
+      "Enabled": true,
       "IncludeStaticBodies": true,
       "IncludeKeyframedBodies": true,
       "EditorAutoUpdate": true,
       "AgentHeight": 64,
-      "AgentRadius": 16,
+      "AgentRadius": 12,
       "AgentStepSize": 18,
       "AgentMaxSlope": 40,
       "ExcludedBodies": "",
@@ -786,10 +943,15 @@
     "facepunch.cabinet_a3#43526",
     "facepunch.coffeetablea#83540",
     "facepunch.couch#33708",
+    "facepunch.fridge#80640",
     "facepunch.modern_shelving_a5#43533",
+    "facepunch.mug_2#43699",
+    "facepunch.old_cooker#79883",
+    "facepunch.wooden_chair_a#43573",
     "facepunch.wooden_crate#29138",
     "luke.plain_cabinet#22942",
-    "luke.tv_flatscreen_stand#24340"
+    "luke.tv_flatscreen_stand#24340",
+    "luke.victorian_table#22967"
   ],
   "__version": 2
 }

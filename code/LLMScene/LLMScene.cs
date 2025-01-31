@@ -28,6 +28,19 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 		}
 		//todo range.
 	}
+
+	public GameObject GetObjectByName( string name )
+	{
+		foreach ( ILLMBeing obj in Scene.GetAllComponents<ILLMBeing>() )
+		{
+			if ( obj is Component component && obj.GetName() == name ) return component.GameObject;
+		}
+		foreach ( LLMObject obj in Scene.GetAllComponents<LLMObject>() )
+		{
+			if ( obj.Name == name ) return obj.GameObject;
+		}
+		return null;
+	}
 }
 
 

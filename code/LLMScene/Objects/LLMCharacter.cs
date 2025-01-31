@@ -32,7 +32,15 @@ public partial class LLMCharacter : Component, ILLMBeing
 	{
 		base.OnFixedUpdate();
 		if ( IdleThinking ) DoIdleThinking();
+		Animate();
 	}
+
+	protected override void OnUpdate()
+	{
+		base.OnUpdate();
+		UpdatePos();
+	}
+
 	public string BuildInfo( CharacterCard card )
 	{
 		string info = "";
@@ -104,6 +112,14 @@ public partial class LLMCharacter : Component, ILLMBeing
 			""";
 	}
 
+	public void IsBeingLookedAt( ILLMBeing looker )
+	{
+		if ( looker is Component lookercomponent )
+		{
+			LookAtObject( lookercomponent.GameObject );
+		}
+	}
+
 	public string NearbyObjectsPrompt()
 	{
 		List<string> objs = new();
@@ -141,7 +157,7 @@ public partial class LLMCharacter : Component, ILLMBeing
 
 	public async Task SpeakAndActMessage( Message message )
 	{
-		var split = message.Content.Split( '|' );
+		var split = message.Content.Split( "\n\n" );
 
 		foreach ( var segment in split )
 		{
@@ -166,4 +182,6 @@ public partial class LLMCharacter : Component, ILLMBeing
 	{
 		return true;
 	}
+
+
 }
