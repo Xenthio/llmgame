@@ -7,11 +7,13 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 	public static readonly float METERS_2_INCH = 39.3701f;
 	public static readonly float INCH_2_METERS = 00.0254f;
 	[Property] public ILanguageAPI LanguageAPI { get; set; }
+	[Property] public ISpeechAPI SpeechAPI { get; set; }
 
 	protected override void OnStart()
 	{
 		base.OnStart();
 		LanguageAPI = new OpenRouterAPI();
+		SpeechAPI = new AllTalkTTS();
 	}
 	[Property] public MeshComponent FloorMesh { get; set; }
 	[Property] public MeshComponent CeilingMesh { get; set; }

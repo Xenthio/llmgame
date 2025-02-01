@@ -87,7 +87,7 @@
       "__guid": "c00e8745-1dd6-4e1d-9f48-4eb682900115",
       "Flags": 0,
       "Name": "Character",
-      "Position": "-192,64,0",
+      "Position": "16,88,0.00003357232",
       "Enabled": true,
       "Components": [
         {
@@ -190,7 +190,6 @@
           "__guid": "abf4d632-55ca-4054-a646-20728ae4d4c6",
           "Flags": 0,
           "Name": "Body",
-          "Position": "224,32,-0.00001478195",
           "Enabled": true,
           "Components": [
             {
@@ -249,6 +248,176 @@
               "Target": {
                 "_type": "gameobject",
                 "go": "c00e8745-1dd6-4e1d-9f48-4eb682900115"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "260e94ff-5fd1-423f-8557-e2a6186c5a32",
+      "Flags": 0,
+      "Name": "Heavy",
+      "Position": "16,200,0.00003357232",
+      "Components": [
+        {
+          "__type": "Sandbox.Citizen.CitizenAnimationHelper",
+          "__guid": "dfe41f01-ec51-4c51-811a-f402c74dd6a1",
+          "BodyWeight": 1,
+          "EyeSource": {
+            "_type": "gameobject",
+            "go": "1e9fae4e-b576-422e-bd90-3df772160064"
+          },
+          "EyesWeight": 1,
+          "HeadWeight": 1,
+          "Height": null,
+          "IkLeftFoot": null,
+          "IkLeftHand": null,
+          "IkRightFoot": null,
+          "IkRightHand": null,
+          "LookAt": null,
+          "LookAtEnabled": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Target": {
+            "_type": "component",
+            "component_id": "f5e82dad-83c9-426d-8209-3fe0d084f59c",
+            "go": "3d3e754c-db12-47e4-8ed6-6a32a2db36df",
+            "component_type": "SkinnedModelRenderer"
+          }
+        },
+        {
+          "__type": "Sandbox.NavMeshAgent",
+          "__guid": "6d499f14-5385-4ee3-97e3-3647bec314e3",
+          "Acceleration": 120,
+          "Height": 64,
+          "MaxSpeed": 120,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Radius": 16,
+          "Separation": 0.25,
+          "UpdatePosition": true,
+          "UpdateRotation": false
+        },
+        {
+          "__type": "LLMGame.LLMCharacter",
+          "__guid": "b0174331-93b0-4fff-989d-a6518b3f287a",
+          "Animation": {
+            "_type": "component",
+            "component_id": "dfe41f01-ec51-4c51-811a-f402c74dd6a1",
+            "go": "260e94ff-5fd1-423f-8557-e2a6186c5a32",
+            "component_type": "CitizenAnimationHelper"
+          },
+          "Body": {
+            "_type": "gameobject",
+            "go": "3d3e754c-db12-47e4-8ed6-6a32a2db36df"
+          },
+          "BodyModelRenderer": {
+            "_type": "component",
+            "component_id": "f5e82dad-83c9-426d-8209-3fe0d084f59c",
+            "go": "3d3e754c-db12-47e4-8ed6-6a32a2db36df",
+            "component_type": "SkinnedModelRenderer"
+          },
+          "Card": {
+            "spec": null,
+            "spec_version": null,
+            "data": null
+          },
+          "CardPath": "heavy.png",
+          "Eye": {
+            "_type": "gameobject",
+            "go": "1e9fae4e-b576-422e-bd90-3df772160064"
+          },
+          "Memory": [],
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RotationAngleLimit": 45,
+          "RotationFaceLadders": true,
+          "RotationSpeed": 1
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "1e9fae4e-b576-422e-bd90-3df772160064",
+          "Flags": 0,
+          "Name": "Eye",
+          "Position": "0,0,64",
+          "Enabled": true
+        },
+        {
+          "__guid": "3d3e754c-db12-47e4-8ed6-6a32a2db36df",
+          "Flags": 0,
+          "Name": "Body",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SkinnedModelRenderer",
+              "__guid": "f5e82dad-83c9-426d-8209-3fe0d084f59c",
+              "AnimationGraph": null,
+              "BodyGroups": 5,
+              "BoneMergeTarget": null,
+              "CreateAttachments": false,
+              "CreateBoneObjects": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/bots/heavy/bot_heavy.vmdl",
+              "Morphs": {},
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Parameters": {
+                "bools": {},
+                "ints": {},
+                "floats": {},
+                "vectors": {},
+                "rotations": {}
+              },
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Sequence": {
+                "Name": null
+              },
+              "Tint": "1,1,1,1",
+              "UseAnimGraph": true
+            },
+            {
+              "__type": "Sandbox.ModelHitboxes",
+              "__guid": "36092b51-377c-41e7-8d58-a815ee78db16",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Renderer": {
+                "_type": "component",
+                "component_id": "f5e82dad-83c9-426d-8209-3fe0d084f59c",
+                "go": "3d3e754c-db12-47e4-8ed6-6a32a2db36df",
+                "component_type": "SkinnedModelRenderer"
+              },
+              "Target": {
+                "_type": "gameobject",
+                "go": "260e94ff-5fd1-423f-8557-e2a6186c5a32"
               }
             }
           ]
@@ -581,7 +750,7 @@
       "__guid": "b7d79e6e-acef-435b-aa8a-ef74b0731c69",
       "Flags": 0,
       "Name": "Cube (7)",
-      "Position": "237.0471,9.399197,21.4295",
+      "Position": "113.1371,67.88225,21.4295",
       "Rotation": "0,0,0.3826834,0.9238796",
       "Enabled": true,
       "Components": [
@@ -662,7 +831,7 @@
       "__guid": "e99a043e-b2d2-4a58-8299-8083da8eab52",
       "Flags": 0,
       "Name": "Cube (1)",
-      "Position": "111.9999,136,0",
+      "Position": "127.9999,120,0",
       "Rotation": "0,0,-0.9999999,0.0000001490116",
       "Tags": "prop",
       "Enabled": true,
@@ -916,7 +1085,7 @@
     "MaxFixedUpdates": 5,
     "NetworkFrequency": 60,
     "NetworkInterpolation": true,
-    "PhysicsSubSteps": 1,
+    "PhysicsSubSteps": 3,
     "ThreadedAnimation": true,
     "TimeScale": 1,
     "UseFixedUpdate": true,
@@ -951,7 +1120,8 @@
     "facepunch.wooden_crate#29138",
     "luke.plain_cabinet#22942",
     "luke.tv_flatscreen_stand#24340",
-    "luke.victorian_table#22967"
+    "luke.victorian_table#22967",
+    "mingoelgato.bot_heavy#19178"
   ],
   "__version": 2
 }
