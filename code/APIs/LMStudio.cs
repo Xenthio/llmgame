@@ -5,22 +5,13 @@ using System.Threading.Tasks;
 
 namespace LLMGame;
 
-public class OpenRouterAPI : ILanguageAPI
+public class LMStudioAPI : ILanguageAPI
 {
-	private string Token = "null";
 	public string Model { get; set; } = "null";
-	public string Endpoint = "https://openrouter.ai/api/v1/chat/completions";
+	public string Endpoint = "http://127.0.0.1:1234/v1/chat/completions";
 	bool Initialised = false;
 	public void Initialise()
 	{
-		if ( !FileSystem.Data.FileExists( "openrouter_token.txt" ) )
-		{
-			FileSystem.Data.WriteAllText( "openrouter_token.txt", "<YOUR_TOKEN_HERE>" );
-		}
-		if ( Token == "null" )
-		{
-			Token = FileSystem.Data.ReadAllText( "openrouter_token.txt" );
-		}
 	}
 
 	public async Task<ChatResponse> GenerateChatResponseFromMessages( List<Message> Messages, string replyAs = null )
@@ -29,23 +20,11 @@ public class OpenRouterAPI : ILanguageAPI
 		Dictionary<string, string> headers = new();
 
 		headers.Add( "Content-Type:", "application/json" );
-		headers.Add( "Authorization", $"Bearer {Token}" );
 
-		var APIMessages = new List<OpenRouterMessage>();
+		var APIMessages = new List<LMStudioMessage>();
 		foreach ( Message m in Messages )
 		{
-			APIMessages.Add( OpenRouterMessage.ConvertTo( m ) );
-		}
-
-		// OpenRouter Assistant Prefill
-		if ( replyAs != null )
-		{
-			var prefilmessage = new OpenRouterMessage()
-			{
-				role = "assistant",
-				content = $"{replyAs}: "
-			};
-			APIMessages.Add( prefilmessage );
+			APIMessages.Add( LMStudioMessage.ConvertTo( m ) );
 		}
 
 		// Prepare the request
@@ -74,14 +53,14 @@ public class OpenRouterAPI : ILanguageAPI
 		}
 	}
 }
-public class OpenRouterMessage
+public class LMStudioMessage
 {
 	public string role { get; set; }
 	public string content { get; set; }
 	public string name { get; set; }
-	public static OpenRouterMessage ConvertTo( Message message )
+	public static LMStudioMessage ConvertTo( Message message )
 	{
-		var b = new OpenRouterMessage()
+		var b = new LMStudioMessage()
 		{
 			content = message.Content,
 			name = null,
@@ -109,7 +88,7 @@ public class OpenRouterMessage
 
 }
 
-public class OpenRouterChatResponse
+public class LMStudioChatResponse
 {
 	public string id { get; set; }
 	public int created { get; set; }
@@ -119,7 +98,7 @@ public class OpenRouterChatResponse
 	{
 		public int index { get; set; }
 		public string finish_reason { get; set; }
-		public OpenRouterMessage message { get; set; }
+		public LMStudioMessage message { get; set; }
 	}
 	public ChatResponse ConvertFrom()
 	{

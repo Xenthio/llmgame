@@ -5,21 +5,21 @@ using System.Threading.Tasks;
 
 namespace LLMGame;
 
-public class OpenRouterAPI : ILanguageAPI
+public class GroqAPI : ILanguageAPI
 {
 	private string Token = "null";
 	public string Model { get; set; } = "null";
-	public string Endpoint = "https://openrouter.ai/api/v1/chat/completions";
+	public string Endpoint = "https://api.groq.com/openai/v1/chat/completions";
 	bool Initialised = false;
 	public void Initialise()
 	{
-		if ( !FileSystem.Data.FileExists( "openrouter_token.txt" ) )
+		if ( !FileSystem.Data.FileExists( "groq_token.txt" ) )
 		{
-			FileSystem.Data.WriteAllText( "openrouter_token.txt", "<YOUR_TOKEN_HERE>" );
+			FileSystem.Data.WriteAllText( "groq_token.txt", "<YOUR_TOKEN_HERE>" );
 		}
 		if ( Token == "null" )
 		{
-			Token = FileSystem.Data.ReadAllText( "openrouter_token.txt" );
+			Token = FileSystem.Data.ReadAllText( "groq_token.txt" );
 		}
 	}
 
@@ -31,16 +31,16 @@ public class OpenRouterAPI : ILanguageAPI
 		headers.Add( "Content-Type:", "application/json" );
 		headers.Add( "Authorization", $"Bearer {Token}" );
 
-		var APIMessages = new List<OpenRouterMessage>();
+		var APIMessages = new List<GroqMessage>();
 		foreach ( Message m in Messages )
 		{
-			APIMessages.Add( OpenRouterMessage.ConvertTo( m ) );
+			APIMessages.Add( GroqMessage.ConvertTo( m ) );
 		}
 
 		// OpenRouter Assistant Prefill
 		if ( replyAs != null )
 		{
-			var prefilmessage = new OpenRouterMessage()
+			var prefilmessage = new GroqMessage()
 			{
 				role = "assistant",
 				content = $"{replyAs}: "
@@ -74,17 +74,15 @@ public class OpenRouterAPI : ILanguageAPI
 		}
 	}
 }
-public class OpenRouterMessage
+public class GroqMessage
 {
 	public string role { get; set; }
 	public string content { get; set; }
-	public string name { get; set; }
-	public static OpenRouterMessage ConvertTo( Message message )
+	public static GroqMessage ConvertTo( Message message )
 	{
-		var b = new OpenRouterMessage()
+		var b = new GroqMessage()
 		{
 			content = message.Content,
-			name = null,
 			role = "system"
 		};
 
@@ -92,7 +90,6 @@ public class OpenRouterMessage
 		{
 			b.role = "assistant";
 			if ( message.Owner.IsUser() ) b.role = "user";
-			b.name = message.Owner.GetName();
 		}
 		return b;
 	}
@@ -109,7 +106,7 @@ public class OpenRouterMessage
 
 }
 
-public class OpenRouterChatResponse
+public class GroqChatResponse
 {
 	public string id { get; set; }
 	public int created { get; set; }
@@ -119,7 +116,7 @@ public class OpenRouterChatResponse
 	{
 		public int index { get; set; }
 		public string finish_reason { get; set; }
-		public OpenRouterMessage message { get; set; }
+		public LMStudioMessage message { get; set; }
 	}
 	public ChatResponse ConvertFrom()
 	{

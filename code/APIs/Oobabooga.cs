@@ -7,7 +7,7 @@ namespace LLMGame;
 
 public class OobaboogaAPI : ILanguageAPI
 {
-	public string Model = "";
+	public string Model { get; set; } = "null";
 	public string Endpoint = "https://openrouter.ai/api/v1/chat/completions";
 	bool Initialised = false;
 	public void Initialise()

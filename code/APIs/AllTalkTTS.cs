@@ -28,6 +28,7 @@ public class AllTalkTTS : ISpeechAPI
 
 			if ( response.IsSuccessStatusCode )
 			{
+				Log.Info( "Alltalk Connected!" );
 				return true;
 			}
 			else

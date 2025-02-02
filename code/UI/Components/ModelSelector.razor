@@ -21,33 +21,55 @@
 }
 @code
 {
+
+    bool Init = false;
     void PopulateDropDown() {
         Options.Clear();
-        Options.Add(new Option("OpenAI o3 Mini", "openai/o3-mini"));
-        Options.Add(new Option("Mistal Small 3", "mistralai/mistral-small-24b-instruct-2501"));
-        Options.Add(new Option("Anthropic Claude 3.5 Sonnet", "anthropic/claude-3.5-sonnet"));
-        Options.Add(new Option("DeepSeek R1", "deepseek/deepseek-r1"));
-        Options.Add(new Option("OpenAI GPT-4o mini", "openai/gpt-4o-mini"));
-        Options.Add(new Option("Meta Llama 3.3 70B Instruct", "meta-llama/llama-3.3-70b-instruct"));
-        Options.Add(new Option("DeepSeek R1 Distill Llama 70b", "deepseek/deepseek-r1-distill-llama-70b"));
-        Options.Add(new Option("Perplexity Sonar Reasoning", "perplexity/sonar-reasoning"));
-        Options.Add(new Option("OpenAI o1 (preview) (expensive)", "openai/o1-preview"));
-        Options.Add(new Option("Meta Llama 3.1 8B Instruct", "meta-llama/llama-3.1-8b-instruct"));
-        Options.Add(new Option("Google Gemini Flash 1.5 8B", "google/gemini-flash-1.5-8b"));
-        Options.Add(new Option("Google Gemini Flash 1.5", "google/gemini-flash-1.5"));
-        if (Selected == null)
+        if (LLMScene.Instance.LanguageAPI is OpenRouterAPI openrouter)
+        {
+            Options.Add(new Option("Anthropic Claude 3.5 Sonnet", "anthropic/claude-3.5-sonnet"));
+            Options.Add(new Option("DeepSeek R1", "deepseek/deepseek-r1"));
+            Options.Add(new Option("OpenAI o3 Mini", "openai/o3-mini"));
+            Options.Add(new Option("OpenAI GPT-4o mini", "openai/gpt-4o-mini"));
+            Options.Add(new Option("Meta Llama 3.3 70B Instruct", "meta-llama/llama-3.3-70b-instruct"));
+            Options.Add(new Option("DeepSeek R1 Distill Llama 70b", "deepseek/deepseek-r1-distill-llama-70b"));
+            Options.Add(new Option("Perplexity Sonar Reasoning", "perplexity/sonar-reasoning"));
+            Options.Add(new Option("OpenAI o1 (preview) (expensive)", "openai/o1-preview"));
+            Options.Add(new Option("Mistal Small 3", "mistralai/mistral-small-24b-instruct-2501"));
+            Options.Add(new Option("Meta Llama 3.1 8B Instruct", "meta-llama/llama-3.1-8b-instruct"));
+            Options.Add(new Option("Google Gemini Flash 1.5 8B", "google/gemini-flash-1.5-8b"));
+            Options.Add(new Option("Google Gemini Flash 1.5", "google/gemini-flash-1.5"));
+        }
+        if (LLMScene.Instance.LanguageAPI is GroqAPI groq)
+        {
+            Options.Add(new Option("DeepSeek R1 Distill Llama 70b", "deepseek-r1-distill-llama-70b"));
+            Options.Add(new Option("Google Gemma 9B", "gemma2-9b-it"));
+            Options.Add(new Option("Meta Llama 3.2 90B Vision", "llama-3.2-90b-vision-preview"));
+        }
+        
+        if (Selected == null || !Init || LLMScene.Instance.LanguageAPI.Model == "null" )
         {
             var opt = Options.FirstOrDefault();
-            Selected = opt;
+            Select(opt);
+            Init = true;
         }
+    }
+    protected override void OnAfterTreeRender(bool firstTime)
+    {
+        if (firstTime)
+        {
+            PopulateDropDown();
+            var opt = Options.FirstOrDefault();
+            Select(opt);
+            Init = true;
+        }
+        base.OnAfterTreeRender(firstTime);
     }
     protected override void Select(Option option, bool triggerChange = true)
     {
-        base.Select(option, triggerChange);
-        if (LLMScene.Instance.LanguageAPI is OpenRouterAPI openrouter) {
-            openrouter.Model = (string)option.Value;
-            Log.Info($"Swapped to {openrouter.Model}");
-        }
+        base.Select(option, triggerChange); 
+        LLMScene.Instance.LanguageAPI.Model = (string)option.Value;
+        Log.Info($"Swapped to {LLMScene.Instance.LanguageAPI.Model}");
     } 
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt

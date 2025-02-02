@@ -20,6 +20,8 @@
         Options.Clear();
         Options.Add(new Option("OpenRouter", TypeLibrary.GetType<OpenRouterAPI>()));
         Options.Add(new Option("Oobabooga", TypeLibrary.GetType<OobaboogaAPI>()));
+        Options.Add(new Option("LM Studio", TypeLibrary.GetType<LMStudioAPI>()));
+        Options.Add(new Option("Groq", TypeLibrary.GetType<GroqAPI>()));
     }
     protected override void Select(Option option, bool triggerChange = true)
     {
