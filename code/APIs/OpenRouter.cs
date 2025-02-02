@@ -8,7 +8,7 @@ namespace LLMGame;
 public class OpenRouterAPI : ILanguageAPI
 {
 	private string Token = "null";
-	public string Model = "anthropic/claude-3.5-sonnet";
+	public string Model = "openai/o3-mini";
 	public string Endpoint = "https://openrouter.ai/api/v1/chat/completions";
 	bool Initialised = false;
 	public void Initialise()

@@ -5,10 +5,10 @@ namespace LLMGame;
 
 public partial class LLMScene : SingletonComponent<LLMScene>
 {
-	public async Task GenerateAndRunCommands( List<Message> messages, bool outputCommand = false )
+	public async Task GenerateAndRunCommands( List<Message> messages, ILLMBeing sender = null, bool outputCommand = false )
 	{
 		var response = await LanguageAPI.GenerateChatResponseFromMessages( messages );
-		await RunCommandsInResponse( response, outputCommand );
+		await RunCommandsInResponse( response, outputCommand, sender );
 	}
 	[ConCmd( "llm_runcommand" )]
 	public static void RunCommandConCmd( string command )
