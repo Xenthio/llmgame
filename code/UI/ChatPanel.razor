@@ -11,6 +11,7 @@
             {
                 @foreach (var message in LocalPlayer.Memory)
                 {
+                    if (message.Content.StartsWith("<") && message.Content.EndsWith(">")) continue;
                     <div class="message">
                         <div class="title">@message.Owner.GetName()</div>
                         <div class="content">@message.Content</div>

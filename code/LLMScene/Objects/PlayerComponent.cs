@@ -3,7 +3,7 @@ using XMovement;
 
 namespace LLMGame;
 
-public class PlayerComponent : Component, ILLMBeing
+public partial class PlayerComponent : Component, ILLMBeing
 {
 	[Property] public PlayerWalkControllerComplex Controller { get; set; }
 	[Property] public GameObject Eye { get; set; }
@@ -38,6 +38,7 @@ public class PlayerComponent : Component, ILLMBeing
 			if ( TimeSinceLookedAtChanged > 1.5 )
 				character.IsBeingLookedAt( this );
 		}
+		UpdateUsing();
 	}
 
 	[ConCmd( "llm_char_comehere" )]
