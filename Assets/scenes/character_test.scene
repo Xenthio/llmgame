@@ -570,6 +570,128 @@
       ]
     },
     {
+      "__guid": "4e01ca16-5ccb-4551-b4a7-08c463778a43",
+      "Flags": 0,
+      "Name": "Cube (15)",
+      "Position": "-192,360,0",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "4507fa66-c926-4b93-a3b2-8aab2d2973eb",
+          "BodyGroups": 18446744073709551615,
+          "Health": 50,
+          "IsStatic": true,
+          "MaterialGroup": null,
+          "Model": "models/props/trim_sheets/bed_frame/bed_frame_01.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "fbfe0b04-cd8d-4a3a-b06b-40e4e0f143cd",
+          "Model": null,
+          "Name": "Bed",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "cc84fda2-570c-403e-a904-261e6a4cbdb2",
+      "Flags": 0,
+      "Name": "Cube (17)",
+      "Position": "-240,416,0.000000006053597",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "2c51b41f-7c66-48e8-8d55-07d0cb7fde5a",
+          "BodyGroups": 18446744073709551615,
+          "Health": 50,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/trim_sheets/cabinets/cabinet_a2.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "9b68c816-1f7f-4b4f-b7f8-7d70c7d0ca31",
+          "Model": null,
+          "Name": "Bedside Table",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "148b274f-44af-447f-92f4-dcc6a24ede33",
+      "Flags": 0,
+      "Name": "Cube (16)",
+      "Position": "-192,359.9999,13.67924",
+      "Rotation": "0,0,-0.7071067,0.7071068",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "e21ba969-0312-4a6d-abea-f8b3c880b95e",
+          "BodyGroups": 18446744073709551615,
+          "Health": 50,
+          "IsStatic": true,
+          "MaterialGroup": null,
+          "Model": "models/sbox_props/mattress/mattress.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "0e7112fa-454e-4a72-8656-6b887f5dc6b0",
+          "__enabled": false,
+          "Model": null,
+          "Name": "Mattress",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
       "__guid": "3358d0b1-81e7-4b00-84a2-46600362e63a",
       "Flags": 0,
       "Name": "Cube (9)",
@@ -1175,10 +1297,13 @@
   "Description": null,
   "__references": [
     "catgray.t_phoenix#36364",
+    "facepunch.bed_frame_01#43590",
+    "facepunch.cabinet_a2#43525",
     "facepunch.cabinet_a3#43526",
     "facepunch.coffeetablea#83540",
     "facepunch.couch#33708",
     "facepunch.fridge#80640",
+    "facepunch.mattress#33675",
     "facepunch.modern_shelving_a5#43533",
     "facepunch.mug_2#43699",
     "facepunch.old_cooker#79883",
