@@ -197,13 +197,13 @@
               "__type": "Sandbox.SkinnedModelRenderer",
               "__guid": "58cb0c5f-f512-477d-a97b-0796f98379e5",
               "AnimationGraph": null,
-              "BodyGroups": 681,
+              "BodyGroups": 341,
               "BoneMergeTarget": null,
               "CreateAttachments": false,
               "CreateBoneObjects": false,
               "MaterialGroup": null,
               "MaterialOverride": null,
-              "Model": "models/citizen_human/citizen_human_male.vmdl",
+              "Model": "models/citizen/citizen.vmdl",
               "Morphs": {},
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -219,7 +219,7 @@
                 "rotations": {}
               },
               "RenderOptions": {
-                "GameLayer": false,
+                "GameLayer": true,
                 "OverlayLayer": false,
                 "BloomLayer": false,
                 "AfterUILayer": false
@@ -254,6 +254,7 @@
             {
               "__type": "Sandbox.SkinnedModelRenderer",
               "__guid": "0db5582b-ff61-43e4-a327-0f5e0b1e7ed7",
+              "__enabled": false,
               "AnimationGraph": null,
               "BodyGroups": 18446744073709551615,
               "BoneMergeTarget": null,
@@ -292,6 +293,7 @@
             {
               "__type": "LLMGame.BoneMerger",
               "__guid": "87959c78-437c-4332-a7d3-d5d4a0069839",
+              "__enabled": false,
               "Destination": {
                 "_type": "component",
                 "component_id": "0db5582b-ff61-43e4-a327-0f5e0b1e7ed7",
