@@ -19,7 +19,7 @@ public partial class PlayerComponent
 			else
 			{
 				var usetr = Scene.Trace.Ray( Controller.AimRay, 128 ).IgnoreGameObjectHierarchy( GameObject.Root ).Run();
-				if ( usetr.Body.IsValid() && usetr.Body.Mass <= 15 )
+				if ( usetr.Body.IsValid() && usetr.Body.Mass <= 18 )
 				{
 					HoldingPhysicsBody = usetr.Body;
 					//Log.Info( HoldingPhysicsBody.Mass );

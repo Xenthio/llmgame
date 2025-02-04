@@ -978,7 +978,7 @@
       "__guid": "a712f3aa-7177-447a-82df-d7a060175616",
       "Flags": 0,
       "Name": "Cube (6)",
-      "Position": "-126.4691,195.7286,0",
+      "Position": "-126.4691,202,0",
       "Enabled": true,
       "Components": [
         {
@@ -1263,6 +1263,310 @@
           "Static": false,
           "Surface": null,
           "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "27c22ca5-76be-43de-8c21-0bd5918420bd",
+      "Flags": 0,
+      "Name": "Box",
+      "Position": "-240,86,18",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.MeshComponent",
+          "__guid": "949173cd-5bc5-4e55-a357-fbd9cfecb9ac",
+          "Collision": "Mesh",
+          "Color": "1,1,1,1",
+          "Friction": null,
+          "HideInGame": false,
+          "IsTrigger": false,
+          "Mesh": {
+            "Topology": "H4sIAAAAAAAACl2QCQ7CMAwEp4Qj3NBy/f+laMRGsohUVbFn1+t04ANs+Z0VsM69AwfgBFyAKZ9MPXdgk3qLnsI+Um/h/me9i2ZXfFvYOazafTJN0XRgKZmPyWtfXvYVL73PZRd52WdYPa7xtC8veys7u6t17/7t6Tn0ZtFjvIXZR895zjKjPWf4NiOrGt+ivpXZ3XnozaOndVn9vvVkkTjEAQAA",
+            "Positions": [
+              "-16,-42,18",
+              "16,-42,18",
+              "15.99998,41.99998,18",
+              "-16,41.99998,18",
+              "-16,41.99998,-18",
+              "15.99998,41.99998,-18",
+              "16,-42,-18",
+              "-16,-42,-18"
+            ],
+            "TextureCoord": [
+              "-0.875,0.328125",
+              "-1.125,-0.140625",
+              "-0.8750001,-0.3281249",
+              "0.671875,-0.140625",
+              "-1.125,-0.3281249",
+              "1.875,-0.140625",
+              "-1.125,0.328125",
+              "-0.3281249,-0.140625",
+              "-0.8750001,-0.3281249",
+              "2.125,0.140625",
+              "-0.875,0.328125",
+              "1.328125,0.140625",
+              "-1.125,0.328125",
+              "-0.875,0.140625",
+              "-1.125,-0.3281249",
+              "0.328125,0.140625",
+              "0.328125,-0.140625",
+              "-1.125,0.140625",
+              "-0.3281249,0.140625",
+              "2.125,-0.140625",
+              "0.671875,0.140625",
+              "-0.875,-0.140625",
+              "1.328125,-0.140625",
+              "1.875,0.140625"
+            ],
+            "TextureUAxis": [
+              "1,0,0",
+              "1,0,-0",
+              "0,-1,0",
+              "0,1,0",
+              "-1,0,0",
+              "1,-0,0"
+            ],
+            "TextureVAxis": [
+              "0,-1,0",
+              "0,-1,0",
+              "0,0,-1",
+              "-0,0,-1",
+              "0,0,-1",
+              "-0,0,-1"
+            ],
+            "TextureScale": [
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25"
+            ],
+            "TextureOffset": [
+              "448,344",
+              "448,344",
+              "344,72",
+              "168,72",
+              "64,72",
+              "448,72"
+            ],
+            "MaterialIndex": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "EdgeFlags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "Materials": [
+              "materials/dev/reflectivity_30.vmat"
+            ]
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "SmoothingAngle": 40,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "2e5b29ed-c092-4cf1-af3f-7db3bd82056e",
+          "Model": null,
+          "Name": "Kitchen North Counter",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "a50adca8-c9b7-4f82-9936-55bd9485997f",
+      "Flags": 0,
+      "Name": "Box",
+      "Position": "-216,176,18",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.MeshComponent",
+          "__guid": "26af481d-645f-4dd4-acb9-357f2e9042e9",
+          "Collision": "Mesh",
+          "Color": "1,1,1,1",
+          "Friction": null,
+          "HideInGame": false,
+          "IsTrigger": false,
+          "Mesh": {
+            "Topology": "H4sIAAAAAAAACl2QCQ7CMAwEp4Qj3NBy/f+laMRGsohUVbFn1+t04ANs+Z0VsM69AwfgBFyAKZ9MPXdgk3qLnsI+Um/h/me9i2ZXfFvYOazafTJN0XRgKZmPyWtfXvYVL73PZRd52WdYPa7xtC8veys7u6t17/7t6Tn0ZtFjvIXZR895zjKjPWf4NiOrGt+ivpXZ3XnozaOndVn9vvVkkTjEAQAA",
+            "Positions": [
+              "-36,-16,18",
+              "56,-16,18",
+              "56,16,18",
+              "-36,16,18",
+              "-36,16,-18",
+              "56,16,-18",
+              "56,-16,-18",
+              "-36,-16,-18"
+            ],
+            "TextureCoord": [
+              "-0.5625,-0.875",
+              "-1.28125,-0.140625",
+              "-0.5625,-1.125",
+              "1.875,-0.140625",
+              "-1.28125,-1.125",
+              "1.5625,-0.140625",
+              "-1.28125,-0.875",
+              "-1.125,-0.140625",
+              "-0.5625,-1.125",
+              "2.28125,0.140625",
+              "-0.5625,-0.875",
+              "2.125,0.140625",
+              "-1.28125,-0.875",
+              "-0.5625,0.140625",
+              "-1.28125,-1.125",
+              "-0.875,0.140625",
+              "-0.875,-0.140625",
+              "-1.28125,0.140625",
+              "-1.125,0.140625",
+              "2.28125,-0.140625",
+              "1.875,0.140625",
+              "-0.5625,-0.140625",
+              "2.125,-0.140625",
+              "1.5625,0.140625"
+            ],
+            "TextureUAxis": [
+              "1,0,0",
+              "1,0,-0",
+              "0,-1,0",
+              "0,1,0",
+              "-1,0,0",
+              "1,-0,0"
+            ],
+            "TextureVAxis": [
+              "0,-1,0",
+              "0,-1,0",
+              "0,0,-1",
+              "-0,0,-1",
+              "0,0,-1",
+              "-0,0,-1"
+            ],
+            "TextureScale": [
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25"
+            ],
+            "TextureOffset": [
+              "352,192",
+              "352,192",
+              "192,72",
+              "320,72",
+              "160,72",
+              "352,72"
+            ],
+            "MaterialIndex": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "EdgeFlags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "Materials": [
+              "materials/dev/reflectivity_30.vmat"
+            ]
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "SmoothingAngle": 40,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "1e74bc26-9db5-4457-8226-fe645285b591",
+          "Model": null,
+          "Name": "Kitchen East Counter",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ]
     }
