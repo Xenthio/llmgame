@@ -39,7 +39,8 @@ public sealed class BoneMerger : Component, Component.ExecuteInEditor
 					{
 						if ( Source.TryGetBoneTransform( bone2, out var tx ) )
 						{
-							tx.Position -= GameObject.WorldPosition;
+							tx = GameObject.Transform.World.ToLocal( tx );
+
 							if ( RotationCorrection )
 							{
 								if ( bone.Name == "bip01_pelvis" )
@@ -100,6 +101,10 @@ public sealed class BoneMerger : Component, Component.ExecuteInEditor
 								if ( bone.Name == "bip01_spine" )
 								{
 									tx.Position += tx.Rotation.Right * 2;
+								}
+								if ( bone.Name == "bip01_pelvis" )
+								{
+									tx.Position += tx.Rotation.Down * 2;
 								}
 							}
 							//Log.Info( $"Copying {bone2} to {bone.Name}" );
