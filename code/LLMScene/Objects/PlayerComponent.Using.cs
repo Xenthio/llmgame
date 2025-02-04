@@ -11,21 +11,22 @@ public partial class PlayerComponent
 	{
 		if ( Input.Pressed( "use" ) )
 		{
+			var usetr = Scene.Trace.Ray( Controller.AimRay, 128 ).IgnoreGameObjectHierarchy( GameObject.Root ).Run();
 			if ( HoldingPhysicsBody.IsValid() )
 			{
 				BroadcastDropAction( HoldingPhysicsBody );
 				HoldingPhysicsBody = null;
 			}
-			else
+			else if ( usetr.Body.IsValid() && usetr.Body.Mass <= 18 && usetr.Body.MotionEnabled )
 			{
-				var usetr = Scene.Trace.Ray( Controller.AimRay, 128 ).IgnoreGameObjectHierarchy( GameObject.Root ).Run();
-				if ( usetr.Body.IsValid() && usetr.Body.Mass <= 18 )
-				{
-					HoldingPhysicsBody = usetr.Body;
-					//Log.Info( HoldingPhysicsBody.Mass );
-					InitialTransform = new Transform( Controller.Head.WorldPosition, Controller.EyeAngles.ToRotation() ).ToLocal( HoldingPhysicsBody.Transform );
-					BroadcastPickupAction( HoldingPhysicsBody );
-				}
+				HoldingPhysicsBody = usetr.Body;
+				//Log.Info( HoldingPhysicsBody.Mass );
+				InitialTransform = new Transform( Controller.Head.WorldPosition, Controller.EyeAngles.ToRotation() ).ToLocal( HoldingPhysicsBody.Transform );
+				BroadcastPickupAction( HoldingPhysicsBody );
+			}
+			else if ( usetr.GameObject.IsValid() )
+			{
+				BroadcastInteractAction( usetr.GameObject );
 			}
 		}
 		if ( HoldingPhysicsBody.IsValid() )
