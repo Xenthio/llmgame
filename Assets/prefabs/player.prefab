@@ -298,6 +298,69 @@
                 "Quality": "High",
                 "Radius": 128,
                 "ThinCompensation": 0
+              },
+              {
+                "__type": "Sandbox.Tonemapping",
+                "__guid": "467fc6ea-3b57-4393-b5d1-c071c8d8374f",
+                "__version": 1,
+                "AutoExposureEnabled": true,
+                "ExposureBias": 2,
+                "ExposureCompensation": 0,
+                "ExposureMethod": "RGB",
+                "MaximumExposure": 3,
+                "MinimumExposure": 1,
+                "Mode": "Legacy",
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "Rate": 1
+              },
+              {
+                "__type": "Sandbox.Bloom",
+                "__guid": "dc803e85-45ee-4714-a76c-db29262135d7",
+                "BloomColor": {
+                  "blend": "Linear",
+                  "color": [
+                    {
+                      "t": 0,
+                      "c": "1,1,1,1"
+                    },
+                    {
+                      "t": 1,
+                      "c": "1,1,1,1"
+                    }
+                  ],
+                  "alpha": null
+                },
+                "BloomCurve": [
+                  {
+                    "x": 0,
+                    "y": 0.5,
+                    "in": 0,
+                    "out": 0,
+                    "mode": "Mirrored"
+                  },
+                  {
+                    "x": 1,
+                    "y": 1,
+                    "in": 0,
+                    "out": 0,
+                    "mode": "Mirrored"
+                  }
+                ],
+                "Mode": "Additive",
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "Strength": 1,
+                "Threshold": 0,
+                "ThresholdWidth": 3
               }
             ]
           }

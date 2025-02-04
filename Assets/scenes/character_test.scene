@@ -197,13 +197,13 @@
               "__type": "Sandbox.SkinnedModelRenderer",
               "__guid": "58cb0c5f-f512-477d-a97b-0796f98379e5",
               "AnimationGraph": null,
-              "BodyGroups": 341,
+              "BodyGroups": 681,
               "BoneMergeTarget": null,
               "CreateAttachments": false,
               "CreateBoneObjects": false,
               "MaterialGroup": null,
               "MaterialOverride": null,
-              "Model": "models/citizen/citizen.vmdl",
+              "Model": "models/citizen_human/citizen_human_male.vmdl",
               "Morphs": {},
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -219,7 +219,7 @@
                 "rotations": {}
               },
               "RenderOptions": {
-                "GameLayer": true,
+                "GameLayer": false,
                 "OverlayLayer": false,
                 "BloomLayer": false,
                 "AfterUILayer": false
@@ -249,6 +249,68 @@
               "Target": {
                 "_type": "gameobject",
                 "go": "c00e8745-1dd6-4e1d-9f48-4eb682900115"
+              }
+            },
+            {
+              "__type": "Sandbox.SkinnedModelRenderer",
+              "__guid": "0db5582b-ff61-43e4-a327-0f5e0b1e7ed7",
+              "AnimationGraph": null,
+              "BodyGroups": 18446744073709551615,
+              "BoneMergeTarget": null,
+              "CreateAttachments": false,
+              "CreateBoneObjects": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "old_model/t_phoenix_reference.vmdl",
+              "Morphs": {},
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Parameters": {
+                "bools": {},
+                "ints": {},
+                "floats": {},
+                "vectors": {},
+                "rotations": {}
+              },
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Sequence": {
+                "Name": null
+              },
+              "Tint": "1,1,1,1",
+              "UseAnimGraph": true
+            },
+            {
+              "__type": "LLMGame.BoneMerger",
+              "__guid": "87959c78-437c-4332-a7d3-d5d4a0069839",
+              "Destination": {
+                "_type": "component",
+                "component_id": "0db5582b-ff61-43e4-a327-0f5e0b1e7ed7",
+                "go": "abf4d632-55ca-4054-a646-20728ae4d4c6",
+                "component_type": "SkinnedModelRenderer"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PositionCorrection": true,
+              "RotationCorrection": true,
+              "Source": {
+                "_type": "component",
+                "component_id": "58cb0c5f-f512-477d-a97b-0796f98379e5",
+                "go": "abf4d632-55ca-4054-a646-20728ae4d4c6",
+                "component_type": "SkinnedModelRenderer"
               }
             }
           ]
@@ -792,7 +854,7 @@
       "__guid": "a712f3aa-7177-447a-82df-d7a060175616",
       "Flags": 0,
       "Name": "Cube (6)",
-      "Position": "-126.4691,195.7286,8",
+      "Position": "-126.4691,195.7286,0",
       "Enabled": true,
       "Components": [
         {
@@ -1110,6 +1172,7 @@
   "Title": "minimal",
   "Description": null,
   "__references": [
+    "catgray.t_phoenix#36364",
     "facepunch.cabinet_a3#43526",
     "facepunch.coffeetablea#83540",
     "facepunch.couch#33708",
