@@ -2,6 +2,21 @@
 
 public partial class PlayerComponent
 {
+	[ConVar( "llm_being_action_react" )]
+	public static bool ActionReact { get; set; } = false;
+
+	[ConVar( "llm_being_action_react_chance" )]
+	public static int ActionReactChance { get; set; } = 20;
+
+	public bool ShouldReact()
+	{
+		if ( ActionReact && Game.Random.Int( 100 ) <= ActionReactChance )
+		{
+			return true;
+		}
+		return false;
+	}
+
 	public void BroadcastPickupAction( PhysicsBody body )
 	{
 		var objname = "Unknown Object";
@@ -14,7 +29,7 @@ public partial class PlayerComponent
 			{
 				liftedfrom = $"<liftedfrom>{llmobjectdown.Name}</liftedfrom>";
 			}
-			LLMScene.Instance.BroadcastAudibleMessage( this, $"<pickup><target>{objname}</target>{liftedfrom}</pickup>", false );
+			LLMScene.Instance.BroadcastAudibleMessage( this, $"<pickup><target>{objname}</target>{liftedfrom}</pickup>", ShouldReact() );
 		}
 	}
 	public void BroadcastDropAction( PhysicsBody body )
@@ -29,7 +44,7 @@ public partial class PlayerComponent
 			{
 				placeon = $"<placeon>{llmobjectdown.Name}</placeon>";
 			}
-			LLMScene.Instance.BroadcastAudibleMessage( this, $"<drop><target>{objname}</target>{placeon}</drop>", false );
+			LLMScene.Instance.BroadcastAudibleMessage( this, $"<drop><target>{objname}</target>{placeon}</drop>", ShouldReact() );
 		}
 	}
 	public void BroadcastInteractAction( GameObject obj )
@@ -38,7 +53,7 @@ public partial class PlayerComponent
 		if ( obj.Components.TryGet<LLMObject>( out var llmobject ) )
 		{
 			objname = llmobject.Name;
-			LLMScene.Instance.BroadcastAudibleMessage( this, $"<interact><target>{objname}</target></interact>", false );
+			LLMScene.Instance.BroadcastAudibleMessage( this, $"<interact><target>{objname}</target></interact>", ShouldReact() );
 		}
 	}
 }
