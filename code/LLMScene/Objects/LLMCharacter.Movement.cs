@@ -58,7 +58,7 @@ public partial class LLMCharacter
 
 	public async Task WalkToPositionAsync( Vector3 position )
 	{
-		WalkToPosition( position );
+		await WalkToPosition( position );
 		while ( !HasFinishedMoving() )
 		{
 			await Task.Delay( 100 );
@@ -66,7 +66,7 @@ public partial class LLMCharacter
 	}
 	public async Task WalkToObjectAsync( GameObject go )
 	{
-		var targetpos = WalkToObject( go );
+		var targetpos = await WalkToObject( go );
 		while ( !HasFinishedMoving() )
 		{
 			await Task.Delay( 100 );
@@ -76,7 +76,7 @@ public partial class LLMCharacter
 
 	[RequireComponent] public NavMeshAgent Navigator { get; set; }
 
-	public Vector3 WalkToObject( GameObject go )
+	public async Task<Vector3> WalkToObject( GameObject go )
 	{
 		// don't walk inside of them, walk up to them
 		var size = 64f;
@@ -86,19 +86,19 @@ public partial class LLMCharacter
 		}
 		var offset = (go.WorldPosition.WithZ( 0 ) - WorldPosition.WithZ( 0 )).Normal * size;
 		var pos = go.WorldPosition - offset;
-		_walkToPosition( pos );
+		await _walkToPosition( pos );
 		LookAtObject( go );
 		return pos;
 	}
 
-	public void WalkToPosition( Vector3 position )
+	public async Task WalkToPosition( Vector3 position )
 	{
-		_walkToPosition( position );
+		await _walkToPosition( position );
 		TargetEyeAngles = Rotation.LookAt( (position.WithZ( 0 ) - WorldPosition.WithZ( 0 )).Normal, Vector3.Up ).Angles();
 	}
 
 	Vector3? TargetPosition;
-	async void _walkToPosition( Vector3 position )
+	async Task _walkToPosition( Vector3 position )
 	{
 		if ( Sitting ) await Stand();
 		TargetPosition = position;
