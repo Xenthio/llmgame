@@ -20,11 +20,7 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 			if ( obj.target != null )
 			{
 				var go = GetObjectByName( obj.target );
-				var targetpos = chr.WalkToObject( go );
-				while ( !chr.WorldPosition.WithZ( 0 ).AlmostEqual( targetpos.WithZ( 0 ), 2 ) )
-				{
-					await Task.Delay( 100 );
-				}
+				await chr.WalkToObjectAsync( go );
 			}
 			else if ( obj.position != null )
 			{
@@ -32,11 +28,7 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 				var position = new Vector3( float.Parse( positionstring[0] ), float.Parse( positionstring[1] ), 0 );
 				//var position = new Vector3( obj.position.x, obj.position.y, 0 );
 				position *= METERS_2_INCH;
-				chr.WalkToPosition( position );
-				while ( !chr.WorldPosition.WithZ( 0 ).AlmostEqual( position.WithZ( 0 ), 2 ) )
-				{
-					await Task.Delay( 100 );
-				}
+				await chr.WalkToPositionAsync( position );
 			}
 		}
 		return true;

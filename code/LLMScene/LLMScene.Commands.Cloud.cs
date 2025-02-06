@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace LLMGame;
 
@@ -27,9 +28,13 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 			{
 				var boundsmins = fullpackage.GetMeta<Vector3>( "RenderMins" );
 				var boundsmaxs = fullpackage.GetMeta<Vector3>( "RenderMaxs" );
-				boundsmins *= 0.0254f;
-				boundsmaxs *= 0.0254f;
-				typespecific = $"<bounds-mins>{boundsmins.x},{boundsmins.y}</bounds-mins><bounds-maxs>{boundsmins.x},{boundsmins.y}</bounds-maxs>";
+				boundsmins *= LLMScene.INCH_2_METERS;
+				boundsmaxs *= LLMScene.INCH_2_METERS;
+				var minx = MathF.Round( boundsmins.x, 2 );
+				var miny = MathF.Round( boundsmins.y, 2 );
+				var maxx = MathF.Round( boundsmaxs.x, 2 );
+				var maxy = MathF.Round( boundsmaxs.y, 2 );
+				typespecific = $"<bounds-mins>{maxx},{maxy}</bounds-mins><bounds-maxs>{minx},{miny}</bounds-maxs>";
 			}
 			resultstring += $"<result><ident>{result.FullIdent}</ident><name>{result.Title}</name><type>{type}</type>{typespecific}</result>\n";
 		}

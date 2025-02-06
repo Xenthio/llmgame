@@ -57,6 +57,8 @@ public static class XmlDeserializer
 			return value;
 		else if ( targetType == typeof( int ) )
 			return int.Parse( value );
+		else if ( targetType == typeof( float ) )
+			return float.Parse( value );
 		else if ( targetType == typeof( double ) )
 			return double.Parse( value );
 		else if ( targetType == typeof( bool ) )

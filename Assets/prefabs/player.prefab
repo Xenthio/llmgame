@@ -30,7 +30,7 @@
         "ClimbSpeed": 100,
         "CrouchAction": "Duck",
         "CrouchSpeed": 80,
-        "DefaultSpeed": 180,
+        "DefaultSpeed": 110,
         "EnableCrouching": true,
         "EnableJumping": true,
         "EnableLadders": true,
@@ -72,7 +72,7 @@
         "SwimUpAction": "Jump",
         "ThirdPersonOffset": "-180,0,0",
         "WalkAction": "Walk",
-        "WalkSpeed": 120,
+        "WalkSpeed": 80,
         "WaterTag": "water"
       },
       {
@@ -101,7 +101,7 @@
         "OnComponentUpdate": null,
         "PhysicsIntegration": true,
         "PushScale": 0.2,
-        "Radius": 16,
+        "Radius": 12,
         "StepHeight": 18,
         "StopSpeed": 100,
         "UseCollisionRules": false,

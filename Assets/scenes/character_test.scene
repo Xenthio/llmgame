@@ -124,18 +124,18 @@
         {
           "__type": "Sandbox.NavMeshAgent",
           "__guid": "5044226b-b2de-49f7-82b0-63f4e39ccbcd",
-          "Acceleration": 120,
+          "Acceleration": 15,
           "Height": 64,
-          "MaxSpeed": 120,
+          "MaxSpeed": 15,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "Radius": 16,
-          "Separation": 0.25,
-          "UpdatePosition": true,
+          "Radius": 12,
+          "Separation": 0.1,
+          "UpdatePosition": false,
           "UpdateRotation": false
         },
         {
@@ -176,7 +176,8 @@
           "OnComponentUpdate": null,
           "RotationAngleLimit": 45,
           "RotationFaceLadders": true,
-          "RotationSpeed": 1
+          "RotationSpeed": 1,
+          "UseRootMotion": true
         }
       ],
       "Children": [
@@ -197,13 +198,13 @@
               "__type": "Sandbox.SkinnedModelRenderer",
               "__guid": "58cb0c5f-f512-477d-a97b-0796f98379e5",
               "AnimationGraph": null,
-              "BodyGroups": 341,
+              "BodyGroups": 18446744073709551615,
               "BoneMergeTarget": null,
               "CreateAttachments": false,
               "CreateBoneObjects": false,
               "MaterialGroup": null,
               "MaterialOverride": null,
-              "Model": "models/citizen/citizen.vmdl",
+              "Model": "models/biped_standard/biped_standard.vmdl",
               "Morphs": {},
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -219,12 +220,12 @@
                 "rotations": {}
               },
               "RenderOptions": {
-                "GameLayer": true,
+                "GameLayer": false,
                 "OverlayLayer": false,
                 "BloomLayer": false,
                 "AfterUILayer": false
               },
-              "RenderType": "On",
+              "RenderType": "Off",
               "Sequence": {
                 "Name": null
               },
@@ -254,7 +255,6 @@
             {
               "__type": "Sandbox.SkinnedModelRenderer",
               "__guid": "0db5582b-ff61-43e4-a327-0f5e0b1e7ed7",
-              "__enabled": false,
               "AnimationGraph": null,
               "BodyGroups": 18446744073709551615,
               "BoneMergeTarget": null,
@@ -292,28 +292,34 @@
             },
             {
               "__type": "LLMGame.BoneMerger",
-              "__guid": "87959c78-437c-4332-a7d3-d5d4a0069839",
-              "__enabled": false,
+              "__guid": "2e9a3c07-c783-4367-8150-daa5d76d6334",
+              "ArmSpace": 0,
+              "DebugRendering": false,
               "Destination": {
                 "_type": "component",
                 "component_id": "0db5582b-ff61-43e4-a327-0f5e0b1e7ed7",
                 "go": "abf4d632-55ca-4054-a646-20728ae4d4c6",
                 "component_type": "SkinnedModelRenderer"
               },
+              "MaximoCorrection": false,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "PelvisJut": -1,
               "PositionCorrection": true,
               "RotationCorrection": true,
+              "ShoulderRaise": 0,
+              "ShoulderWidth": 0,
               "Source": {
                 "_type": "component",
                 "component_id": "58cb0c5f-f512-477d-a97b-0796f98379e5",
                 "go": "abf4d632-55ca-4054-a646-20728ae4d4c6",
                 "component_type": "SkinnedModelRenderer"
-              }
+              },
+              "Source2Correction": true
             }
           ]
         }
@@ -410,7 +416,8 @@
           "OnComponentUpdate": null,
           "RotationAngleLimit": 45,
           "RotationFaceLadders": true,
-          "RotationSpeed": 1
+          "RotationSpeed": 1,
+          "UseRootMotion": true
         }
       ],
       "Children": [
@@ -493,7 +500,7 @@
       "__guid": "70c830bd-3bcb-4e4c-8073-02b5ad07821f",
       "Flags": 0,
       "Name": "Cube",
-      "Position": "200,112,0",
+      "Position": "200,120,0",
       "Enabled": true,
       "Components": [
         {
@@ -541,7 +548,7 @@
           "__guid": "3533b089-1eb7-4468-8e7c-f9cc44ed557a",
           "BodyGroups": 18446744073709551615,
           "Health": 50,
-          "IsStatic": false,
+          "IsStatic": true,
           "MaterialGroup": null,
           "Model": "models/items/victorian_set/victorian_table.vmdl",
           "OnComponentDestroy": null,
@@ -937,7 +944,7 @@
       "__guid": "b7d79e6e-acef-435b-aa8a-ef74b0731c69",
       "Flags": 0,
       "Name": "Cube (7)",
-      "Position": "113.1371,67.88225,21.4295",
+      "Position": "113.1371,62.22539,21.4295",
       "Rotation": "0,0,0.3826834,0.9238796",
       "Enabled": true,
       "Components": [
@@ -1017,8 +1024,8 @@
     {
       "__guid": "e99a043e-b2d2-4a58-8299-8083da8eab52",
       "Flags": 0,
-      "Name": "Cube (1)",
-      "Position": "127.9999,120,0",
+      "Name": "Red Sofa",
+      "Position": "127.9999,128,0",
       "Rotation": "0,0,-0.9999999,0.0000001490116",
       "Tags": "prop",
       "Enabled": true,
@@ -1054,14 +1061,37 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null
         }
+      ],
+      "Children": [
+        {
+          "__guid": "ac4d5c3f-cc80-4477-bb50-f338015fffef",
+          "Flags": 0,
+          "Name": "Object",
+          "Position": "15.99988,33.99998,6",
+          "Rotation": "0,0,0.7071068,0.7071068",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "LLMGame.LLMSeatMarker",
+              "__guid": "f8939dc6-fcb9-410e-a58b-62920a10f686",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ]
+        }
       ]
     },
     {
       "__guid": "4d31f7c4-bd9d-4d08-be5b-d818b3e7ac16",
       "Flags": 0,
       "Name": "Cube (2)",
-      "Position": "128,64.00001,0",
+      "Position": "127.9999,64.00002,0",
       "Rotation": "0,0,-0.7071067,0.7071068",
+      "Tags": "prop",
       "Enabled": true,
       "Components": [
         {
@@ -1183,8 +1213,9 @@
       "__guid": "0ea5c177-76d7-44ca-b2fe-081fdd88dd79",
       "Flags": 0,
       "Name": "Cube (4)",
-      "Position": "192,0.00009155273,-0.0000008940697",
+      "Position": "192,0.00008392334,-0.0000009536743",
       "Rotation": "0,0,-0.7071069,-0.7071066",
+      "Tags": "prop",
       "Enabled": true,
       "Components": [
         {

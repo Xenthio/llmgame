@@ -130,15 +130,15 @@ public partial class LLMCharacter : Component, ILLMBeing
 		{
 			if ( obj == this ) continue;
 			var pos = obj.WorldPosition * LLMScene.INCH_2_METERS;
-			var x = MathF.Round( pos.x, 1 );
-			var y = MathF.Round( pos.y, 1 );
+			var x = MathF.Round( pos.x, 2 );
+			var y = MathF.Round( pos.y, 2 );
 			objs.Add( $"<character><name>{obj.GetName()}</name><position>{x},{y}</position></character>" );
 		}
 		foreach ( var obj in Scene.Components.GetAll<LLMObject>() )
 		{
 			var pos = obj.WorldPosition * LLMScene.INCH_2_METERS;
-			var x = MathF.Round( pos.x, 1 );
-			var y = MathF.Round( pos.y, 1 );
+			var x = MathF.Round( pos.x, 2 );
+			var y = MathF.Round( pos.y, 2 );
 			objs.Add( $"<object><name>{obj.Name}</name><position>{x},{y}</position></object>" );
 		}
 
