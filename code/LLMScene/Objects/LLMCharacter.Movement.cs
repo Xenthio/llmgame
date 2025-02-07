@@ -9,22 +9,30 @@ public partial class LLMCharacter
 	public Angles EyeAngles;
 	public Vector3 WishVelocity;
 	public Vector3 Velocity;
-
+	float VERTICAL_OFFSET = 1.8f;
 	public void UpdatePos()
 	{
-
+		var newPos = WorldPosition.WithZ( Navigator.AgentPosition.z - VERTICAL_OFFSET );
 		if ( UseRootMotion )
 		{
-			Navigator.SetAgentPosition( WorldPosition );
 			BodyModelRenderer.WorldRotation *= BodyModelRenderer.RootMotion.Rotation;
-			WorldPosition += BodyModelRenderer.RootMotion.Position * BodyModelRenderer.WorldRotation;
+			newPos += BodyModelRenderer.RootMotion.Position * BodyModelRenderer.WorldRotation;
+			Navigator.SetAgentPosition( newPos.WithZ( Navigator.AgentPosition.z ) );
 		}
 		else
 		{
-			GameObject.WorldPosition = Navigator.AgentPosition;
+			newPos = Navigator.AgentPosition;
+		}
+
+		GameObject.WorldPosition = newPos;
+
+		if ( CurrentSeat.IsValid() )
+		{
+			GameObject.WorldPosition = (newPos * (1f - _sittingProgress)) + (CurrentSeat.WorldPosition * _sittingProgress);
 		}
 	}
 
+	float _sittingProgress;
 	public bool Sitting = false;
 	public LLMSeatMarker CurrentSeat;
 	public async Task SitInClosestSeat()
@@ -235,8 +243,17 @@ public partial class LLMCharacter
 		}
 
 	}
-	public virtual void Animate()
+	public virtual void MoveAndAnimate()
 	{
+		if ( Sitting && CurrentSeat.IsValid() )
+		{
+			_sittingProgress = _sittingProgress.LerpTo( 1, 0.8f * Time.Delta );
+		}
+		else
+		{
+			_sittingProgress = _sittingProgress.LerpTo( 0, 0.8f * Time.Delta );
+		}
+
 		if ( Navigator.Velocity.Length > 10 )
 		{
 			var b = Navigator.GetLookAhead( 30f );

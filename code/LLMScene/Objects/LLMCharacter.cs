@@ -33,7 +33,7 @@ public partial class LLMCharacter : Component, ILLMBeing
 	{
 		base.OnFixedUpdate();
 		if ( IdleThinking ) DoIdleThinking();
-		Animate();
+		MoveAndAnimate();
 		UpdateSpeech();
 	}
 

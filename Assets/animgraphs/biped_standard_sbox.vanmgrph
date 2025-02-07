@@ -3387,6 +3387,120 @@
 			{
 				key = 
 				{
+					m_id = 1851828504
+				}
+				value = 
+				{
+					_class = "CFootLockAnimNode"
+					m_sName = "StrideR"
+					m_vecPosition = [ 640.0, -368.0 ]
+					m_nNodeID = 
+					{
+						m_id = 1851828504
+					}
+					m_sNote = ""
+					m_inputConnection = 
+					{
+						m_nodeID = 
+						{
+							m_id = 4294967295
+						}
+						m_outputID = 
+						{
+							m_id = 4294967295
+						}
+					}
+					m_items = 
+					[
+						{
+							m_footName = "Foot_Left"
+							m_targetBoneName = "foot_L_IK_target"
+							m_ikChainName = "IK_Leg_Left"
+							m_disableTagID = 
+							{
+								m_id = 4294967295
+							}
+							m_flMaxRotationLeft = 90.0
+							m_flMaxRotationRight = 15.0
+						},
+						{
+							m_footName = "Foot_Right"
+							m_targetBoneName = "foot_R_IK_target"
+							m_ikChainName = "IK_Leg_Right"
+							m_disableTagID = 
+							{
+								m_id = 4294967295
+							}
+							m_flMaxRotationLeft = 15.0
+							m_flMaxRotationRight = 90.0
+						},
+					]
+					m_hipBoneName = "pelvis"
+					m_flBlendTime = 0.3
+					m_bApplyFootRotationLimits = true
+					m_bResetChild = true
+					m_ikSolverType = "IKSOLVER_TwoBone"
+					m_bAlwaysUseFallbackHinge = true
+					m_flStrideCurveScale = 1.0
+					m_flStrideCurveLimitScale = 0.25
+					m_bEnableVerticalCurvedPaths = false
+					m_bModulateStepHeight = true
+					m_flStepHeightIncreaseScale = 0.0
+					m_flStepHeightDecreaseScale = 1.0
+					m_bEnableHipShift = false
+					m_flHipShiftScale = 0.8
+					m_hipShiftDamping = 
+					{
+						_class = "CAnimInputDamping"
+						m_speedFunction = "Spring"
+						m_fSpeedScale = 8.0
+						m_fMinSpeed = 0.0
+						m_fMaxTension = 1000.0
+						m_fTension = 100.0
+						m_fDamping = 5.0
+					}
+					m_bApplyTilt = false
+					m_flTiltPlanePitchSpringStrength = 5.0
+					m_flTiltPlaneRollSpringStrength = 5.0
+					m_bEnableLockBreaking = true
+					m_flLockBreakTolerance = 0.2
+					m_flLockBreakBlendTime = 0.2
+					m_bEnableStretching = true
+					m_flMaxStretchAmount = 2.0
+					m_flStretchExtensionScale = 0.997
+					m_bEnableGroundTracing = true
+					m_flTraceAngleBlend = 0.0
+					m_bApplyHipDrop = true
+					m_flMaxFootHeight = -12.0
+					m_flExtensionScale = 0.85
+					m_hipDampingSettings = 
+					{
+						_class = "CAnimInputDamping"
+						m_speedFunction = "NoDamping"
+						m_fSpeedScale = 16.0
+						m_fMinSpeed = 12.0
+						m_fMaxTension = 1000.0
+						m_fTension = 100.0
+						m_fDamping = 5.0
+					}
+					m_bEnableRootHeightDamping = true
+					m_rootHeightDamping = 
+					{
+						_class = "CAnimInputDamping"
+						m_speedFunction = "Spring"
+						m_fSpeedScale = 12.0
+						m_fMinSpeed = 10.0
+						m_fMaxTension = 1000.0
+						m_fTension = 100.0
+						m_fDamping = 5.0
+					}
+					m_flMaxRootHeightOffset = 100.0
+					m_flMinRootHeightOffset = -100.0
+				}
+			},
+			{
+				key = 
+				{
 					m_id = 1872648284
 				}
 				value = 

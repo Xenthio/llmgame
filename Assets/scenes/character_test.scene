@@ -821,8 +821,8 @@
     {
       "__guid": "87d5424c-de3e-4470-8c83-3d5f2949b2ad",
       "Flags": 0,
-      "Name": "Cube (12)",
-      "Position": "-72,118.1402,0.00003379583",
+      "Name": "Wooden Chair",
+      "Position": "-108,118.1402,0.00003379583",
       "Enabled": true,
       "Components": [
         {
@@ -855,6 +855,27 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "8ea2b942-4f0d-4b4b-9682-b994f9217d2f",
+          "Flags": 0,
+          "Name": "Object",
+          "Position": "17.99997,-2.140289,5.999966",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "LLMGame.LLMSeatMarker",
+              "__guid": "e640a32c-9a3b-43df-96a7-0fad767736e8",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ]
         }
       ]
     },
@@ -1067,7 +1088,7 @@
           "__guid": "ac4d5c3f-cc80-4477-bb50-f338015fffef",
           "Flags": 0,
           "Name": "Object",
-          "Position": "15.99988,33.99998,6",
+          "Position": "15.99988,33.99998,2",
           "Rotation": "0,0,0.7071068,0.7071068",
           "Enabled": true,
           "Components": [
