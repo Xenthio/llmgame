@@ -47,7 +47,7 @@ public partial class LLMCharacter
 			LookAtObject( seatMarker.GameObject );
 			await WalkToPositionAsync( seatMarker.WorldPosition );
 			CurrentSeat = seatMarker;
-			await Task.Delay( 1000 );
+			await Task.Delay( 200 );
 			Sitting = true;
 		}
 	}

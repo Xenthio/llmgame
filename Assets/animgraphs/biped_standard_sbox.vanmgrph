@@ -3999,11 +3999,11 @@
 											m_comparisonValue = 
 											{
 												m_nType = 4
-												m_data = 10.0
+												m_data = 0.1
 											}
 										},
 									]
-									m_blendDuration = 0.6
+									m_blendDuration = 0.2
 									m_destState = 
 									{
 										m_id = 720971063
@@ -4067,11 +4067,11 @@
 											m_comparisonValue = 
 											{
 												m_nType = 4
-												m_data = 10.0
+												m_data = 0.1
 											}
 										},
 									]
-									m_blendDuration = 0.6
+									m_blendDuration = 0.2
 									m_destState = 
 									{
 										m_id = 733696740

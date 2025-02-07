@@ -219,12 +219,12 @@
                 "rotations": {}
               },
               "RenderOptions": {
-                "GameLayer": false,
+                "GameLayer": true,
                 "OverlayLayer": false,
                 "BloomLayer": false,
                 "AfterUILayer": false
               },
-              "RenderType": "Off",
+              "RenderType": "On",
               "Sequence": {
                 "Name": null
               },
@@ -254,6 +254,7 @@
             {
               "__type": "Sandbox.SkinnedModelRenderer",
               "__guid": "0db5582b-ff61-43e4-a327-0f5e0b1e7ed7",
+              "__enabled": false,
               "AnimationGraph": null,
               "BodyGroups": 18446744073709551615,
               "BoneMergeTarget": null,
@@ -292,6 +293,7 @@
             {
               "__type": "LLMGame.BoneMerger",
               "__guid": "2e9a3c07-c783-4367-8150-daa5d76d6334",
+              "__enabled": false,
               "ArmSpace": 0,
               "DebugRendering": false,
               "Destination": {
