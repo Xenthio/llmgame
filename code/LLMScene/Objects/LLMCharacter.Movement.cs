@@ -13,10 +13,11 @@ public partial class LLMCharacter
 	public void UpdatePos()
 	{
 		var newPos = WorldPosition.WithZ( Navigator.AgentPosition.z - VERTICAL_OFFSET );
+		var newRot = BodyModelRenderer.WorldRotation;
 		if ( UseRootMotion )
 		{
-			BodyModelRenderer.WorldRotation *= BodyModelRenderer.RootMotion.Rotation;
-			newPos += BodyModelRenderer.RootMotion.Position * BodyModelRenderer.WorldRotation;
+			newRot *= BodyModelRenderer.RootMotion.Rotation;
+			newPos += BodyModelRenderer.RootMotion.Position * newRot;
 			Navigator.SetAgentPosition( newPos.WithZ( Navigator.AgentPosition.z ) );
 		}
 		else
@@ -25,14 +26,17 @@ public partial class LLMCharacter
 		}
 
 		GameObject.WorldPosition = newPos;
+		BodyModelRenderer.WorldRotation = newRot;
 
 		if ( CurrentSeat.IsValid() )
 		{
-			GameObject.WorldPosition = (newPos * (1f - _sittingProgress)) + (CurrentSeat.WorldPosition * _sittingProgress);
+			GameObject.WorldPosition = (newPos * (1f - _sittingPositionProgress)) + (CurrentSeat.WorldPosition * _sittingPositionProgress);
+			BodyModelRenderer.WorldRotation = newRot.LerpTo( CurrentSeat.WorldRotation, _sittingRotationProgress / 10 );
 		}
 	}
 
-	float _sittingProgress;
+	float _sittingPositionProgress;
+	float _sittingRotationProgress;
 	public bool Sitting = false;
 	public LLMSeatMarker CurrentSeat;
 	public async Task SitInClosestSeat()
@@ -43,7 +47,7 @@ public partial class LLMCharacter
 			LookAtObject( seatMarker.GameObject );
 			await WalkToPositionAsync( seatMarker.WorldPosition );
 			CurrentSeat = seatMarker;
-			await Task.Delay( 500 );
+			await Task.Delay( 1000 );
 			Sitting = true;
 		}
 	}
@@ -52,6 +56,7 @@ public partial class LLMCharacter
 		Sitting = false;
 		await Task.Delay( 1500 );
 		CurrentSeat = null;
+		_sittingRotationProgress = 0;
 	}
 
 
@@ -162,7 +167,6 @@ public partial class LLMCharacter
 	}
 	[Property, Group( "Animator" )] public float RotationAngleLimit { get; set; } = 45.0f;
 	[Property, Group( "Animator" )] public float RotationSpeed { get; set; } = 1.0f;
-	[Property, Group( "Animator" )] public bool RotationFaceLadders { get; set; } = true;
 	[Property, Group( "Animator" )] public bool UseRootMotion { get; set; } = true;
 	float _animRotationSpeed;
 	TimeSince timeSinceRotationSpeedUpdate;
@@ -175,34 +179,9 @@ public partial class LLMCharacter
 
 		float rotateDifference = BodyModelRenderer.WorldRotation.Distance( targetAngle );
 
-
-
-
 		if ( UseRootMotion )
 		{
-			if ( rotateDifference > RotationAngleLimit )
-			{
-				var delta = 0.999f - (RotationAngleLimit / rotateDifference);
-				var newRotation = Rotation.Lerp( BodyModelRenderer.WorldRotation, targetAngle, delta );
-
-				var a = newRotation.Angles();
-				var b = BodyModelRenderer.WorldRotation.Angles();
-
-				var yaw = MathX.DeltaDegrees( a.yaw, b.yaw );
-
-				_animRotationSpeed += yaw;
-				_animRotationSpeed = _animRotationSpeed.Clamp( -90, 90 );
-
-				//BodyModelRenderer.WorldRotation = newRotation;
-			}
-			if ( CurrentSeat.IsValid() )
-			{
-				Log.Info( CurrentSeat );
-				targetAngle = CurrentSeat.WorldRotation.RotateAroundAxis( Vector3.Up, 0 );
-				var newRotation = Rotation.Lerp( BodyModelRenderer.WorldRotation, targetAngle, 2f * Time.Delta );
-				BodyModelRenderer.WorldRotation = newRotation;
-			}
-			else if ( Navigator.Velocity.Length > 10 )
+			if ( Navigator.Velocity.Length > 10 )
 			{
 				var newRotation = Rotation.Lerp( BodyModelRenderer.WorldRotation, targetAngle, Time.Delta * 2.0f * RotationSpeed * Navigator.Velocity.Length.Remap( 0, 100 ) );
 				BodyModelRenderer.WorldRotation = newRotation;
@@ -225,7 +204,6 @@ public partial class LLMCharacter
 
 				BodyModelRenderer.WorldRotation = newRotation;
 			}
-
 			if ( velocity.Length > 10 )
 			{
 				var newRotation = Rotation.Slerp( BodyModelRenderer.WorldRotation, targetAngle, Time.Delta * 2.0f * RotationSpeed * velocity.Length.Remap( 0, 100 ) );
@@ -243,27 +221,37 @@ public partial class LLMCharacter
 		}
 
 	}
+
 	public virtual void MoveAndAnimate()
 	{
 		if ( Sitting && CurrentSeat.IsValid() )
 		{
-			_sittingProgress = _sittingProgress.LerpTo( 1, 0.8f * Time.Delta );
+			_sittingPositionProgress = _sittingPositionProgress.LerpTo( 1, 0.8f * Time.Delta );
 		}
 		else
 		{
-			_sittingProgress = _sittingProgress.LerpTo( 0, 0.8f * Time.Delta );
+			_sittingPositionProgress = _sittingPositionProgress.LerpTo( 0, 0.8f * Time.Delta );
 		}
 
-		if ( Navigator.Velocity.Length > 10 )
+		if ( CurrentSeat.IsValid() )
 		{
-			var b = Navigator.GetLookAhead( 30f );
-			var ang = Rotation.LookAt( (b.WithZ( 0 ) - Eye.WorldPosition.WithZ( 0 )).Normal, Vector3.Up );
-			TargetEyeAngles = ang;
+			_sittingRotationProgress = _sittingRotationProgress.LerpTo( 1, 0.2f * Time.Delta );
 		}
-		else if ( LookingObject != null )
+		else
+		{
+			_sittingRotationProgress = _sittingRotationProgress.LerpTo( 0, 0.2f * Time.Delta );
+		}
+
+		if ( LookingObject != null && Scene.Trace.Ray( Eye.WorldPosition, LookingObject.WorldPosition ).IgnoreDynamic().Run().Fraction >= 1 )
 		{
 			_lookAtPosition( LookingObject.WorldPosition );
 			if ( TimeSinceLookingObjectSet > 15 ) LookingObject = null;
+		}
+		else if ( Navigator.Velocity.Length > 10 )
+		{
+			var b = Navigator.GetLookAhead( 100f );
+			var ang = Rotation.LookAt( (b.WithZ( 0 ) - Eye.WorldPosition.WithZ( 0 )).Normal, Vector3.Up );
+			TargetEyeAngles = ang;
 		}
 
 		if ( TargetPosition.HasValue && HasFinishedMoving() )

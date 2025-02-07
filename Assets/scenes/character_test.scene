@@ -124,7 +124,7 @@
         {
           "__type": "Sandbox.NavMeshAgent",
           "__guid": "5044226b-b2de-49f7-82b0-63f4e39ccbcd",
-          "Acceleration": 84,
+          "Acceleration": 200,
           "Height": 64,
           "MaxSpeed": 84,
           "OnComponentDestroy": null,
@@ -134,7 +134,7 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "Radius": 12,
-          "Separation": 0.1,
+          "Separation": 0.25,
           "UpdatePosition": false,
           "UpdateRotation": false
         },
@@ -175,7 +175,6 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "RotationAngleLimit": 45,
-          "RotationFaceLadders": true,
           "RotationSpeed": 1,
           "UseRootMotion": true
         }
@@ -415,7 +414,6 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "RotationAngleLimit": 45,
-          "RotationFaceLadders": true,
           "RotationSpeed": 1,
           "UseRootMotion": true
         }
