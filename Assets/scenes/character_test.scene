@@ -48,6 +48,16 @@
           "OnMapLoaded": null,
           "OnMapUnloaded": null,
           "UseMapFromLaunch": false
+        },
+        {
+          "__type": "LLMGame.Fixups",
+          "__guid": "f68f0b7d-cc62-45b3-aae0-d8d0e70b0caa",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": []
@@ -500,7 +510,8 @@
       "__guid": "70c830bd-3bcb-4e4c-8073-02b5ad07821f",
       "Flags": 0,
       "Name": "Cube",
-      "Position": "200,120,0",
+      "Position": "207.0617,27.33872,0.00003116019",
+      "Scale": "0.8,0.8,0.8",
       "Enabled": true,
       "Components": [
         {
@@ -541,7 +552,6 @@
       "Flags": 0,
       "Name": "Cube (8)",
       "Position": "-48,96,0",
-      "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.Prop",
@@ -703,7 +713,6 @@
       "Flags": 0,
       "Name": "Cube (9)",
       "Position": "-240,144,0",
-      "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.Prop",
@@ -742,7 +751,7 @@
       "__guid": "b1af5b5b-84ab-4661-abb7-91480035673a",
       "Flags": 0,
       "Name": "Cube (10)",
-      "Position": "-240,24,-0.00001770258",
+      "Position": "-240,20,-0.00001770258",
       "Enabled": true,
       "Components": [
         {
@@ -1149,51 +1158,10 @@
       ]
     },
     {
-      "__guid": "5d31c0af-b52a-4043-884c-f3345640868d",
-      "Flags": 0,
-      "Name": "Cube (5)",
-      "Position": "207.9999,63.99992,0.000001698732",
-      "Rotation": "0,0,0.9999999,0.0000001490116",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "ed03dd9b-4020-4967-b262-e61cedec81a4",
-          "BodyGroups": 18446744073709551615,
-          "Health": 5,
-          "IsStatic": false,
-          "MaterialGroup": null,
-          "Model": "models/items/plain_set/plain_cabinet.vmdl",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "OnPropBreak": null,
-          "OnPropTakeDamage": null,
-          "StartAsleep": false,
-          "Tint": "1,1,1,1"
-        },
-        {
-          "__type": "LLMGame.LLMObject",
-          "__guid": "7dc3f624-5d43-4515-be9c-8389b08b163a",
-          "Model": null,
-          "Name": "Wooden Bookshelf (Empty)",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        }
-      ]
-    },
-    {
       "__guid": "34324d81-f35f-43fc-8b63-8b810ec25f01",
       "Flags": 0,
       "Name": "Cube (3)",
-      "Position": "128,16.00006,16",
+      "Position": "128,18.23967,16",
       "Rotation": "0,0,-0.7071069,-0.7071066",
       "Enabled": true,
       "Components": [
@@ -1237,7 +1205,6 @@
       "Position": "192,0.00008392334,-0.0000009536743",
       "Rotation": "0,0,-0.7071069,-0.7071066",
       "Tags": "prop",
-      "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.Prop",
@@ -1323,7 +1290,6 @@
       "Flags": 0,
       "Name": "Box",
       "Position": "-240,86,18",
-      "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.MeshComponent",
@@ -1475,7 +1441,6 @@
       "Flags": 0,
       "Name": "Box",
       "Position": "-216,176,18",
-      "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.MeshComponent",
@@ -1621,6 +1586,88 @@
           "OnComponentUpdate": null
         }
       ]
+    },
+    {
+      "__guid": "1cdb262b-2d76-4a7e-bd08-469aa8275b81",
+      "Flags": 0,
+      "Name": "microwave",
+      "Position": "-176,176,36.00323",
+      "Rotation": "0,0,-0.7933533,0.6087615",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "06b7a826-cf12-4e11-8eb8-6fa4867d872f",
+          "BodyGroups": 18446744073709551615,
+          "Health": 0,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/microwave/microwave.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "29dcffa0-bab1-4ffc-bcaf-0af938572d13",
+          "Model": null,
+          "Name": "Microwave",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "92e9343c-0d2e-4674-ac9d-f5291579379f",
+      "Flags": 0,
+      "Name": "drying_rack_01",
+      "Position": "256,96.00004,0.0087502",
+      "Rotation": "0,0,-0.6869471,0.7267073",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "a67580f8-52a4-4e49-b0bd-5dd21b28b536",
+          "BodyGroups": 18446744073709551615,
+          "Health": 0,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/props/trim_sheets/laundry/drying_rack_01.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "LLMGame.LLMObject",
+          "__guid": "aa9dfec6-3e92-497c-a5df-ee5925fa5433",
+          "Model": null,
+          "Name": "Drying Rack",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -1658,14 +1705,15 @@
     "facepunch.cabinet_a3#43526",
     "facepunch.coffeetablea#83540",
     "facepunch.couch#33708",
+    "facepunch.drying_rack_01#47582",
     "facepunch.fridge#80640",
     "facepunch.mattress#33675",
+    "facepunch.microwave#83558",
     "facepunch.modern_shelving_a5#43533",
     "facepunch.mug_2#43699",
     "facepunch.old_cooker#79883",
     "facepunch.wooden_chair_a#43573",
     "facepunch.wooden_crate#29138",
-    "luke.plain_cabinet#22942",
     "luke.tv_flatscreen_stand#24340",
     "luke.victorian_table#22967",
     "mingoelgato.bot_heavy#19178"

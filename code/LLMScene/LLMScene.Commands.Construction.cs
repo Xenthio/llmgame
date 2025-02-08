@@ -91,83 +91,92 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 		var vertices = new List<Vertex>();
 		var indices = new List<int>();
 
-		// Calculate wall direction and perpendicular
-		var wallDir = (endPos - startPos).Normal;
-		var perpendicular = new Vector3( -wallDir.y, wallDir.x, 0 ).Normal;
+		// Calculate the 2D (XY) positions from the start and end positions.
+		var start2D = new Vector2( startPos.x, startPos.y );
+		var end2D = new Vector2( endPos.x, endPos.y );
+		var dir2D = end2D - start2D;
 
-		// Calculate the four corners of the wall (bottom and top)
-		var halfThickness = thickness * 0.5f;
-		var bottomLeft = startPos + (perpendicular * halfThickness);
-		var bottomRight = startPos - (perpendicular * halfThickness);
-		var topLeft = bottomLeft + Vector3.Up * height;
-		var topRight = bottomRight + Vector3.Up * height;
-		var bottomLeftEnd = endPos + (perpendicular * halfThickness);
-		var bottomRightEnd = endPos - (perpendicular * halfThickness);
-		var topLeftEnd = bottomLeftEnd + Vector3.Up * height;
-		var topRightEnd = bottomRightEnd + Vector3.Up * height;
+		var wallLength = dir2D.Length;
+		if ( wallLength < 0.0001f )
+			return false; // Too short a wall
 
-		// Calculate UV scale based on wall length and height
-		var wallLength = (endPos - startPos).Length;
 		var uScale = wallLength / 128.0f;
 		var vScale = height / 128.0f;
 
-		// Front face
-		vertices.AddRange( new[] {
-			new Vertex(bottomRight, -perpendicular, Vector3.Up, new Vector4(0, 0, 0, 0)),
-			new Vertex(bottomRightEnd, -perpendicular, Vector3.Up, new Vector4(uScale, 0, 0, 0)),
-			new Vertex(topRightEnd, -perpendicular, Vector3.Up, new Vector4(uScale, vScale, 0, 0)),
-			new Vertex(topRight, -perpendicular, Vector3.Up, new Vector4(0, vScale, 0, 0))
-		} );
+		// Get the normalized direction along the wall and compute a perpendicular.
+		// This ensures that even for diagonal walls, the offset is computed correctly.
+		var wallDir2D = dir2D.Normal;
+		var perp2D = new Vector2( -wallDir2D.y, wallDir2D.x ).Normal; // 90° rotated
 
-		// Back face
-		vertices.AddRange( new[] {
-			new Vertex(bottomLeftEnd, perpendicular, Vector3.Up, new Vector4(0, 0, 0, 0)),
-			new Vertex(bottomLeft, perpendicular, Vector3.Up, new Vector4(uScale, 0, 0, 0)),
-			new Vertex(topLeft, perpendicular, Vector3.Up, new Vector4(uScale, vScale, 0, 0)),
-			new Vertex(topLeftEnd, perpendicular, Vector3.Up, new Vector4(0, vScale, 0, 0))
-		} );
+		// Compute half the thickness and the offset vector.
+		float halfThickness = thickness * 0.5f;
+		Vector2 offset2D = perp2D * halfThickness;
 
-		// Top face
-		vertices.AddRange( new[] {
-			new Vertex(topRight, Vector3.Up, wallDir, new Vector4(0, 0, 0, 0)),
-			new Vertex(topRightEnd, Vector3.Up, wallDir, new Vector4(uScale, 0, 0, 0)),
-			new Vertex(topLeftEnd, Vector3.Up, wallDir, new Vector4(uScale, thickness/128.0f, 0, 0)),
-			new Vertex(topLeft, Vector3.Up, wallDir, new Vector4(0, thickness/128.0f, 0, 0))
-		} );
+		// Define the bottom vertices in the XY plane (with Z = 0).
+		// "Front" is defined as the side in the direction of -offset.
+		Vector3 A = new Vector3( start2D.x - offset2D.x, start2D.y - offset2D.y, 0 ); // front left
+		Vector3 B = new Vector3( end2D.x - offset2D.x, end2D.y - offset2D.y, 0 ); // front right
+		Vector3 C = new Vector3( start2D.x + offset2D.x, start2D.y + offset2D.y, 0 ); // back left
+		Vector3 D = new Vector3( end2D.x + offset2D.x, end2D.y + offset2D.y, 0 ); // back right
 
-		// Bottom face
-		vertices.AddRange( new[] {
-			new Vertex(bottomLeft, Vector3.Down, wallDir, new Vector4(0, 0, 0, 0)),
-			new Vertex(bottomLeftEnd, Vector3.Down, wallDir, new Vector4(uScale, 0, 0, 0)),
-			new Vertex(bottomRightEnd, Vector3.Down, wallDir, new Vector4(uScale, thickness/128.0f, 0, 0)),
-			new Vertex(bottomRight, Vector3.Down, wallDir, new Vector4(0, thickness/128.0f, 0, 0))
-		} );
+		// Create top vertices by extruding upward by 'height' (along Z).
+		Vector3 A2 = A + Vector3.Up * height;
+		Vector3 B2 = B + Vector3.Up * height;
+		Vector3 C2 = C + Vector3.Up * height;
+		Vector3 D2 = D + Vector3.Up * height;
 
-		// End face
-		vertices.AddRange( new[] {
-			new Vertex(bottomRightEnd, wallDir, Vector3.Up, new Vector4(0, 0, 0, 0)),
-			new Vertex(bottomLeftEnd, wallDir, Vector3.Up, new Vector4(thickness/128.0f, 0, 0, 0)),
-			new Vertex(topLeftEnd, wallDir, Vector3.Up, new Vector4(thickness/128.0f, vScale, 0, 0)),
-			new Vertex(topRightEnd, wallDir, Vector3.Up, new Vector4(0, vScale, 0, 0))
-		} );
-
-		// Start face
-		vertices.AddRange( new[] {
-			new Vertex(bottomLeft, -wallDir, Vector3.Up, new Vector4(0, 0, 0, 0)),
-			new Vertex(bottomRight, -wallDir, Vector3.Up, new Vector4(thickness/128.0f, 0, 0, 0)),
-			new Vertex(topRight, -wallDir, Vector3.Up, new Vector4(thickness/128.0f, vScale, 0, 0)),
-			new Vertex(topLeft, -wallDir, Vector3.Up, new Vector4(0, vScale, 0, 0))
-		} );
-
-		// Add indices for all six faces
-		for ( int i = 0; i < 6; i++ )
+		// Helper method to add a face (quad) with tangent data.
+		// We calculate the tangent as the normalized vector from v0 to v1,
+		// which corresponds to increasing U in our UV layout.
+		void AddFace( Vector3 v0, Vector3 v1, Vector3 v2, Vector3 v3, Vector3 faceNormal )
 		{
-			int baseIndex = i * 4;
-			indices.AddRange( new[] {
-			baseIndex, baseIndex + 1, baseIndex + 2,
-			baseIndex, baseIndex + 2, baseIndex + 3
-		} );
+			int startIndex = vertices.Count;
+			Vector3 tangent = (v1 - v0).Normal; // Calculate the tangent vector
+
+			// Note: new Vertex( position, normal, tangent, texcoord0 )
+			vertices.Add( new Vertex( v0, faceNormal, tangent, new Vector2( 0, 1 ) ) );
+			vertices.Add( new Vertex( v1, faceNormal, tangent, new Vector2( uScale, 1 ) ) );
+			vertices.Add( new Vertex( v2, faceNormal, tangent, new Vector2( uScale, 1 - vScale ) ) );
+			vertices.Add( new Vertex( v3, faceNormal, tangent, new Vector2( 0, 1 - vScale ) ) );
+
+			// Create two triangles for this quad.
+			indices.Add( startIndex + 0 );
+			indices.Add( startIndex + 1 );
+			indices.Add( startIndex + 2 );
+
+			indices.Add( startIndex + 0 );
+			indices.Add( startIndex + 2 );
+			indices.Add( startIndex + 3 );
 		}
+
+		// Convert the 2D directions to 3D vectors (still lying in the XY plane).
+		Vector3 wallDir3D = new Vector3( wallDir2D.x, wallDir2D.y, 0 );
+		Vector3 perp3D = new Vector3( perp2D.x, perp2D.y, 0 );
+
+		// ─── Build the wall faces ─────────────────────────────────────────
+
+		// Front face (facing in the -perp3D direction):
+		// Uses vertices: A (bottom front left), B (bottom front right), B2 (top front right), A2 (top front left)
+		AddFace( A, B, B2, A2, -perp3D );
+
+		// Back face (facing in the +perp3D direction):
+		// Uses vertices: D (bottom back right), C (bottom back left), C2 (top back left), D2 (top back right)
+		AddFace( D, C, C2, D2, perp3D );
+
+		// Left face (start end, facing -wallDir3D):
+		// Uses vertices: C (bottom back left), A (bottom front left), A2 (top front left), C2 (top back left)
+		AddFace( C, A, A2, C2, -wallDir3D );
+
+		// Right face (end end, facing +wallDir3D):
+		// Uses vertices: B (bottom front right), D (bottom back right), D2 (top back right), B2 (top front right)
+		AddFace( B, D, D2, B2, wallDir3D );
+
+		// Top face (facing upward):
+		// Uses vertices: A2, B2, D2, C2
+		AddFace( A2, B2, D2, C2, Vector3.Up );
+
+		// (Optional) Bottom face (if needed; often omitted if the wall sits on the ground):
+		AddFace( C, D, B, A, -Vector3.Up );
 
 		mesh.CreateVertexBuffer<Vertex>( vertices.Count, Vertex.Layout, vertices.ToArray() );
 		mesh.CreateIndexBuffer( indices.Count, indices.ToArray() );

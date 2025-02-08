@@ -280,7 +280,7 @@
                 "TargetEye": "Both",
                 "Viewport": "0,0,1,1",
                 "ZFar": 10000,
-                "ZNear": 10
+                "ZNear": 3
               },
               {
                 "__type": "Sandbox.AmbientOcclusion",
@@ -297,7 +297,7 @@
                 "OnComponentUpdate": null,
                 "Quality": "High",
                 "Radius": 128,
-                "ThinCompensation": 0
+                "ThinCompensation": 0.2
               },
               {
                 "__type": "Sandbox.Tonemapping",
@@ -361,6 +361,19 @@
                 "Strength": 1,
                 "Threshold": 0,
                 "ThresholdWidth": 3
+              },
+              {
+                "__type": "Sandbox.MotionBlur",
+                "__guid": "85e266a6-24f3-460e-af26-245faedc7735",
+                "__enabled": false,
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "Samples": 16,
+                "Scale": 0.05
               }
             ]
           }
