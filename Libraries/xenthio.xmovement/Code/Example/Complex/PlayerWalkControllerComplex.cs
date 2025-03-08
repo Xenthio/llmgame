@@ -21,6 +21,8 @@ public partial class PlayerWalkControllerComplex : Component, Component.ExecuteI
 		base.OnUpdate();
 		if ( !Game.IsPlaying ) return;
 
+		Camera.Enabled = !IsProxy;
+
 		if ( !IsProxy )
 		{
 			UpdateCamera();
@@ -39,7 +41,11 @@ public partial class PlayerWalkControllerComplex : Component, Component.ExecuteI
 		if ( !IsProxy )
 		{
 			if ( Controller.MovementFrequency == PlayerMovement.MovementFrequencyMode.PerFixedUpdate ) DoMovement();
+			DoUsing();
 		}
 		Animate();
+
+		// HACK: For shitty networking purposes do this per FixedUpdate, we cant do this on start because new players wont ever fucking run that on join, nor any other function.
+		UpdateBodyVisibility();
 	}
 }

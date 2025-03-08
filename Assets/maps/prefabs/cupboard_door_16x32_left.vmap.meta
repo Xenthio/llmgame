@@ -1,0 +1,24 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "Cupboard Door 16X 32 Left",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "cupboarddoor16x32left",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "facepunch.door_knob_a#33668",
+        "facepunch.woodtrimpolishedblend03#79834"
+      ],
+      "IsWhitelistDisabled": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/prefabs/cupboard_door_16x32_left.vmap",
+        "ParentPackage": "xenthio.llmgame"
+      }
+    }
+  }
+}

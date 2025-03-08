@@ -24,7 +24,7 @@ public partial class PlayerComponent
 		if ( body.GetGameObject().Components.TryGet<LLMObject>( out var llmobject ) )
 		{
 			objname = llmobject.Name;
-			var downtr = Scene.Trace.Ray( body.Position, body.Position + (Vector3.Down * 32) ).IgnoreGameObjectHierarchy( body.GetGameObject() ).Run();
+			var downtr = Scene.Trace.Ray( body.Position, body.Position + (Vector3.Down * 32) ).IgnoreGameObjectHierarchy( body.GetGameObject() ).HitTriggers().Run();
 			if ( downtr.GameObject.IsValid() && downtr.GameObject.Components.TryGet<LLMObject>( out var llmobjectdown ) )
 			{
 				liftedfrom = $"<liftedfrom>{llmobjectdown.Name}</liftedfrom>";
@@ -39,7 +39,7 @@ public partial class PlayerComponent
 		if ( body.GetGameObject().Components.TryGet<LLMObject>( out var llmobject ) )
 		{
 			objname = llmobject.Name;
-			var downtr = Scene.Trace.Ray( body.Position, body.Position + (Vector3.Down * 32) ).IgnoreGameObjectHierarchy( body.GetGameObject() ).Run();
+			var downtr = Scene.Trace.Ray( body.Position, body.Position + (Vector3.Down * 32) ).IgnoreGameObjectHierarchy( body.GetGameObject() ).HitTriggers().Run();
 			if ( downtr.GameObject.IsValid() && downtr.GameObject.Components.TryGet<LLMObject>( out var llmobjectdown ) )
 			{
 				placeon = $"<placeon>{llmobjectdown.Name}</placeon>";

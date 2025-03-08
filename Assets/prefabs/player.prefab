@@ -37,6 +37,7 @@
         "EnableNoclipping": true,
         "EnableRunning": true,
         "EnableSwimming": true,
+        "EnableUse": true,
         "EnableVR": false,
         "EnableWalking": true,
         "FirstPersonOffset": "0,0,0",
@@ -71,6 +72,8 @@
         "SwimmingSpeedScale": 0.8,
         "SwimUpAction": "Jump",
         "ThirdPersonOffset": "-180,0,0",
+        "UseAction": "Use",
+        "UseDistance": 130,
         "WalkAction": "Walk",
         "WalkSpeed": 80,
         "WaterTag": "water"
@@ -230,6 +233,7 @@
               "vectors": {},
               "rotations": {}
             },
+            "PlaybackRate": 1,
             "RenderOptions": {
               "GameLayer": true,
               "OverlayLayer": false,

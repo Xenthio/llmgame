@@ -94,6 +94,11 @@
             Values from popular games.
             </summary>
         </member>
+        <member name="P:XMovement.PlayerWalkControllerComplex.UseAction">
+            <summary>
+            The Input Action that noclipping is triggered by.
+            </summary>
+        </member>
         <member name="P:XMovement.PlayerWalkControllerSimple.RunSpeed">
             <summary>
             How quickly does the player move by default?

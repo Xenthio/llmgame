@@ -1,0 +1,24 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "Cupboard 16X 32",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "cupboard16x32",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "facepunch.door_knob_a#33668",
+        "facepunch.woodtrimpolishedblend03#79834"
+      ],
+      "IsWhitelistDisabled": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/prefabs/cupboard_16x32.vmap",
+        "ParentPackage": "xenthio.llmgame"
+      }
+    }
+  }
+}

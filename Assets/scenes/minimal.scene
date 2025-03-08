@@ -142,6 +142,8 @@
           "IsTrigger": false,
           "Mesh": {
             "Topology": "H4sIAAAAAAAACk2MCQoAIQzE4qqr//9wJdiCA6WQOQawgcbVBwzgT+bJXi0gIkLeM68q69fXm7n1bsv1a6skN2tH394B6DpJeKAAAAA=",
+            "Position": "0,0,0",
+            "Rotation": "0,0,0,1",
             "Positions": [
               "-384,-384,0",
               "384,-384,0",
@@ -222,6 +224,8 @@
           "IsTrigger": false,
           "Mesh": {
             "Topology": "H4sIAAAAAAAACm2Q2Q7CMAwEB8IRztJy/v+XohEbyQ9Eipp6J+t1OvABdvzWGtjk/wicgRvwAFbZMnUtQEu95T6FvRZt+6dXD+vaF98W9hLOfUiu4d1Lb71PyawuLztHk9PLs7pf2VeZecq8+smY3e+YSy8zqMvLPuNl9nveSn68jfXhL2sPdeuy73Lfsx7y1szmTOPdzGt/PeTUvu34t2bEAQAA",
+            "Position": "0,0,128",
+            "Rotation": "0,1,0,0.0000001947072",
             "Positions": [
               "-384,-384,-0.000003052774",
               "384,-384,0.000003052774",
@@ -260,35 +264,35 @@
             ],
             "TextureUAxis": [
               "-1,0,-0.0000003973643",
-              "-1,0,-0.0000003973643",
-              "-1,0,-0.0000003973643",
-              "-1,0,-0.0000003973643",
-              "-1,0,-0.0000003973643",
-              "1,0,0"
+              "NaN,NaN,NaN",
+              "NaN,NaN,NaN",
+              "NaN,NaN,NaN",
+              "NaN,NaN,NaN",
+              "1,0,0.0000003774961"
             ],
             "TextureVAxis": [
               "-0,-1,0",
-              "-0,-1,0",
-              "-0,-1,0",
-              "-0,-1,0",
-              "-0,-1,0",
+              "NaN,NaN,NaN",
+              "NaN,NaN,NaN",
+              "NaN,NaN,NaN",
+              "NaN,NaN,NaN",
               "0,-1,0"
             ],
             "TextureScale": [
               "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25",
+              "NaN,NaN",
+              "NaN,NaN",
+              "NaN,NaN",
+              "NaN,NaN",
               "0.25,0.25"
             ],
             "TextureOffset": [
               "0.0002441406,0",
-              "0.0002441406,0",
-              "0.0002441406,0",
-              "0.0002441406,0",
-              "0.0002441406,0",
-              "0,0"
+              "NaN,NaN",
+              "NaN,NaN",
+              "NaN,NaN",
+              "NaN,NaN",
+              "511.9998,0"
             ],
             "MaterialIndex": [
               0,
@@ -377,16 +381,19 @@
             "go": "a4cd8029-63db-45cb-8cf7-6b0cd7dcc155",
             "component_type": "MeshComponent"
           },
+          "LanguageAPI": null,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null
+          "OnComponentUpdate": null,
+          "SpeechAPI": null
         },
         {
           "__type": "LLMGame.EnvironmentMaker",
           "__guid": "533ba66f-f447-4de3-a936-06ed92f57a5d",
+          "Memory": [],
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -470,6 +477,7 @@
           "EnableNoclipping": true,
           "EnableRunning": true,
           "EnableSwimming": true,
+          "EnableUse": false,
           "EnableVR": false,
           "EnableWalking": true,
           "FirstPersonOffset": "0,0,0",
@@ -504,6 +512,8 @@
           "SwimmingSpeedScale": 0.8,
           "SwimUpAction": "Jump",
           "ThirdPersonOffset": "-180,0,0",
+          "UseAction": "Use",
+          "UseDistance": 130,
           "WalkAction": "Walk",
           "WalkSpeed": 120,
           "WaterTag": "water"
@@ -523,7 +533,7 @@
           "GroundAngle": 45.5734,
           "Height": 72,
           "IgnoreLayers": "",
-          "IsOnGround": true,
+          "IsOnGround": false,
           "Mass": 85,
           "MovementFrequency": "PerFixedUpdate",
           "OnComponentDestroy": null,
@@ -638,6 +648,7 @@
                 "vectors": {},
                 "rotations": {}
               },
+              "PlaybackRate": 1,
               "RenderOptions": {
                 "GameLayer": true,
                 "OverlayLayer": false,
@@ -669,7 +680,6 @@
                 {
                   "__type": "Sandbox.CameraComponent",
                   "__guid": "91583c94-9e24-44d7-8c7e-5ee0b93c4c23",
-                  "__enabled": false,
                   "BackgroundColor": "0.33333,0.46275,0.52157,1",
                   "ClearFlags": "All",
                   "FieldOfView": 90,

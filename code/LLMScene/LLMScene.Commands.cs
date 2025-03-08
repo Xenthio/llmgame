@@ -31,8 +31,9 @@ public partial class LLMScene : SingletonComponent<LLMScene>
 	{
 		var split = message.Content.Split( '|' );
 
-		foreach ( var xml in split )
+		foreach ( var cmd in split )
 		{
+			var xml = cmd.Trim();
 			try
 			{
 				Log.Info( xml );
